@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.util.HashCompiler;
 import ru.loghorrean.veganShop.util.RegexCompiler;
 import ru.loghorrean.veganShop.util.Regexes;
+import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.SQLException;
 
@@ -38,11 +40,12 @@ public class RegistrationController {
     public void processRegistration() throws SQLException {
         String newUsername = username.getText().trim();
         String newEmail = email.getText().trim();
-        String newPassword = pass.getText().trim();
+        String newPassword = HashCompiler.hashPassword(pass.getText().trim());
         UserEntity user = new UserEntity.UserBuilder()
                 .withUsername(newUsername)
                 .withEmail(newEmail)
                 .withPassword(newPassword)
+                .withRole(Roles.Customer)
                 .build();
         MainData.getInstance().getUserManager().registerUser(user);
     }

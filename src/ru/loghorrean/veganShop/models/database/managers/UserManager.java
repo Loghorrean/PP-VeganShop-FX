@@ -2,6 +2,7 @@ package ru.loghorrean.veganShop.models.database.managers;
 
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,11 +35,12 @@ public class UserManager {
 
     public void registerUser(UserEntity user) throws SQLException {
         try(Connection c = database.getConnection()) {
-            String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, user.getUsername());
             s.setString(2, user.getEmail());
             s.setString(3, user.getPassword());
+            s.setInt(4, user.getRole().getRoleCode());
             s.executeUpdate();
         }
     }
