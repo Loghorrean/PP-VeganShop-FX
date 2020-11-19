@@ -1,5 +1,7 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.util.Roles;
+
 public class RoleEntity {
     private int id;
     private String name;

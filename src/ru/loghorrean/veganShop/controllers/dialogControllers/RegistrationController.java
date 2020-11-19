@@ -2,6 +2,7 @@ package ru.loghorrean.veganShop.controllers.dialogControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ru.loghorrean.veganShop.controllers.BaseController;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
@@ -11,7 +12,7 @@ import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.SQLException;
 
-public class RegistrationController {
+public class RegistrationController extends BaseController {
     @FXML
     private DialogPane registerDialog;
 
@@ -94,14 +95,5 @@ public class RegistrationController {
 
     private boolean checkIfEmailExists() throws SQLException {
         return mainData.getUserManager().checkIfEmailExists(email.getText().trim());
-    }
-
-    private void setMistake(String message) {
-        System.out.println("ALERT");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Внимание!");
-        alert.setHeaderText("Ошибка:");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

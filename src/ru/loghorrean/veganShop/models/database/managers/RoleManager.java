@@ -2,6 +2,7 @@ package ru.loghorrean.veganShop.models.database.managers;
 
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.RoleEntity;
+import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,5 +40,17 @@ public class RoleManager {
             }
             return roles;
         }
+    }
+
+    public Roles computeRole(int role_id) {
+        switch (role_id) {
+            case 1:
+                return Roles.Admin;
+            case 2:
+                return Roles.Customer;
+            case 3:
+                return Roles.Courier;
+        }
+        return null;
     }
 }

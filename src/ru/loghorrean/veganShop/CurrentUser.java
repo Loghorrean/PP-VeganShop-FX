@@ -12,8 +12,19 @@ public class CurrentUser {
 
     public static CurrentUser getInstance() {
         if (instance == null) {
-            //TODO: FINISH THIS
+            instance = new CurrentUser(null);
         }
         return instance;
+    }
+
+    public void setUser(UserEntity user) {
+        this.currentUser = user;
+    }
+
+    @Override
+    public String toString() {
+        return "CurrentUser{" +
+                "currentUser=" + currentUser +
+                '}';
     }
 }

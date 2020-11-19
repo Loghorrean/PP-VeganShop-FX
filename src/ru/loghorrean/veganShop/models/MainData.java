@@ -35,6 +35,10 @@ public class MainData {
         return userManager;
     }
 
+    public RoleManager getRoleManager() {
+        return roleManager;
+    }
+
     public List<RoleEntity> getRoles() {
         return roles;
     }
