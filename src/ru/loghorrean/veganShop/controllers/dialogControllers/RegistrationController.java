@@ -40,11 +40,13 @@ public class RegistrationController {
     public void processRegistration() throws SQLException {
         String newUsername = username.getText().trim();
         String newEmail = email.getText().trim();
-        String newPassword = HashCompiler.hashPassword(pass.getText().trim());
+        String randSalt = HashCompiler.getRandomSalt();
+        String newPassword = HashCompiler.hashPassword(pass.getText().trim(), randSalt);
         UserEntity user = new UserEntity.UserBuilder()
                 .withUsername(newUsername)
                 .withEmail(newEmail)
                 .withPassword(newPassword)
+                .withSalt(randSalt)
                 .withRole(Roles.Customer)
                 .build();
         MainData.getInstance().getUserManager().registerUser(user);

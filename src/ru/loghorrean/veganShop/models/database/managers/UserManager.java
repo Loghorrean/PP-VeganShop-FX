@@ -35,12 +35,13 @@ public class UserManager {
 
     public void registerUser(UserEntity user) throws SQLException {
         try(Connection c = database.getConnection()) {
-            String sql = "INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO users (username, email, password, user_salt, role_id) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, user.getUsername());
             s.setString(2, user.getEmail());
             s.setString(3, user.getPassword());
-            s.setInt(4, user.getRole().getRoleCode());
+            s.setString(4, user.getSalt());
+            s.setInt(5, user.getRole().getRoleCode());
             s.executeUpdate();
         }
     }

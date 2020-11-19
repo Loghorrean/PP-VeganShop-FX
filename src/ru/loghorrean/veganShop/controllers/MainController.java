@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import ru.loghorrean.veganShop.controllers.dialogControllers.RegistrationController;
 import ru.loghorrean.veganShop.models.MainData;
+import ru.loghorrean.veganShop.util.HashCompiler;
 
 import java.io.IOException;
 import java.sql.SQLException;
