@@ -1,7 +1,5 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.util.Roles;
-
 import java.time.LocalDate;
 
 public class UserEntity {
@@ -12,7 +10,7 @@ public class UserEntity {
     private String firstName = "";
     private String lastName = "";
     private String phone = "";
-    private Roles role = Roles.Customer;
+    private RoleEntity role = null;
     private LocalDate dateOfReg;
     private String salt = "";
 
@@ -44,7 +42,7 @@ public class UserEntity {
         return phone;
     }
 
-    public Roles getRole() {
+    public RoleEntity getRole() {
         return role;
     }
 
@@ -80,7 +78,7 @@ public class UserEntity {
         this.phone = phone;
     }
 
-    private void setRole(Roles role) {
+    private void setRole(RoleEntity role) {
         this.role = role;
     }
 
@@ -130,7 +128,7 @@ public class UserEntity {
             return this;
         }
 
-        public UserBuilder withRole(Roles role) {
+        public UserBuilder withRole(RoleEntity role) {
             user.role = role;
             return this;
         }
@@ -155,7 +153,7 @@ public class UserEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", role=" + role +
+                ", role=" + role.getTitle() +
                 ", dateOfReg=" + dateOfReg +
                 '}';
     }

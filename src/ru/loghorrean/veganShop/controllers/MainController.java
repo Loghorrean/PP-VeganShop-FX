@@ -1,12 +1,10 @@
 package ru.loghorrean.veganShop.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.dialogControllers.AuthoriseController;
@@ -18,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class MainController {
+public class MainController extends BaseController{
     @FXML
     private VBox mainVBox;
 
@@ -42,6 +40,7 @@ public class MainController {
     public void initialize() {
         try {
             mainModel = MainData.getInstance();
+            mainModel.setRoles();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,28 +67,27 @@ public class MainController {
         RegistrationController controller = loader.getController();
         final Button buttonOk = (Button) registerDialog.getDialogPane().lookupButton(ButtonType.OK);
         buttonOk.addEventFilter(ActionEvent.ACTION, actionEvent-> {
-            System.out.println(controller);
-//            try {
-//                if (!controller.checkValidation()) {
-//                    actionEvent.consume();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                if (!controller.checkValidation()) {
+                    actionEvent.consume();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
         Optional<ButtonType> result = registerDialog.showAndWait();
-//        if (result.isPresent() && result.get() == ButtonType.OK) {
-//            try {
-//                controller.processRegistration();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                controller.processRegistration();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
-    public void openAuthoriseDialog() {
+    public void openAuthoriseDialog(ActionEvent event) {
         Dialog<ButtonType> authoriseDialog = new Dialog<>();
         authoriseDialog.initOwner(mainVBox.getScene().getWindow());
         authoriseDialog.setTitle("Авторизация");
@@ -102,10 +100,8 @@ public class MainController {
         }
         authoriseDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         AuthoriseController controller = loader.getController();
-        System.out.println(controller);
         final Button buttonOK = (Button) authoriseDialog.getDialogPane().lookupButton(ButtonType.OK);
         buttonOK.addEventFilter(ActionEvent.ACTION, actionEvent -> {
-            System.out.println(controller);
             try {
                 if (!controller.checkValidation()) {
                     actionEvent.consume();
@@ -114,12 +110,22 @@ public class MainController {
                 e.printStackTrace();
             }
         });
-
         Optional<ButtonType> result = authoriseDialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 CurrentUser.getInstance().setUser(controller.processAuthorisation());
+                String currentRole = CurrentUser.getInstance().getUser().getRole().getTitle();
+                if (currentRole.equals("Admin")) {
+                        redirect(event, "admin/AdminMenuWindow");
+                }
+                else if (currentRole.equals("Customer")) {
+                    redirect(event, "MenuWindow");
+                }
             } catch (SQLException e) {
+                System.out.println("SQL EXCEPTION");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.out.println("IO EXCEPTION");
                 e.printStackTrace();
             }
         }
@@ -127,7 +133,7 @@ public class MainController {
 
     @FXML
     public void openAboutDialog() {
-        System.out.println(CurrentUser.getInstance().toString());
+        System.out.println(CurrentUser.getInstance());
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainVBox.getScene().getWindow());
         dialog.setTitle("О нашей компании");

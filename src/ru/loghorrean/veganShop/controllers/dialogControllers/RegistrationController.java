@@ -6,9 +6,6 @@ import ru.loghorrean.veganShop.controllers.BaseController;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
-import ru.loghorrean.veganShop.util.RegexCompiler;
-import ru.loghorrean.veganShop.util.Regexes;
-import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.SQLException;
 
@@ -48,7 +45,7 @@ public class RegistrationController extends BaseController {
                 .withEmail(newEmail)
                 .withPassword(newPassword)
                 .withSalt(randSalt)
-                .withRole(Roles.Customer)
+                .withRole(mainData.getRoleByTitle("Customer"))
                 .build();
         MainData.getInstance().getUserManager().registerUser(user);
     }

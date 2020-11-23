@@ -1,18 +1,16 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.util.Roles;
-
 public class RoleEntity {
     private int id;
-    private String name;
+    private String title;
 
-    public RoleEntity(int id, String name) {
+    public RoleEntity(int id, String title) {
         this.id = id;
-        this.name = name;
+        this.title = title;
     }
 
-    public RoleEntity(String name) {
-        this(-1, name);
+    public RoleEntity(String title) {
+        this(-1, title);
     }
 
     public int getId() {
@@ -23,19 +21,19 @@ public class RoleEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
     public String toString() {
         return "RoleEntity{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

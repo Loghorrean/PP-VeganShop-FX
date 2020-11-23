@@ -4,7 +4,6 @@ import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
-import ru.loghorrean.veganShop.util.Roles;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +34,7 @@ public class UserManager {
             s.setString(2, user.getEmail());
             s.setString(3, user.getPassword());
             s.setString(4, user.getSalt());
-            s.setInt(5, user.getRole().getRoleCode());
+            s.setInt(5, user.getRole().getId());
             s.executeUpdate();
         }
     }
@@ -93,7 +92,7 @@ public class UserManager {
                         .withEmail(set.getString("email"))
                         .withPassword(set.getString("password"))
                         .withSalt(set.getString("user_salt"))
-                        .withRole(data.getRoleManager().computeRole(set.getInt("role_id")))
+                        .withRole(data.computeRoleById(set.getInt("role_id")))
                         .build();
             }
             return null;
@@ -113,7 +112,7 @@ public class UserManager {
                         .withUsername(set.getString("username"))
                         .withEmail(set.getString("email"))
                         .withPassword(set.getString("password"))
-                        .withRole(data.getRoleManager().computeRole(set.getInt("role_id")))
+                        .withRole(data.computeRoleById(set.getInt("role_id")))
                         .withSalt(set.getString("user_salt"))
                         .build();
             }

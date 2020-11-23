@@ -21,6 +21,10 @@ public class CurrentUser {
         this.currentUser = user;
     }
 
+    public UserEntity getUser() {
+        return this.currentUser;
+    }
+
     @Override
     public String toString() {
         return "CurrentUser{" +
