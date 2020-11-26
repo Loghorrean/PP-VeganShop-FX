@@ -40,6 +40,16 @@ public class UserManager {
         }
     }
 
+    public void changeUserPassword(UserEntity user, String newPassword) throws SQLException {
+        try(Connection c = database.getConnection()) {
+            String sql = "UPDATE users SET password = ? WHERE user_id = ?";
+            PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            s.setString(1, newPassword);
+            s.setInt(2, user.getId());
+            s.executeUpdate();
+        }
+    }
+
     public UserEntity authoriseUser(String username) throws SQLException {
         return this.getUserByUsername(username);
     }

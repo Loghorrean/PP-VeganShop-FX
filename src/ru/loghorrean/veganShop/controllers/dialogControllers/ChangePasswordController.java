@@ -1,14 +1,18 @@
 package ru.loghorrean.veganShop.controllers.dialogControllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import ru.loghorrean.veganShop.CurrentUser;
-import ru.loghorrean.veganShop.controllers.BaseController;
-import ru.loghorrean.veganShop.controllers.IValidate;
+import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.models.database.managers.UserManager;
 import ru.loghorrean.veganShop.util.HashCompiler;
+import ru.loghorrean.veganShop.util.Validator;
 
-public class ChangePasswordController extends BaseController implements IValidate {
+import java.sql.SQLException;
+
+public class ChangePasswordController extends DialogController {
     @FXML
     private PasswordField oldPassword;
 
@@ -25,23 +29,36 @@ public class ChangePasswordController extends BaseController implements IValidat
     }
 
     public boolean checkFields() {
-//        if (!this.validator.validateAllFields(oldPassword.getText().trim())) {
-//            setMistake("Поле должно быть заполнено");
-//            return false;
-//        }
+        oldPassword.setText(oldPassword.getText().trim());
+        newPassword.setText(newPassword.getText().trim());
+        newPasswordConfirm.setText(newPasswordConfirm.getText().trim());
+        if (!Validator.validateAllFields(oldPassword.getText(), newPassword.getText(), newPasswordConfirm.getText())) {
+            setMistake("Поля должны быть заполнены");
+            return false;
+        }
         if (!this.checkOldPassword()) {
-            setMistake("Пароль не совпадает с текущим");
+            setMistake("Текущий пароль введен неверно");
+            return false;
+        }
+        if (!this.newPassword.getText().equals(newPasswordConfirm.getText())) {
+            setMistake("Новые пароли не совпадают");
             return false;
         }
         return true;
     }
 
-    public boolean checkOldPassword() {
-        String hashedPass = HashCompiler.hashPassword(oldPassword.getText().trim(), currentUser.getSalt());
-        if (!hashedPass.equals(currentUser.getPassword())) {
-            setMistake("Введенный пароль неправилен");
+    private boolean checkOldPassword() {
+        String oldHashedPass = HashCompiler.hashPassword(oldPassword.getText(), currentUser.getSalt());
+        if (!oldHashedPass.equals(currentUser.getPassword())) {
             return false;
         }
         return true;
+    }
+
+    public void changePassword(ActionEvent event) throws SQLException {
+        String hashedPass = HashCompiler.hashPassword(newPassword.getText(), currentUser.getSalt());
+        CurrentUser.getInstance().getUser().setPassword(hashedPass);
+        UserManager.getInstance().changeUserPassword(CurrentUser.getInstance().getUser(), hashedPass);
+        setSuccess("Пароль изменен");
     }
 }

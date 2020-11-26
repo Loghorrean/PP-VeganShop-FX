@@ -87,7 +87,6 @@ public class DialogCreator {
         }
 
         public DialogBuilder redirectsFrom(ActionEvent event) {
-            System.out.println(event);
             this.event = event;
             return this;
         }

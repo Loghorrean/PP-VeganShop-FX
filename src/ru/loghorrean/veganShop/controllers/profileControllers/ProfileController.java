@@ -12,9 +12,9 @@ import ru.loghorrean.veganShop.models.database.entities.CityEntity;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.models.database.managers.CitiesManager;
 import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.util.DialogCreator;
 
 import java.io.IOException;
-import java.util.Optional;
 
 public class ProfileController extends UserController {
     @FXML
@@ -66,6 +66,7 @@ public class ProfileController extends UserController {
     private UserEntity currentUser;
 
     public void initialize() {
+        System.out.println("PROFILE INITED");
         Accordion userMenu = getUserMenu();
         AnchorPane.setTopAnchor(userMenu, 10.0);
         AnchorPane.setRightAnchor(userMenu, 10.0);
@@ -93,6 +94,7 @@ public class ProfileController extends UserController {
         flat.setText(Integer.toString(currentUser.getFlat()));
     }
 
+    @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         String role = CurrentUser.getInstance().getUser().getRole().getTitle();
         if (role.equals("Customer")) {
@@ -103,28 +105,15 @@ public class ProfileController extends UserController {
         }
     }
 
+    @FXML
     public void openConfirmPasswordDialog() {
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(mainAnchorPane.getScene().getWindow());
-        dialog.setTitle("Подвердите пароль");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ru/loghorrean/veganShop/views/dialogs/ChangePasswordConfirmDialog.fxml"));
-        try {
-            dialog.getDialogPane().setContent(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ChangePasswordController controller = loader.getController();
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        final Button buttonOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
-        buttonOK.addEventFilter(ActionEvent.ACTION, actionEvent -> {
-            if (!controller.checkFields()) {
-                actionEvent.consume();
-            }
-        });
-        Optional<ButtonType> result = dialog.showAndWait();
-    }
-
-    private void openChangePasswordDialog() {
-
+        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ChangePasswordDialog")
+                                .createDialog("Подвердите пароль", mainAnchorPane)
+                                .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                                .addController()
+                                .addValidationToButton(ButtonType.OK)
+                                .onSuccess("changePassword")
+                                .build();
+        dialog.showAndWait();
     }
 }

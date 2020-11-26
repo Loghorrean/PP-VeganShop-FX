@@ -18,6 +18,13 @@ abstract public class BaseController {
         alert.showAndWait();
     }
 
+    protected void setSuccess(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Успешно");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     protected void redirect(ActionEvent event, String scene) throws IOException {
         Parent tableView = FXMLLoader.load(getClass().getResource("/ru/loghorrean/veganShop/views/" + scene + ".fxml"));
         Scene tableViewScene = new Scene(tableView);

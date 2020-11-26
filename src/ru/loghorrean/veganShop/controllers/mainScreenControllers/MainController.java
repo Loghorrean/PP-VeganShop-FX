@@ -62,7 +62,7 @@ public class MainController extends BaseController {
                         .addValidationToButton(ButtonType.OK)
                         .onSuccess("processRegistration")
                         .build();
-        Optional<ButtonType> result = dialog.showAndWait();
+        dialog.showAndWait();
     }
 
     @FXML
@@ -76,7 +76,7 @@ public class MainController extends BaseController {
                         .redirectsFrom(event)
                         .onSuccess("processAuthorisation")
                         .build();
-        Optional<ButtonType> result = dialog.showAndWait();
+        dialog.showAndWait();
     }
 
     @FXML
@@ -86,6 +86,6 @@ public class MainController extends BaseController {
                         .createDialog("О нашей компании", mainVBox)
                         .addButtons(ButtonType.OK)
                         .build();
-        Optional<ButtonType> result = dialog.showAndWait();
+        dialog.showAndWait();
     }
 }
