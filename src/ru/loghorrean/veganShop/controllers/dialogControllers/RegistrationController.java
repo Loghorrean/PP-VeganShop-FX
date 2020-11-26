@@ -2,14 +2,15 @@ package ru.loghorrean.veganShop.controllers.dialogControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import ru.loghorrean.veganShop.controllers.BaseController;
+import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
+import ru.loghorrean.veganShop.util.Validator;
 
 import java.sql.SQLException;
 
-public class RegistrationController extends BaseController {
+public class RegistrationController extends DialogController {
     @FXML
     private DialogPane registerDialog;
 
@@ -36,10 +37,10 @@ public class RegistrationController extends BaseController {
     }
 
     public void processRegistration() throws SQLException {
-        String newUsername = username.getText().trim();
-        String newEmail = email.getText().trim();
+        String newUsername = username.getText();
+        String newEmail = email.getText();
         String randSalt = HashCompiler.getRandomSalt();
-        String newPassword = HashCompiler.hashPassword(pass.getText().trim(), randSalt);
+        String newPassword = HashCompiler.hashPassword(pass.getText(), randSalt);
         UserEntity user = new UserEntity.UserBuilder()
                 .withUsername(newUsername)
                 .withEmail(newEmail)
@@ -47,15 +48,20 @@ public class RegistrationController extends BaseController {
                 .withSalt(randSalt)
                 .withRole(mainData.getRoleByTitle("Customer"))
                 .build();
-        MainData.getInstance().getUserManager().registerUser(user);
+        mainData.getUserManager().registerUser(user);
     }
 
-    public boolean checkValidation() throws SQLException {
-        if (!checkFields()) {
+    public boolean checkFields() {
+        username.setText(username.getText().trim());
+        email.setText(email.getText().trim());
+        pass.setText(pass.getText().trim());
+        passRepeat.setText(passRepeat.getText().trim());
+        System.out.println(username.getText() + email.getText());
+        if (!Validator.validateAllFields(username.getText(), email.getText(), pass.getText(), passRepeat.getText())) {
             setMistake("Все поля должны быть заполнены.");
             return false;
         }
-        if (!pass.getText().trim().equals(passRepeat.getText().trim())) {
+        if (!pass.getText().equals(passRepeat.getText())) {
             setMistake("Пароли не совпадают.");
             return false;
         }
@@ -79,18 +85,21 @@ public class RegistrationController extends BaseController {
         return true;
     }
 
-    private boolean checkFields() {
-        return !username.getText().trim().isEmpty()
-                && !email.getText().trim().isEmpty()
-                && !pass.getText().trim().isEmpty()
-                && !passRepeat.getText().trim().isEmpty();
+    private boolean checkIfUserExists() {
+        try {
+            return mainData.getUserManager().checkIfUserExists(username.getText());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    private boolean checkIfUserExists() throws SQLException {
-        return mainData.getUserManager().checkIfUserExists(username.getText().trim());
-    }
-
-    private boolean checkIfEmailExists() throws SQLException {
-        return mainData.getUserManager().checkIfEmailExists(email.getText().trim());
+    private boolean checkIfEmailExists() {
+        try {
+            return mainData.getUserManager().checkIfEmailExists(email.getText());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -13,6 +13,10 @@ public class UserEntity {
     private RoleEntity role = null;
     private LocalDate dateOfReg;
     private String salt = "";
+    private CityEntity city = null;
+    private String street = "";
+    private int house = -1;
+    private int flat = -1;
 
     public int getId() {
         return id;
@@ -50,40 +54,72 @@ public class UserEntity {
         return salt;
     }
 
+    public CityEntity getCity() {
+        return city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getHouse() {
+        return house;
+    }
+
+    public int getFlat() {
+        return flat;
+    }
+
     private void setId(int id) {
         this.id = id;
     }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    private void setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    private void setRole(RoleEntity role) {
+    public void setRole(RoleEntity role) {
         this.role = role;
     }
 
-    private void setSalt(String salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public void setCity(CityEntity city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setHouse(int house) {
+        this.house = house;
+    }
+
+    public void setFlat(int flat) {
+        this.flat = flat;
     }
 
     public static class UserBuilder {
@@ -138,6 +174,26 @@ public class UserEntity {
             return this;
         }
 
+        public UserBuilder withCity(CityEntity city) {
+            user.city = city;
+            return this;
+        }
+
+        public UserBuilder withStreet(String street) {
+            user.street = street;
+            return this;
+        }
+
+        public UserBuilder withHouse(int house) {
+            user.house = house;
+            return this;
+        }
+
+        public UserBuilder withFlat(int flat) {
+            user.flat = flat;
+            return this;
+        }
+
         public UserEntity build() {
             return this.user;
         }
@@ -153,8 +209,13 @@ public class UserEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", role=" + role.getTitle() +
+                ", role=" + role +
                 ", dateOfReg=" + dateOfReg +
+                ", salt='" + salt + '\'' +
+                ", city=" + city +
+                ", street='" + street + '\'' +
+                ", house=" + house +
+                ", flat=" + flat +
                 '}';
     }
 }

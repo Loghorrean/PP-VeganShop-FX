@@ -18,6 +18,7 @@ public class MainData {
     private MainData() throws SQLException {
         roleManager = RoleManager.getInstance();
         userManager = UserManager.getInstance();
+        setRoles();
     }
 
     public static MainData getInstance() throws SQLException {

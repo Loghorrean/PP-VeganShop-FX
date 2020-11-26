@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import ru.loghorrean.veganShop.controllers.BaseController;
+import ru.loghorrean.veganShop.controllers.UserController;
 
 import java.io.IOException;
 
-public class AdminMenuController extends BaseController {
+public class AdminMenuController extends UserController {
     @FXML
     private AnchorPane menuAnchorPane;
 

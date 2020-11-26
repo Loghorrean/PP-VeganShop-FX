@@ -7,7 +7,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.loghorrean.veganShop.controllers.LogoController">
+      fx:controller="ru.loghorrean.veganShop.controllers.mainScreenControllers.LogoController">
    <children>
       <Label text="VeganShop" />
       <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" text="Начать работу" onAction="#goToMainMenu"/>

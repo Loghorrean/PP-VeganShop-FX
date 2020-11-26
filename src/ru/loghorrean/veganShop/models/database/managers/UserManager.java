@@ -1,6 +1,7 @@
 package ru.loghorrean.veganShop.models.database.managers;
 
 import ru.loghorrean.veganShop.models.MainData;
+import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
@@ -40,8 +41,7 @@ public class UserManager {
     }
 
     public UserEntity authoriseUser(String username) throws SQLException {
-        UserEntity authorisedUser = this.getUserByUsername(username);
-        return authorisedUser;
+        return this.getUserByUsername(username);
     }
 
     public boolean checkIfUserExists(String username) throws SQLException {
@@ -70,17 +70,10 @@ public class UserManager {
         }
     }
 
-    public boolean checkIfCredentialsAreRight(String username, String password) throws SQLException {
-        UserEntity user = this.getUserByUsername(username);
-        if (user.getPassword().equals(HashCompiler.hashPassword(password, user.getSalt()))) {
-            return true;
-        }
-        return false;
-    }
-
     public UserEntity getUserById(int id) throws SQLException {
         try(Connection c = database.getConnection()) {
             MainData data = MainData.getInstance();
+            ProfileData profileData = ProfileData.getInstance();
             String sql = "SELECT * FROM users WHERE user_id = ?";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setInt(1, id);
@@ -93,6 +86,10 @@ public class UserManager {
                         .withPassword(set.getString("password"))
                         .withSalt(set.getString("user_salt"))
                         .withRole(data.computeRoleById(set.getInt("role_id")))
+                        .withCity(profileData.getCityById(set.getInt("user_city")))
+                        .withStreet(set.getString("user_street"))
+                        .withHouse(set.getInt("user_house"))
+                        .withFlat(set.getInt("user_flat"))
                         .build();
             }
             return null;
@@ -102,6 +99,7 @@ public class UserManager {
     public UserEntity getUserByUsername(String username) throws SQLException {
         try(Connection c = database.getConnection()) {
             MainData data = MainData.getInstance();
+            ProfileData profileData = ProfileData.getInstance();
             String sql = "SELECT * FROM users WHERE username = ?";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, username);
@@ -114,6 +112,10 @@ public class UserManager {
                         .withPassword(set.getString("password"))
                         .withRole(data.computeRoleById(set.getInt("role_id")))
                         .withSalt(set.getString("user_salt"))
+                        .withCity(profileData.getCityById(set.getInt("user_city")))
+                        .withStreet(set.getString("user_street"))
+                        .withHouse(set.getInt("user_house"))
+                        .withFlat(set.getInt("user_flat"))
                         .build();
             }
             return null;

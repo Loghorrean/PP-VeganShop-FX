@@ -10,4 +10,5 @@ module VeganShopFX {
     opens ru.loghorrean.veganShop.controllers.dialogControllers to javafx.fxml;
     opens ru.loghorrean.veganShop.controllers.adminControllers to javafx.fxml;
     opens ru.loghorrean.veganShop.controllers.profileControllers to javafx.fxml;
+    opens ru.loghorrean.veganShop.controllers.mainScreenControllers to javafx.fxml;
 }
