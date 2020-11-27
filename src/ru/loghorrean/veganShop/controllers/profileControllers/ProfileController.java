@@ -66,7 +66,6 @@ public class ProfileController extends UserController {
     private UserEntity currentUser;
 
     public void initialize() {
-        System.out.println("PROFILE INITED");
         Accordion userMenu = getUserMenu();
         AnchorPane.setTopAnchor(userMenu, 10.0);
         AnchorPane.setRightAnchor(userMenu, 10.0);
@@ -106,14 +105,45 @@ public class ProfileController extends UserController {
     }
 
     @FXML
+    public void openMainInfoDialog(ActionEvent event) {
+        Dialog<ButtonType> dialog =
+                new DialogCreator.DialogBuilder("ChangeMainInfoDialog")
+                        .createDialog("Информация о себе", mainAnchorPane)
+                        .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                        .addController()
+                        .fillDialog()
+                        .addValidationToButton(ButtonType.OK)
+                        .onSuccess("changeMainInfo")
+                        .redirectsFrom(event)
+                        .build();
+        dialog.showAndWait();
+    }
+
+    @FXML
+    public void openAddressDialog(ActionEvent event) {
+        Dialog<ButtonType> dialog =
+                new DialogCreator.DialogBuilder("ChangeAddressDialog")
+                        .createDialog("Адрес доставки", mainAnchorPane)
+                        .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                        .addController()
+                        .fillDialog()
+                        .addValidationToButton(ButtonType.OK)
+                        .onSuccess("changeAddress")
+                        .redirectsFrom(event)
+                        .build();
+        dialog.showAndWait();
+    }
+
+    @FXML
     public void openConfirmPasswordDialog() {
-        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ChangePasswordDialog")
-                                .createDialog("Подвердите пароль", mainAnchorPane)
-                                .addButtons(ButtonType.OK, ButtonType.CANCEL)
-                                .addController()
-                                .addValidationToButton(ButtonType.OK)
-                                .onSuccess("changePassword")
-                                .build();
+        Dialog<ButtonType> dialog =
+                new DialogCreator.DialogBuilder("ChangePasswordDialog")
+                        .createDialog("Подвердите пароль", mainAnchorPane)
+                        .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                        .addController()
+                        .addValidationToButton(ButtonType.OK)
+                        .onSuccess("changePassword")
+                        .build();
         dialog.showAndWait();
     }
 }

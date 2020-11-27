@@ -22,7 +22,7 @@ public class LogoController extends BaseController {
     }
 
     @Override
-    protected void initialize() {
+    public void initialize() {
 
     }
 }

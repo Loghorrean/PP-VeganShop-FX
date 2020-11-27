@@ -27,6 +27,10 @@ public class ProfileData {
         availableCities = citiesManager.getAllCities();
     }
 
+    public List<CityEntity> getCities() {
+        return availableCities;
+    }
+
     public CityEntity getCityByName(String name) {
         for(CityEntity city: availableCities) {
             if (city.getName().equals(name)) {

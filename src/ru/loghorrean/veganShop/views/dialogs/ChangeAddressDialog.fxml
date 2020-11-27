@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.GridPane?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ChangeAddressController">
+    <content>
+        <GridPane alignment="CENTER" vgap="10" hgap="10">
+            <Label GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   text="Город"/>
+            <ComboBox fx:id="city" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   text="Улица"/>
+            <TextField fx:id="street" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   text="Дом"/>
+            <TextField fx:id="house" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="0"
+                   text="Квартира"/>
+            <TextField fx:id="flat" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>

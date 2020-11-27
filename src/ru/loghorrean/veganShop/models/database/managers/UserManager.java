@@ -40,12 +40,25 @@ public class UserManager {
         }
     }
 
-    public void changeUserPassword(UserEntity user, String newPassword) throws SQLException {
+    public void updateUser(UserEntity user) throws SQLException {
         try(Connection c = database.getConnection()) {
-            String sql = "UPDATE users SET password = ? WHERE user_id = ?";
+            String sql = "UPDATE users SET username = ?, email = ?, password = ?, firstname = ?, ";
+            sql += "lastname = ?, user_phone = ?, user_city = ?, user_street = ?, user_house = ?, user_flat = ?, ";
+            sql += "user_salt = ?, role_id = ? WHERE user_id = ?";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            s.setString(1, newPassword);
-            s.setInt(2, user.getId());
+            s.setString(1, user.getUsername());
+            s.setString(2, user.getEmail());
+            s.setString(3, user.getPassword());
+            s.setString(4, user.getFirstName());
+            s.setString(5, user.getLastName());
+            s.setString(6, user.getPhone());
+            s.setInt(7, user.getCity().getId());
+            s.setString(8, user.getStreet());
+            s.setInt(9, user.getHouse());
+            s.setInt(10, user.getFlat());
+            s.setString(11, user.getSalt());
+            s.setInt(12, user.getRole().getId());
+            s.setInt(13, user.getId());
             s.executeUpdate();
         }
     }
@@ -94,6 +107,9 @@ public class UserManager {
                         .withUsername(set.getString("username"))
                         .withEmail(set.getString("email"))
                         .withPassword(set.getString("password"))
+                        .withFirstName(set.getString("firstname"))
+                        .withLastName(set.getString("lastname"))
+                        .withPhone(set.getString("user_phone"))
                         .withSalt(set.getString("user_salt"))
                         .withRole(data.computeRoleById(set.getInt("role_id")))
                         .withCity(profileData.getCityById(set.getInt("user_city")))
@@ -120,6 +136,9 @@ public class UserManager {
                         .withUsername(set.getString("username"))
                         .withEmail(set.getString("email"))
                         .withPassword(set.getString("password"))
+                        .withFirstName(set.getString("firstname"))
+                        .withLastName(set.getString("lastname"))
+                        .withPhone(set.getString("user_phone"))
                         .withRole(data.computeRoleById(set.getInt("role_id")))
                         .withSalt(set.getString("user_salt"))
                         .withCity(profileData.getCityById(set.getInt("user_city")))

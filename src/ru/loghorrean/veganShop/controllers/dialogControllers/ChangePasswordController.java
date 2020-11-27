@@ -55,10 +55,10 @@ public class ChangePasswordController extends DialogController {
         return true;
     }
 
-    public void changePassword(ActionEvent event) throws SQLException {
+    public void changePassword() throws SQLException {
         String hashedPass = HashCompiler.hashPassword(newPassword.getText(), currentUser.getSalt());
-        CurrentUser.getInstance().getUser().setPassword(hashedPass);
-        UserManager.getInstance().changeUserPassword(CurrentUser.getInstance().getUser(), hashedPass);
+        currentUser.setPassword(hashedPass);
+        UserManager.getInstance().updateUser(currentUser);
         setSuccess("Пароль изменен");
     }
 }

@@ -56,8 +56,10 @@
             <RowConstraints />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="changeMainInfo" layoutX="416.0" layoutY="22.0" mnemonicParsing="false" text="Изменить информацию о себе" />
-      <Button fx:id="changeAddress" layoutX="416.0" layoutY="68.0" mnemonicParsing="false" text="Изменить адрес доставки" />
+      <Button fx:id="changeMainInfo" layoutX="416.0" layoutY="22.0" mnemonicParsing="false"
+              onAction="#openMainInfoDialog" text="Изменить информацию о себе" />
+      <Button fx:id="changeAddress" layoutX="416.0" layoutY="68.0" mnemonicParsing="false"
+              onAction="#openAddressDialog" text="Изменить адрес доставки" />
       <Button fx:id="back" layoutX="837.0" layoutY="458.0" mnemonicParsing="false"
               onAction="#backToMenu" text="Назад" />
       <Button fx:id="changePassword" layoutX="416.0" layoutY="118.0" mnemonicParsing="false"

@@ -21,4 +21,13 @@ public class Validator {
     public static boolean validatePass(String password) {
         return RegexCompiler.compileRegEx(password, Regexes.PASSWORD);
     }
+
+    public static boolean checkForInt(String field) {
+        try {
+            int i = Integer.parseInt(field);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

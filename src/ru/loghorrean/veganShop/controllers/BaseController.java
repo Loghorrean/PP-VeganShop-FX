@@ -33,5 +33,5 @@ abstract public class BaseController {
         window.show();
     }
 
-    abstract protected void initialize();
+    abstract public void initialize();
 }
