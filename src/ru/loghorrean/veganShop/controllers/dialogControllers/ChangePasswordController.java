@@ -1,6 +1,5 @@
 package ru.loghorrean.veganShop.controllers.dialogControllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import ru.loghorrean.veganShop.CurrentUser;
@@ -8,7 +7,7 @@ import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.models.database.managers.UserManager;
 import ru.loghorrean.veganShop.util.HashCompiler;
-import ru.loghorrean.veganShop.util.Validator;
+import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.sql.SQLException;
 

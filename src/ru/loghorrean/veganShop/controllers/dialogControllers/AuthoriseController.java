@@ -5,13 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.UserEntity;
 import ru.loghorrean.veganShop.util.HashCompiler;
-import ru.loghorrean.veganShop.util.Validator;
+import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.io.IOException;
 import java.sql.SQLException;

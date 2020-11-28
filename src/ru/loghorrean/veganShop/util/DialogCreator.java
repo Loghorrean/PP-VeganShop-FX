@@ -9,6 +9,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
+import ru.loghorrean.veganShop.controllers.IInit;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -51,10 +52,13 @@ public class DialogCreator {
             return this;
         }
 
+        public DialogBuilder passObject(Object object) {
+            ((IInit) controller).initData(object);
+            return this;
+        }
+
         public DialogBuilder fillDialog() {
-            if (controller instanceof IFill) {
-                ((IFill) controller).fillDialog();
-            }
+            ((IFill) controller).fillDialog();
             return this;
         }
 

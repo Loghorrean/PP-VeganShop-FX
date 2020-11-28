@@ -1,4 +1,7 @@
-package ru.loghorrean.veganShop.util;
+package ru.loghorrean.veganShop.util.validators;
+
+import ru.loghorrean.veganShop.util.RegexCompiler;
+import ru.loghorrean.veganShop.util.Regexes;
 
 public class Validator {
     public static boolean validateAllFields(String ...fields) {

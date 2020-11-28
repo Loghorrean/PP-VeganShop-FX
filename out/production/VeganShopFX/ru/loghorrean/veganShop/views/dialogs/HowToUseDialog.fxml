@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+
+<DialogPane maxWidth="400.0" prefHeight="247.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <Label alignment="CENTER" maxWidth="400.0" prefHeight="33.0" prefWidth="393.0" text="Для добавление категории используйте кнопку в меню. Для изменения и удаления - ПКМ по названию категории в списке" textAlignment="JUSTIFY" wrapText="true" />
+    </content>
+</DialogPane>

@@ -11,6 +11,10 @@ public class ProductCategory {
         this.description = description;
     }
 
+    public ProductCategory(String name, String description) {
+        this(-1, name, description);
+    }
+
     public int getId() {
         return id;
     }
@@ -33,5 +37,14 @@ public class ProductCategory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -1,11 +1,14 @@
 package ru.loghorrean.veganShop.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.BaseController;
+import ru.loghorrean.veganShop.models.CategoriesData;
 
 import java.io.IOException;
 
@@ -31,6 +34,7 @@ abstract public class UserController extends BaseController {
             CurrentUser.getInstance().setUser(null);
             try {
                 redirect(actionEvent, "MainWindow");
+                CategoriesData.unsetModel();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,4 +56,9 @@ abstract public class UserController extends BaseController {
         });
         return profileButton;
     }
+
+//    public void redirectWithSmth(ActionEvent event, String path, Object object) {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource());
+//    }
 }
