@@ -1,6 +1,6 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class RoleEntity {
+public class RoleEntity extends DatabaseEntity {
     private int id;
     private String title;
 

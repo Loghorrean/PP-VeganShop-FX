@@ -1,6 +1,6 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class Product {
+public class Product extends DatabaseEntity {
     private int id;
     private String name;
     private String description;
@@ -76,6 +76,11 @@ public class Product {
 
     public static class ProductBuilder {
         private Product product;
+
+        public ProductBuilder() {
+            product = new Product();
+            product.setId(-1);
+        }
 
         public ProductBuilder withId(int id) {
             product.id = id;

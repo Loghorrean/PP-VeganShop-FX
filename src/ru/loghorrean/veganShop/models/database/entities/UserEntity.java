@@ -2,7 +2,7 @@ package ru.loghorrean.veganShop.models.database.entities;
 
 import java.time.LocalDate;
 
-public class UserEntity {
+public class UserEntity extends DatabaseEntity {
     private int id = -1;
     private String username = "";
     private String email = "";
@@ -127,6 +127,7 @@ public class UserEntity {
 
         public UserBuilder() {
             user = new UserEntity();
+            user.setId(-1);
         }
 
         public UserBuilder withId(int id) {

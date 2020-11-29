@@ -1,15 +1,15 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class CityEntity extends DatabaseEntity {
+public class PaymentType extends DatabaseEntity {
     private int id;
     private String name;
 
-    public CityEntity(int id, String name) {
+    public PaymentType(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public CityEntity(String name) {
+    public PaymentType(String name) {
         this(-1, name);
     }
 
@@ -27,10 +27,5 @@ public class CityEntity extends DatabaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

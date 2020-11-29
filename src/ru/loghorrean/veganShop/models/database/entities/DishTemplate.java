@@ -1,6 +1,6 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class DishTemplate {
+public class DishTemplate extends DatabaseEntity {
     private int id;
     private String name;
     private String description;
@@ -9,6 +9,10 @@ public class DishTemplate {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public DishTemplate(String name, String description) {
+        this(-1, name, description);
     }
 
     public int getId() {

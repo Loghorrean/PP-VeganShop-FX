@@ -40,6 +40,11 @@ public class CategoriesData {
         manager.updateCategory(category);
     }
 
+    public void deleteCategoryInModel(ProductCategory category) throws SQLException {
+        manager.deleteCategory(category.getId());
+        categories.remove(category);
+    }
+
     public static void unsetModel() {
         instance = null;
     }

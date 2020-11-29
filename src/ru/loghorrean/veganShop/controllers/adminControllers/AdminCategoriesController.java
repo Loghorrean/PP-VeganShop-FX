@@ -120,6 +120,7 @@ public class AdminCategoriesController extends UserController {
     }
 
     private void openProductDialog(ProductCategory category) {
+        //TODO: make product dialog to view products in the category
 //        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ProductsInCategoryDialog")
 //                                    .createDialog("Продукты в этой категории", mainBorderPane)
 //                                    .addButtons(ButtonType.OK)
@@ -165,8 +166,15 @@ public class AdminCategoriesController extends UserController {
         alert.setContentText("Вы уверены? Нажмите OK для подветрждения, или CANCEL для отмены");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            catList.setItems(FXCollections.observableArrayList(data.getCategories()));
-            setSuccess("Категория удалена");
+            try {
+                data.deleteCategoryInModel(category);
+                catList.setItems(FXCollections.observableArrayList(data.getCategories()));
+                catList.getSelectionModel().selectFirst();
+                setSuccess("Категория удалена");
+            } catch (SQLException e) {
+                System.out.println("ERROR WHILE DELETING CATEGORY");
+                e.printStackTrace();
+            }
         }
     }
 

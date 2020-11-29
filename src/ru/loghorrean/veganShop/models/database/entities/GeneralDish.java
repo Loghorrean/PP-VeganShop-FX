@@ -1,18 +1,20 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class ProductCategory extends DatabaseEntity {
+public class GeneralDish extends DatabaseEntity {
     private int id;
     private String name;
     private String description;
+    private int timeToCook;
 
-    public ProductCategory(int id, String name, String description) {
+    public GeneralDish(int id, String name, String description, int timeToCook) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.timeToCook = timeToCook;
     }
 
-    public ProductCategory(String name, String description) {
-        this(-1, name, description);
+    public GeneralDish(String name, String description, int timeToCook) {
+        this(-1, name, description, timeToCook);
     }
 
     public int getId() {
@@ -39,12 +41,11 @@ public class ProductCategory extends DatabaseEntity {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public int getTimeToCook() {
+        return timeToCook;
+    }
+
+    public void setTimeToCook(int timeToCook) {
+        this.timeToCook = timeToCook;
     }
 }
