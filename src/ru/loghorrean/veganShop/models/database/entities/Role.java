@@ -1,15 +1,16 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class RoleEntity extends DatabaseEntity {
+public class Role extends DatabaseEntity
+{
     private int id;
     private String title;
 
-    public RoleEntity(int id, String title) {
+    public Role(int id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public RoleEntity(String title) {
+    public Role(String title) {
         this(-1, title);
     }
 

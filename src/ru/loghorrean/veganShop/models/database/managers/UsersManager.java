@@ -3,31 +3,45 @@ package ru.loghorrean.veganShop.models.database.managers;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
-import ru.loghorrean.veganShop.util.HashCompiler;
+import ru.loghorrean.veganShop.models.database.entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class UserManager {
-    private MySQLDatabase database;
-
-    private static UserManager instance;
-
-    private UserManager(MySQLDatabase database) {
-        this.database = database;
+public class UsersManager extends BaseManager<User> {
+    public UsersManager() {
+        super();
     }
 
-    public static UserManager getInstance() {
-        if (instance == null) {
-            instance = new UserManager(MySQLDatabase.getInstance());
-        }
-        return instance;
+    @Override
+    public List<User> getAll() throws SQLException {
+        return null;
     }
 
-    public void registerUser(UserEntity user) throws SQLException {
+    @Override
+    public User getOne(int id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public void insert(User entity) throws SQLException {
+
+    }
+
+    @Override
+    public void update(User entity) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(User entity) throws SQLException {
+
+    }
+
+    public void registerUser(User user) throws SQLException {
         try(Connection c = database.getConnection()) {
             String sql = "INSERT INTO users (username, email, password, user_salt, role_id) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -40,7 +54,7 @@ public class UserManager {
         }
     }
 
-    public void updateUser(UserEntity user) throws SQLException {
+    public void updateUser(User user) throws SQLException {
         try(Connection c = database.getConnection()) {
             String sql = "UPDATE users SET username = ?, email = ?, password = ?, firstname = ?, ";
             sql += "lastname = ?, user_phone = ?, user_city = ?, user_street = ?, user_house = ?, user_flat = ?, ";
@@ -63,7 +77,7 @@ public class UserManager {
         }
     }
 
-    public UserEntity authoriseUser(String username) throws SQLException {
+    public User authoriseUser(String username) throws SQLException {
         return this.getUserByUsername(username);
     }
 
@@ -93,7 +107,7 @@ public class UserManager {
         }
     }
 
-    public UserEntity getUserById(int id) throws SQLException {
+    public User getUserById(int id) throws SQLException {
         try(Connection c = database.getConnection()) {
             MainData data = MainData.getInstance();
             ProfileData profileData = ProfileData.getInstance();
@@ -102,7 +116,7 @@ public class UserManager {
             s.setInt(1, id);
             ResultSet set = s.executeQuery();
             if (set.next()) {
-                return new UserEntity.UserBuilder()
+                return new User.UserBuilder()
                         .withId(set.getInt("user_id"))
                         .withUsername(set.getString("username"))
                         .withEmail(set.getString("email"))
@@ -122,7 +136,7 @@ public class UserManager {
         }
     }
 
-    public UserEntity getUserByUsername(String username) throws SQLException {
+    public User getUserByUsername(String username) throws SQLException {
         try(Connection c = database.getConnection()) {
             MainData data = MainData.getInstance();
             ProfileData profileData = ProfileData.getInstance();
@@ -131,7 +145,7 @@ public class UserManager {
             s.setString(1, username);
             ResultSet set = s.executeQuery();
             if (set.next()) {
-                return new UserEntity.UserBuilder()
+                return new User.UserBuilder()
                         .withId(set.getInt("user_id"))
                         .withUsername(set.getString("username"))
                         .withEmail(set.getString("email"))

@@ -5,9 +5,9 @@ public class CustomDish extends DatabaseEntity {
     private DishTemplate template;
     private String name;
     private String recipe;
-    private UserEntity userCreated;
+    private User userCreated;
 
-    public CustomDish(int id, DishTemplate template, String name, String recipe, UserEntity userCreated) {
+    public CustomDish(int id, DishTemplate template, String name, String recipe, User userCreated) {
         this.id = id;
         this.template = template;
         this.name = name;
@@ -15,7 +15,7 @@ public class CustomDish extends DatabaseEntity {
         this.userCreated = userCreated;
     }
 
-    public CustomDish(DishTemplate template, String name, String recipe, UserEntity userCreated) {
+    public CustomDish(DishTemplate template, String name, String recipe, User userCreated) {
         this(-1, template, name, recipe, userCreated);
     }
 
@@ -51,11 +51,11 @@ public class CustomDish extends DatabaseEntity {
         this.recipe = recipe;
     }
 
-    public UserEntity getUserCreated() {
+    public User getUserCreated() {
         return userCreated;
     }
 
-    public void setUserCreated(UserEntity userCreated) {
+    public void setUserCreated(User userCreated) {
         this.userCreated = userCreated;
     }
 }

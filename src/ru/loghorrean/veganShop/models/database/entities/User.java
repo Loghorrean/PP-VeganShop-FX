@@ -2,7 +2,7 @@ package ru.loghorrean.veganShop.models.database.entities;
 
 import java.time.LocalDate;
 
-public class UserEntity extends DatabaseEntity {
+public class User extends DatabaseEntity {
     private int id = -1;
     private String username = "";
     private String email = "";
@@ -10,10 +10,10 @@ public class UserEntity extends DatabaseEntity {
     private String firstName = "";
     private String lastName = "";
     private String phone = "";
-    private RoleEntity role = null;
+    private Role role = null;
     private LocalDate dateOfReg;
     private String salt = "";
-    private CityEntity city = null;
+    private City city = null;
     private String street = "";
     private int house = -1;
     private int flat = -1;
@@ -46,7 +46,7 @@ public class UserEntity extends DatabaseEntity {
         return phone;
     }
 
-    public RoleEntity getRole() {
+    public Role getRole() {
         return role;
     }
 
@@ -54,7 +54,7 @@ public class UserEntity extends DatabaseEntity {
         return salt;
     }
 
-    public CityEntity getCity() {
+    public City getCity() {
         return city;
     }
 
@@ -98,7 +98,7 @@ public class UserEntity extends DatabaseEntity {
         this.phone = phone;
     }
 
-    public void setRole(RoleEntity role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -106,7 +106,7 @@ public class UserEntity extends DatabaseEntity {
         this.salt = salt;
     }
 
-    public void setCity(CityEntity city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -123,10 +123,10 @@ public class UserEntity extends DatabaseEntity {
     }
 
     public static class UserBuilder {
-        private UserEntity user;
+        private User user;
 
         public UserBuilder() {
-            user = new UserEntity();
+            user = new User();
             user.setId(-1);
         }
 
@@ -165,7 +165,7 @@ public class UserEntity extends DatabaseEntity {
             return this;
         }
 
-        public UserBuilder withRole(RoleEntity role) {
+        public UserBuilder withRole(Role role) {
             user.role = role;
             return this;
         }
@@ -175,7 +175,7 @@ public class UserEntity extends DatabaseEntity {
             return this;
         }
 
-        public UserBuilder withCity(CityEntity city) {
+        public UserBuilder withCity(City city) {
             user.city = city;
             return this;
         }
@@ -195,7 +195,7 @@ public class UserEntity extends DatabaseEntity {
             return this;
         }
 
-        public UserEntity build() {
+        public User build() {
             return this.user;
         }
     }

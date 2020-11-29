@@ -10,9 +10,9 @@ import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.models.ProfileData;
-import ru.loghorrean.veganShop.models.database.entities.CityEntity;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
-import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.models.database.entities.City;
+import ru.loghorrean.veganShop.models.database.entities.User;
+import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 
 public class ChangeAddressController extends DialogController implements IFill {
     @FXML
-    private ComboBox<CityEntity> city;
+    private ComboBox<City> city;
 
     @FXML
     private TextField street;
@@ -31,11 +31,11 @@ public class ChangeAddressController extends DialogController implements IFill {
     @FXML
     private TextField flat;
 
-    private UserEntity currentUser;
+    private User currentUser;
 
     private ProfileData data;
 
-    private ObservableList<CityEntity> cities;
+    private ObservableList<City> cities;
 
     @Override
     public void initialize() {
@@ -74,7 +74,7 @@ public class ChangeAddressController extends DialogController implements IFill {
         currentUser.setStreet(street.getText());
         currentUser.setHouse(Integer.parseInt(house.getText()));
         currentUser.setFlat(Integer.parseInt(flat.getText()));
-        UserManager.getInstance().updateUser(currentUser);
+        UsersManager.getInstance().updateUser(currentUser);
         setSuccess("Адрес обновлен");
         redirect(event, "profile/ProfileWindow");
     }

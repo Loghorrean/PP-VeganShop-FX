@@ -1,12 +1,12 @@
 package ru.loghorrean.veganShop;
 
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.models.database.entities.User;
 
 public class CurrentUser {
-    private UserEntity currentUser;
+    private User currentUser;
     private static CurrentUser instance;
 
-    private CurrentUser(UserEntity user) {
+    private CurrentUser(User user) {
         currentUser = user;
     }
 
@@ -17,11 +17,11 @@ public class CurrentUser {
         return instance;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(User user) {
         this.currentUser = user;
     }
 
-    public UserEntity getUser() {
+    public User getUser() {
         return this.currentUser;
     }
 

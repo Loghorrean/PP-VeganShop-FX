@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.MainData;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.util.HashCompiler;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
@@ -27,7 +27,7 @@ public class AuthoriseController extends DialogController {
 
     private MainData mainData;
 
-    private UserEntity user = null;
+    private User user = null;
 
     public void initialize() {
         try {

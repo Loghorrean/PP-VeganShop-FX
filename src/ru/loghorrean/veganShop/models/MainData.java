@@ -1,23 +1,21 @@
 package ru.loghorrean.veganShop.models;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import ru.loghorrean.veganShop.models.database.entities.RoleEntity;
-import ru.loghorrean.veganShop.models.database.managers.RoleManager;
-import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.models.database.entities.Role;
+import ru.loghorrean.veganShop.models.database.managers.RolesManager;
+import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class MainData {
     private static MainData instance;
-    private static RoleManager roleManager;
-    private static UserManager userManager;
-    private static List<RoleEntity> roles;
+    private static RolesManager roleManager;
+    private static UsersManager userManager;
+    private static List<Role> roles;
 
     private MainData() throws SQLException {
-        roleManager = RoleManager.getInstance();
-        userManager = UserManager.getInstance();
+        roleManager = new RolesManager();
+        userManager = new UsersManager();
         setRoles();
     }
 
@@ -29,23 +27,23 @@ public class MainData {
     }
 
     public void setRoles() throws SQLException {
-        roles = roleManager.getAllRoles();
+        roles = roleManager.getAll();
     }
 
-    public UserManager getUserManager() {
+    public UsersManager getUserManager() {
         return userManager;
     }
 
-    public RoleManager getRoleManager() {
+    public RolesManager getRoleManager() {
         return roleManager;
     }
 
-    public List<RoleEntity> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public RoleEntity getRoleByTitle(String title) {
-        for(RoleEntity role: roles) {
+    public Role getRoleByTitle(String title) {
+        for(Role role: roles) {
             if (role.getTitle().equals(title)) {
                 return role;
             }
@@ -53,8 +51,8 @@ public class MainData {
         return null;
     }
 
-    public RoleEntity computeRoleById(int id) {
-        for(RoleEntity role: roles) {
+    public Role computeRoleById(int id) {
+        for(Role role: roles) {
             if (role.getId() == id) {
                 return role;
             }

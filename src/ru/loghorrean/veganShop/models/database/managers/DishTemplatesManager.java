@@ -1,20 +1,18 @@
 package ru.loghorrean.veganShop.models.database.managers;
 
-import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.DishTemplate;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemplatesManager {
-    private MySQLDatabase database;
-
-    public TemplatesManager() {
-        database = MySQLDatabase.getInstance();
+public class DishTemplatesManager extends BaseManager<DishTemplate> {
+    public DishTemplatesManager() {
+        super();
     }
 
-    public List<DishTemplate> getAllTemplates() throws SQLException {
+    @Override
+    public List<DishTemplate> getAll() throws SQLException {
         try(Connection c = database.getConnection()) {
             String sql = "SELECT * FROM dish_templates";
             Statement s = c.createStatement();
@@ -31,7 +29,8 @@ public class TemplatesManager {
         }
     }
 
-    public DishTemplate getTemplateById(int id) throws SQLException {
+    @Override
+    public DishTemplate getOne(int id) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "SELECT * FROM dish_templates WHERE template_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
@@ -65,7 +64,8 @@ public class TemplatesManager {
         }
     }
 
-    public void insertTemplate(DishTemplate template) throws SQLException {
+    @Override
+    public void insert(DishTemplate template) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "INSERT INTO dish_templates (template_name, template_description) VALUES (?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -77,28 +77,35 @@ public class TemplatesManager {
                 template.setId(set.getInt(1));
                 return;
             }
-
-            throw new SQLException("ERROR WHILE ADDING TEMPLATE");
+            throw new SQLException("ERROR WHILE ADDING TEMPLATE " + template.getName());
         }
     }
 
-    public void updateTemplate(DishTemplate template) throws SQLException {
+    @Override
+    public void update(DishTemplate template) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "UPDATE dish_templates SET template_name = ?, template_description = ? WHERE template_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setString(1, template.getName());
             s.setString(2, template.getDescription());
             s.setInt(3, template.getId());
-            s.executeUpdate();
+            if (s.executeUpdate() == 1) {
+                return;
+            }
+            throw new SQLException("ERROR WHILE UPDATING TEMPLATE " + template.getName());
         }
     }
 
-    public void deleteTemplate(int id) throws SQLException {
+    @Override
+    public void delete(DishTemplate template) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "DELETE FROM dish_templates WHERE template_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
-            s.setInt(1, id);
-            s.executeUpdate();
+            s.setInt(1, template.getId());
+            if (s.executeUpdate() == 1) {
+                return;
+            }
+            throw new SQLException("ERROR WHILE DELETING TEMPLATE " + template.getName());
         }
     }
 }

@@ -1,6 +1,6 @@
 package ru.loghorrean.veganShop.models;
 
-import ru.loghorrean.veganShop.models.database.entities.CityEntity;
+import ru.loghorrean.veganShop.models.database.entities.City;
 import ru.loghorrean.veganShop.models.database.managers.CitiesManager;
 
 import java.sql.SQLException;
@@ -9,10 +9,10 @@ import java.util.List;
 public class ProfileData {
     private static ProfileData instance;
     private static CitiesManager citiesManager;
-    private static List<CityEntity> availableCities;
+    private static List<City> availableCities;
 
     private ProfileData() throws SQLException {
-        citiesManager = CitiesManager.getInstance();
+        citiesManager = new CitiesManager();
         setCities();
     }
 
@@ -24,15 +24,15 @@ public class ProfileData {
     }
 
     public void setCities() throws SQLException {
-        availableCities = citiesManager.getAllCities();
+        availableCities = citiesManager.getAll();
     }
 
-    public List<CityEntity> getCities() {
+    public List<City> getCities() {
         return availableCities;
     }
 
-    public CityEntity getCityByName(String name) {
-        for(CityEntity city: availableCities) {
+    public City getCityByName(String name) {
+        for(City city: availableCities) {
             if (city.getName().equals(name)) {
                 return city;
             }
@@ -40,8 +40,8 @@ public class ProfileData {
         return null;
     }
 
-    public CityEntity getCityById(int id) {
-        for(CityEntity city: availableCities) {
+    public City getCityById(int id) {
+        for(City city: availableCities) {
             if (city.getId() == id) {
                 return city;
             }

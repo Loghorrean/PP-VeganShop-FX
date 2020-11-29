@@ -2,16 +2,14 @@ package ru.loghorrean.veganShop.controllers.profileControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.UserController;
-import ru.loghorrean.veganShop.controllers.dialogControllers.ChangePasswordController;
-import ru.loghorrean.veganShop.models.database.entities.CityEntity;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.models.database.entities.City;
+import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.CitiesManager;
-import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
 import java.io.IOException;
@@ -61,17 +59,17 @@ public class ProfileController extends UserController {
 
     private CitiesManager citiesManager;
 
-    private UserManager userManager;
+    private UsersManager userManager;
 
-    private UserEntity currentUser;
+    private User currentUser;
 
     public void initialize() {
         Accordion userMenu = getUserMenu();
         AnchorPane.setTopAnchor(userMenu, 10.0);
         AnchorPane.setRightAnchor(userMenu, 10.0);
         mainAnchorPane.getChildren().add(userMenu);
-        citiesManager = CitiesManager.getInstance();
-        userManager = UserManager.getInstance();
+        citiesManager = new CitiesManager();
+        userManager = UsersManager.getInstance();
         currentUser = CurrentUser.getInstance().getUser();
         fillProfileInfo();
         fillAddressInfo();
@@ -86,7 +84,7 @@ public class ProfileController extends UserController {
     }
 
     private void fillAddressInfo() {
-        CityEntity userCity = currentUser.getCity();
+        City userCity = currentUser.getCity();
         city.setText(userCity == null ? "Не указан" : userCity.getName());
         street.setText(currentUser.getStreet());
         house.setText(Integer.toString(currentUser.getHouse()));

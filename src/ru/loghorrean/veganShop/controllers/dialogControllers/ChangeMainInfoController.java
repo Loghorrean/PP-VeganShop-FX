@@ -6,8 +6,8 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
-import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.models.database.entities.User;
+import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
     @FXML
     private TextField phone;
 
-    private UserEntity currentUser;
+    private User currentUser;
 
     @Override
     public void fillDialog() {
@@ -54,7 +54,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
             return false;
         }
         try {
-            if (!username.getText().equals(currentUser.getUsername()) && UserManager.getInstance().checkIfUserExists(username.getText())) {
+            if (!username.getText().equals(currentUser.getUsername()) && UsersManager.getInstance().checkIfUserExists(username.getText())) {
                 setMistake("Пользователь с таким именем уже существует");
                 return false;
             }
@@ -63,7 +63,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
             return false;
         }
         try {
-            if (!email.getText().equals(currentUser.getEmail()) && UserManager.getInstance().checkIfEmailExists(email.getText())) {
+            if (!email.getText().equals(currentUser.getEmail()) && UsersManager.getInstance().checkIfEmailExists(email.getText())) {
                 setMistake("Почта с таким именем уже зарегистрирована");
                 return false;
             }
@@ -80,7 +80,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
         currentUser.setFirstName(firstname.getText());
         currentUser.setLastName(lastname.getText());
         currentUser.setPhone(phone.getText());
-        UserManager.getInstance().updateUser(currentUser);
+        UsersManager.getInstance().updateUser(currentUser);
         setSuccess("Информация о пользователе обновлена");
         redirect(event, "profile/ProfileWindow");
     }

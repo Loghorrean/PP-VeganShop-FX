@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.MainData;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
+import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.util.HashCompiler;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
@@ -41,7 +41,7 @@ public class RegistrationController extends DialogController {
         String newEmail = email.getText();
         String randSalt = HashCompiler.getRandomSalt();
         String newPassword = HashCompiler.hashPassword(pass.getText(), randSalt);
-        UserEntity user = new UserEntity.UserBuilder()
+        User user = new User.UserBuilder()
                 .withUsername(newUsername)
                 .withEmail(newEmail)
                 .withPassword(newPassword)

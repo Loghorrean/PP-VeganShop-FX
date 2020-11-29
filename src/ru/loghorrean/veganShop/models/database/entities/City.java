@@ -1,15 +1,15 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class CityEntity extends DatabaseEntity {
+public class City extends DatabaseEntity {
     private int id;
     private String name;
 
-    public CityEntity(int id, String name) {
+    public City(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public CityEntity(String name) {
+    public City(String name) {
         this(-1, name);
     }
 

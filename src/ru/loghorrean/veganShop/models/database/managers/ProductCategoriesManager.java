@@ -1,28 +1,18 @@
 package ru.loghorrean.veganShop.models.database.managers;
 
-import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCategoriesManager {
-    private MySQLDatabase database;
-    private static ProductCategoriesManager manager;
-
-    private ProductCategoriesManager(MySQLDatabase database) {
-        this.database = database;
+public class ProductCategoriesManager extends BaseManager<ProductCategory> {
+    private ProductCategoriesManager() {
+       super();
     }
 
-    public static ProductCategoriesManager getInstance() {
-        if (manager == null) {
-            manager = new ProductCategoriesManager(MySQLDatabase.getInstance());
-        }
-        return manager;
-    }
-
-    public List<ProductCategory> getCategories() throws SQLException {
+    @Override
+    public List<ProductCategory> getAll() throws SQLException {
         try(Connection c = database.getConnection()) {
             String sql = "SELECT * FROM product_categories";
             Statement s = c.createStatement();
@@ -39,57 +29,8 @@ public class ProductCategoriesManager {
         }
     }
 
-    public void insertCategory(ProductCategory category) throws SQLException {
-        try (Connection c = database.getConnection()) {
-            String sql = "INSERT INTO product_categories (category_name, category_description) VALUES (?, ?)";
-            PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            s.setString(1, category.getName());
-            s.setString(2, category.getDescription());
-            s.executeUpdate();
-            ResultSet set = s.getGeneratedKeys();
-            if (set.next()) {
-                category.setId(set.getInt(1));
-                return;
-            }
-
-            throw new SQLException("CATEGORY NOT INSERTED");
-        }
-    }
-
-    public void updateCategory(ProductCategory category) throws SQLException {
-        try (Connection c = database.getConnection()) {
-            String sql = "UPDATE product_categories SET category_name = ?, category_description = ? WHERE category_id = ?";
-            PreparedStatement s = c.prepareStatement(sql);
-            s.setString(1, category.getName());
-            s.setString(2, category.getDescription());
-            s.setInt(3, category.getId());
-            s.executeUpdate();
-        }
-    }
-
-    public void deleteCategory(int id) throws SQLException {
-        try (Connection c = database.getConnection()) {
-            String sql = "DELETE FROM product_categories WHERE category_id = ?";
-            PreparedStatement s = c.prepareStatement(sql);
-            s.setInt(1, id);
-            s.executeUpdate();
-        }
-    }
-
-    public boolean checkIfCategoryExists(String catName) throws SQLException {
-        try (Connection c = database.getConnection()) {
-            String sql = "SELECT * FROM product_categories WHERE category_name = ?";
-            PreparedStatement s = c.prepareStatement(sql);
-            s.setString(1, catName);
-            ResultSet set = s.executeQuery();
-            if (set.next()) {
-                return true;
-            }
-            return false;
-        }
-    }
-
-    public ProductCategory getCategoryById(int id) throws SQLException {
+    @Override
+    public ProductCategory getOne(int id) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "SELECT * FROM product_categories WHERE category_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
@@ -103,6 +44,64 @@ public class ProductCategoriesManager {
                 );
             }
             return null;
+        }
+    }
+
+    @Override
+    public void insert(ProductCategory category) throws SQLException {
+        try (Connection c = database.getConnection()) {
+            String sql = "INSERT INTO product_categories (category_name, category_description) VALUES (?, ?)";
+            PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            s.setString(1, category.getName());
+            s.setString(2, category.getDescription());
+            s.executeUpdate();
+            ResultSet set = s.getGeneratedKeys();
+            if (set.next()) {
+                category.setId(set.getInt(1));
+                return;
+            }
+            throw new SQLException("ERROR WHILE ADDING PRODUCT CATEGORY");
+        }
+    }
+
+    @Override
+    public void update(ProductCategory category) throws SQLException {
+        try (Connection c = database.getConnection()) {
+            String sql = "UPDATE product_categories SET category_name = ?, category_description = ? WHERE category_id = ?";
+            PreparedStatement s = c.prepareStatement(sql);
+            s.setString(1, category.getName());
+            s.setString(2, category.getDescription());
+            s.setInt(3, category.getId());
+            if (s.executeUpdate() == 1) {
+                return;
+            }
+            throw new SQLException("ERROR WHILE UPDATING CATEGORY " + category.getName());
+        }
+    }
+
+    @Override
+    public void delete(ProductCategory category) throws SQLException {
+        try (Connection c = database.getConnection()) {
+            String sql = "DELETE FROM product_categories WHERE category_id = ?";
+            PreparedStatement s = c.prepareStatement(sql);
+            s.setInt(1, category.getId());
+            if (s.executeUpdate() == 1) {
+                return;
+            }
+            throw new SQLException("ERROR WHILE DELETING CATEGORY " + category.getName());
+        }
+    }
+
+    public boolean checkIfCategoryExists(String catName) throws SQLException {
+        try (Connection c = database.getConnection()) {
+            String sql = "SELECT * FROM product_categories WHERE category_name = ?";
+            PreparedStatement s = c.prepareStatement(sql);
+            s.setString(1, catName);
+            ResultSet set = s.executeQuery();
+            if (set.next()) {
+                return true;
+            }
+            return false;
         }
     }
 

@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
-import ru.loghorrean.veganShop.models.database.entities.UserEntity;
-import ru.loghorrean.veganShop.models.database.managers.UserManager;
+import ru.loghorrean.veganShop.models.database.entities.User;
+import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.HashCompiler;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
@@ -21,7 +21,7 @@ public class ChangePasswordController extends DialogController {
     @FXML
     private PasswordField newPasswordConfirm;
 
-    private UserEntity currentUser;
+    private User currentUser;
 
     public void initialize() {
         currentUser = CurrentUser.getInstance().getUser();
@@ -57,7 +57,7 @@ public class ChangePasswordController extends DialogController {
     public void changePassword() throws SQLException {
         String hashedPass = HashCompiler.hashPassword(newPassword.getText(), currentUser.getSalt());
         currentUser.setPassword(hashedPass);
-        UserManager.getInstance().updateUser(currentUser);
+        UsersManager.getInstance().updateUser(currentUser);
         setSuccess("Пароль изменен");
     }
 }

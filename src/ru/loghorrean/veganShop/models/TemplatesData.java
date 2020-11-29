@@ -1,7 +1,7 @@
 package ru.loghorrean.veganShop.models;
 
 import ru.loghorrean.veganShop.models.database.entities.DishTemplate;
-import ru.loghorrean.veganShop.models.database.managers.TemplatesManager;
+import ru.loghorrean.veganShop.models.database.managers.DishTemplatesManager;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class TemplatesData {
     private static TemplatesData instance;
     private List<DishTemplate> templates;
-    private TemplatesManager manager;
+    private DishTemplatesManager manager;
 
     public static TemplatesData getInstance() throws SQLException {
         if (instance == null) {
@@ -19,7 +19,7 @@ public class TemplatesData {
     }
 
     private TemplatesData() throws SQLException {
-        manager = new TemplatesManager();
+        manager = new DishTemplatesManager();
         setTemplates();
     }
 
