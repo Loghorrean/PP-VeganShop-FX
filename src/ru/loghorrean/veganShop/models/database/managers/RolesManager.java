@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RolesManager extends BaseManager<Role> {
-    public RolesManager() {
+    public RolesManager() throws SQLException {
         super();
     }
 

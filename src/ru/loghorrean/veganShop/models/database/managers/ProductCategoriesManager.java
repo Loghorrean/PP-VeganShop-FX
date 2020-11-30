@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoriesManager extends BaseManager<ProductCategory> {
-    private ProductCategoriesManager() {
+    private ProductCategoriesManager() throws SQLException {
        super();
     }
 

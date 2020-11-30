@@ -14,29 +14,37 @@ public class MySQLDatabase {
     private final String password = "1234";
 
     private MysqlDataSource source;
+    private Connection connection;
 
     private static MySQLDatabase instance;
 
-    public static MySQLDatabase getInstance() {
+    private MySQLDatabase() throws SQLException {
+        source = setDataSource();
+        connection = source.getConnection();
+    }
+
+    public static MySQLDatabase getInstance() throws SQLException {
         if (instance == null) {
             instance = new MySQLDatabase();
         }
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
-        if (source == null) {
-            source = new MysqlDataSource();
-            source.setServerName(host);
-            source.setPort(port);
-            source.setDatabaseName(dbname);
-            source.setUser(user);
-            source.setPassword(password);
+    private MysqlDataSource setDataSource() throws SQLException {
+        source = new MysqlDataSource();
+        source.setServerName(host);
+        source.setPort(port);
+        source.setDatabaseName(dbname);
+        source.setUser(user);
+        source.setPassword(password);
 
-            source.setCharacterEncoding("UTF-8");
-            source.setServerTimezone("UTC");
-        }
-        return source.getConnection();
+        source.setCharacterEncoding("UTF-8");
+        source.setServerTimezone("UTC");
+        return source;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
 }

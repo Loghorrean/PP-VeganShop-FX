@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProductsManager extends BaseManager<Product> {
-    public ProductsManager() {
+    public ProductsManager() throws SQLException {
         super();
     }
 

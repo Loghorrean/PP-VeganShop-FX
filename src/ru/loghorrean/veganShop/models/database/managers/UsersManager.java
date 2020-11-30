@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UsersManager extends BaseManager<User> {
-    public UsersManager() {
+    public UsersManager() throws SQLException {
         super();
     }
 

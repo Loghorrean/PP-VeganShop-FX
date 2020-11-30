@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DishTemplatesManager extends BaseManager<DishTemplate> {
-    public DishTemplatesManager() {
+    public DishTemplatesManager() throws SQLException {
         super();
     }
 

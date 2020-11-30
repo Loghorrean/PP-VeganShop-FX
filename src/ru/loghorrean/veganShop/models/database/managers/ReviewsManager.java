@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ReviewsManager extends BaseManager<Review> {
-    public ReviewsManager() {
+    public ReviewsManager() throws SQLException {
         super();
     }
 
