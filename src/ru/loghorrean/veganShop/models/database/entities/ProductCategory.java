@@ -1,33 +1,34 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.CategoryException;
+import ru.loghorrean.veganShop.exceptions.CityException;
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
+import java.util.Set;
+
 public class ProductCategory extends DatabaseEntity {
-    private int id;
     private String name;
     private String description;
+    private Set<DishTemplate> templates;
 
-    public ProductCategory(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public ProductCategory(int id, String name, String description) throws DatabaseException {
+        super(id);
+        setName(name);
+        setDescription(description);
     }
 
-    public ProductCategory(String name, String description) {
+    public ProductCategory(String name, String description) throws DatabaseException {
         this(-1, name, description);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws CategoryException {
+        if (description.length() > 30) {
+            throw new CategoryException("Длина название категории не должна превышать 30 символов");
+        }
         this.name = name;
     }
 
@@ -35,7 +36,10 @@ public class ProductCategory extends DatabaseEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description) throws CategoryException {
+        if (description.length() > 100) {
+            throw new CategoryException("Описание категории не должно превышать 100 символов");
+        }
         this.description = description;
     }
 

@@ -1,9 +1,10 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
 import java.time.LocalDate;
 
 public class Order extends DatabaseEntity {
-    private int id;
     private User user;
     private LocalDate orderDate;
     private int price;
@@ -18,12 +19,8 @@ public class Order extends DatabaseEntity {
     private int courierRating;
     private int foodRating;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    private Order(int id) throws DatabaseException {
+        super(id);
     }
 
     public User getUser() {
@@ -133,9 +130,8 @@ public class Order extends DatabaseEntity {
     public static class OrderBuilder {
         private Order order;
 
-        public OrderBuilder() {
-            order = new Order();
-            order.id = -1;
+        public OrderBuilder() throws DatabaseException {
+            order = new Order(-1);
         }
 
         public OrderBuilder withId(int id) {

@@ -29,6 +29,8 @@ public class ChangeMainInfoController extends DialogController implements IFill 
     @FXML
     private TextField phone;
 
+    private UsersManager manager;
+
     private User currentUser;
 
     @Override
@@ -43,6 +45,11 @@ public class ChangeMainInfoController extends DialogController implements IFill 
     @Override
     public void initialize() {
         currentUser = CurrentUser.getInstance().getUser();
+        try {
+            manager = new UsersManager();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,7 +61,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
             return false;
         }
         try {
-            if (!username.getText().equals(currentUser.getUsername()) && UsersManager.getInstance().checkIfUserExists(username.getText())) {
+            if (!username.getText().equals(currentUser.getUsername()) && manager.checkIfUserExists(username.getText())) {
                 setMistake("Пользователь с таким именем уже существует");
                 return false;
             }

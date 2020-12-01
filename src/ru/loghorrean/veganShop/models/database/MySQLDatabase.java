@@ -1,50 +1,40 @@
 package ru.loghorrean.veganShop.models.database;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import ru.loghorrean.veganShop.util.MainConstants;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class MySQLDatabase {
-    private final String host = "localhost";
-    private final int port = 3306;
-    private final String dbname = "vegan_for_pp";
-    private final String user = "user_for_pp";
-    private final String password = "1234";
-
     private MysqlDataSource source;
-    private Connection connection;
 
     private static MySQLDatabase instance;
 
-    private MySQLDatabase() throws SQLException {
-        source = setDataSource();
-        connection = source.getConnection();
+    private MySQLDatabase() {
+
     }
 
-    public static MySQLDatabase getInstance() throws SQLException {
+    public static MySQLDatabase getInstance() {
         if (instance == null) {
             instance = new MySQLDatabase();
         }
         return instance;
     }
 
-    private MysqlDataSource setDataSource() throws SQLException {
-        source = new MysqlDataSource();
-        source.setServerName(host);
-        source.setPort(port);
-        source.setDatabaseName(dbname);
-        source.setUser(user);
-        source.setPassword(password);
+    public Connection getConnection() throws SQLException {
+        if (source == null) {
+            source = new MysqlDataSource();
+            source.setServerName(MainConstants.HOST);
+            source.setPort(MainConstants.PORT);
+            source.setDatabaseName(MainConstants.DB_NAME);
+            source.setUser(MainConstants.DB_USER);
+            source.setPassword(MainConstants.DB_PASS);
 
-        source.setCharacterEncoding("UTF-8");
-        source.setServerTimezone("UTC");
-        return source;
-    }
-
-    public Connection getConnection() {
-        return connection;
+            source.setCharacterEncoding("UTF-8");
+            source.setServerTimezone("UTC");
+        }
+        return source.getConnection();
     }
 
 }

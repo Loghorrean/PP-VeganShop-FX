@@ -1,28 +1,21 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
 public class ProductInGeneralDish extends DatabaseEntity {
-    private int id;
     private GeneralDish dish;
     private Product product;
     private float amount;
 
-    public ProductInGeneralDish(int id, GeneralDish dish, Product product, float amount) {
-        this.id = id;
+    public ProductInGeneralDish(int id, GeneralDish dish, Product product, float amount) throws DatabaseException {
+        super(id);
         this.dish = dish;
         this.product = product;
         this.amount = amount;
     }
 
-    public ProductInGeneralDish(GeneralDish dish, Product product, float amount) {
+    public ProductInGeneralDish(GeneralDish dish, Product product, float amount) throws DatabaseException {
         this(-1, dish, product, amount);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public GeneralDish getDish() {

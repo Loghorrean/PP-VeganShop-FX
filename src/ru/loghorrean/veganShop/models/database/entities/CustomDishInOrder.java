@@ -1,28 +1,21 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
 public class CustomDishInOrder extends DatabaseEntity {
-    private int id;
     private CustomDish dish;
     private Order order;
     private int amount;
 
-    public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) {
-        this.id = id;
+    public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) throws DatabaseException {
+        super(id);
         this.dish = dish;
         this.order = order;
         this.amount = amount;
     }
 
-    public CustomDishInOrder(CustomDish dish, Order order, int amount) {
+    public CustomDishInOrder(CustomDish dish, Order order, int amount) throws DatabaseException {
         this(-1, dish, order, amount);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public CustomDish getDish() {

@@ -1,19 +1,20 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
 public class GeneralDish extends DatabaseEntity {
-    private int id;
     private String name;
     private String description;
     private int timeToCook;
 
-    public GeneralDish(int id, String name, String description, int timeToCook) {
-        this.id = id;
+    public GeneralDish(int id, String name, String description, int timeToCook) throws DatabaseException {
+        super(id);
         this.name = name;
         this.description = description;
         this.timeToCook = timeToCook;
     }
 
-    public GeneralDish(String name, String description, int timeToCook) {
+    public GeneralDish(String name, String description, int timeToCook) throws DatabaseException {
         this(-1, name, description, timeToCook);
     }
 

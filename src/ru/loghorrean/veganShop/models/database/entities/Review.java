@@ -1,36 +1,25 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import java.time.LocalDate;
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
 
 public class Review extends DatabaseEntity {
-    private int id;
     private String content;
-    private LocalDate review_date;
     private boolean isApproved;
     private int stars;
     private GeneralDish dish;
     private User userCreated;
 
-    public Review(int id, String content, LocalDate review_date, boolean isApproved, int stars, GeneralDish dish, User userCreated) {
-        this.id = id;
+    public Review(int id, String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) throws DatabaseException {
+        super(id);
         this.content = content;
-        this.review_date = review_date;
         this.isApproved = isApproved;
         this.stars = stars;
         this.dish = dish;
         this.userCreated = userCreated;
     }
 
-    public Review(String content, LocalDate review_date, boolean isApproved, int stars, GeneralDish dish, User userCreated) {
-        this(-1, content, review_date, isApproved, stars, dish, userCreated);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Review(String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) throws DatabaseException {
+        this(-1, content, isApproved, stars, dish, userCreated);
     }
 
     public String getContent() {
@@ -39,14 +28,6 @@ public class Review extends DatabaseEntity {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public LocalDate getReview_date() {
-        return review_date;
-    }
-
-    public void setReview_date(LocalDate review_date) {
-        this.review_date = review_date;
     }
 
     public boolean isApproved() {

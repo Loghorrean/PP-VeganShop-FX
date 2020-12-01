@@ -1,7 +1,8 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+
 public class Product extends DatabaseEntity {
-    private int id;
     private String name;
     private String description;
     private int amount;
@@ -10,12 +11,8 @@ public class Product extends DatabaseEntity {
     private boolean isAllergic;
     private ProductCategory category;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    private Product(int id) throws DatabaseException {
+        super(id);
     }
 
     public String getName() {
@@ -77,9 +74,8 @@ public class Product extends DatabaseEntity {
     public static class ProductBuilder {
         private Product product;
 
-        public ProductBuilder() {
-            product = new Product();
-            product.setId(-1);
+        public ProductBuilder() throws DatabaseException {
+            product = new Product(-1);
         }
 
         public ProductBuilder withId(int id) {

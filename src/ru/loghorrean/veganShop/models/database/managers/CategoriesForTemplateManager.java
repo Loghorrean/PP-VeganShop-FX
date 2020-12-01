@@ -13,26 +13,36 @@ public class CategoriesForTemplateManager extends BaseManager<CategoriesForTempl
 
     @Override
     public List<CategoriesForTemplate> getAll() throws SQLException {
-        return null;
+        try (Connection c = database.getConnection()) {
+            return null;
+        }
     }
 
     @Override
     public CategoriesForTemplate getOne(int id) throws SQLException {
-        return null;
+        try (Connection c = database.getConnection()) {
+            return null;
+        }
     }
 
     @Override
     public void insert(CategoriesForTemplate entity) throws SQLException {
+        try (Connection c = database.getConnection()) {
 
+        }
     }
 
     @Override
     public void update(CategoriesForTemplate entity) throws SQLException {
+        try (Connection c = database.getConnection()) {
 
+        }
     }
 
     @Override
     public void delete(CategoriesForTemplate entity) throws SQLException {
+        try (Connection c = database.getConnection()) {
 
+        }
     }
 }

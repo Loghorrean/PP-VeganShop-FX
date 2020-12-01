@@ -56,7 +56,6 @@ public class RegistrationController extends DialogController {
         email.setText(email.getText().trim());
         pass.setText(pass.getText().trim());
         passRepeat.setText(passRepeat.getText().trim());
-        System.out.println(username.getText() + email.getText());
         if (!Validator.validateAllFields(username.getText(), email.getText(), pass.getText(), passRepeat.getText())) {
             setMistake("Все поля должны быть заполнены.");
             return false;

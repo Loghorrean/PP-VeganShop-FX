@@ -28,7 +28,7 @@ public class HashCompiler {
 
     public static String getRandomSalt() {
         StringBuilder builder = new StringBuilder(10);
-        for (int i = 0; i < MainConstants.getSaltLength(); ++i) {
+        for (int i = 0; i < MainConstants.SALT_LENGTH; ++i) {
             int randomNumber = start + (int)(Math.random() * ((end-start) + 1));
             char c = (char)(randomNumber);
             builder.append(c);

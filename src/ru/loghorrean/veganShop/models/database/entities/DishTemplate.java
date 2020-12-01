@@ -1,26 +1,22 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-public class DishTemplate extends DatabaseEntity {
-    private int id;
-    private String name;
-    private String description;
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
 
-    public DishTemplate(int id, String name, String description) {
-        this.id = id;
+import java.util.Set;
+
+public class DishTemplate extends DatabaseEntity {
+    private String name = "";
+    private String description = "";
+    private Set<ProductCategory> categories;
+
+    public DishTemplate(int id, String name, String description) throws DatabaseException {
+        super(id);
         this.name = name;
         this.description = description;
     }
 
-    public DishTemplate(String name, String description) {
+    public DishTemplate(String name, String description) throws DatabaseException {
         this(-1, name, description);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

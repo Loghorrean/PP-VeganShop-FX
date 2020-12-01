@@ -19,12 +19,12 @@ public class CategoriesData {
     }
 
     private CategoriesData() throws SQLException {
-        manager = ProductCategoriesManager.getInstance();
+        manager = new ProductCategoriesManager();
         setCategories();
     }
 
     public void setCategories() throws SQLException {
-        categories = manager.getCategories();
+        categories = manager.getAll();
     }
 
     public List<ProductCategory> getCategories() {
@@ -32,16 +32,16 @@ public class CategoriesData {
     }
 
     public void addCategoryToModel(ProductCategory category) throws SQLException {
-        manager.insertCategory(category);
+        manager.insert(category);
         categories.add(category);
     }
 
     public void updateCategoryInModel(ProductCategory category) throws SQLException {
-        manager.updateCategory(category);
+        manager.update(category);
     }
 
     public void deleteCategoryInModel(ProductCategory category) throws SQLException {
-        manager.deleteCategory(category.getId());
+        manager.delete(category);
         categories.remove(category);
     }
 
