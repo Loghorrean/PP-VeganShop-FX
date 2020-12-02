@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import ru.loghorrean.veganShop.controllers.UserController;
+import ru.loghorrean.veganShop.controllers.AdminControllerWithList;
 import ru.loghorrean.veganShop.models.TemplatesData;
 import ru.loghorrean.veganShop.models.database.entities.DishTemplate;
 import ru.loghorrean.veganShop.util.DialogCreator;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class AdminTemplatesController extends UserController {
+public class AdminTemplatesController extends AdminControllerWithList {
     @FXML
     private BorderPane mainBorderPane;
 
@@ -34,9 +34,6 @@ public class AdminTemplatesController extends UserController {
     @FXML
     private ContextMenu templateContextMenu;
 
-    @FXML
-    private Button backButton;
-
     private TemplatesData data;
 
     @Override
@@ -48,6 +45,8 @@ public class AdminTemplatesController extends UserController {
         }
 
         mainBorderPane.setRight(getUserMenu());
+
+        mainBorderPane.setTop(getAdminMenu("Добавить шаблон", mainBorderPane));
 
         templateContextMenu = new ContextMenu();
 
@@ -166,15 +165,6 @@ public class AdminTemplatesController extends UserController {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             templatesList.setItems(FXCollections.observableArrayList(data.getTemplates()));
-        }
-    }
-
-    @FXML
-    public void backToTheMenu(ActionEvent event) {
-        try {
-            redirect(event, "admin/AdminMenuWindow");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

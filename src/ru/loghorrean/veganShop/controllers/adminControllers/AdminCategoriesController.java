@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import ru.loghorrean.veganShop.controllers.AdminControllerWithList;
 import ru.loghorrean.veganShop.controllers.UserController;
 import ru.loghorrean.veganShop.models.CategoriesData;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class AdminCategoriesController extends UserController {
+public class AdminCategoriesController extends AdminControllerWithList {
     @FXML
     private BorderPane mainBorderPane;
 
@@ -40,9 +41,6 @@ public class AdminCategoriesController extends UserController {
     @FXML
     private ContextMenu catContextMenu;
 
-    @FXML
-    private Button backButton;
-
     private CategoriesData data;
 
     @Override
@@ -51,6 +49,8 @@ public class AdminCategoriesController extends UserController {
             data = CategoriesData.getInstance();
 
             mainBorderPane.setRight(getUserMenu());
+
+            mainBorderPane.setTop(getAdminMenu("Добавить категорию", mainBorderPane));
 
             catContextMenu = new ContextMenu();
 
@@ -129,30 +129,15 @@ public class AdminCategoriesController extends UserController {
         System.out.println(category.getName());
     }
 
-    @FXML
-    public void backToTheMenu(ActionEvent event) throws IOException {
-        redirect(event, "admin/AdminMenuWindow");
-    }
-
-    @FXML
-    public void getInfo() {
-        Dialog<ButtonType> dialog =
-                new DialogCreator.DialogBuilder("HowToUseDialog")
-                        .createDialog("Как использовать", mainBorderPane)
-                        .addButtons(ButtonType.OK)
-                        .build();
-        dialog.showAndWait();
-    }
-
-    @FXML
-    private void openAddDialog() {
+    @Override
+    public void openAddDialog() {
         Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("CategoryDialog")
-                                .createDialog("Добавление категории", mainBorderPane)
-                                .addButtons(ButtonType.OK, ButtonType.CANCEL)
-                                .addController()
-                                .addValidationToButton(ButtonType.OK)
-                                .onSuccess("addCategory")
-                                .build();
+                .createDialog("Добавление категории", mainBorderPane)
+                .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                .addController()
+                .addValidationToButton(ButtonType.OK)
+                .onSuccess("addCategory")
+                .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             catList.setItems(FXCollections.observableArrayList(data.getCategories()));
