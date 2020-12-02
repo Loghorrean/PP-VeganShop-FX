@@ -54,6 +54,24 @@ public class CategoriesData {
         return false;
     }
 
+    public ProductCategory getCategoryByName(String name) {
+        for (ProductCategory category: categories) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+    public ProductCategory getCategoryById(int id) {
+        for (ProductCategory category: categories) {
+            if (category.getId() == id) {
+                return category;
+            }
+        }
+        return null;
+    }
+
     public static void unsetModel() {
         instance = null;
     }

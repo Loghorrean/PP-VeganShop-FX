@@ -4,8 +4,20 @@
 
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminProductsController"
             prefHeight="500.0" prefWidth="900.0">
+    <center>
+        <GridPane fx:id="mainGridPane">
+            <Label text="Id продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Количество продукта на складе" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label text="Подробное описание" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="Изменить продукт" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+            <Label text="Удалить продукт" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+        </GridPane>
+    </center>
 </BorderPane>

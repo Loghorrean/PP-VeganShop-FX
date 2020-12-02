@@ -54,6 +54,24 @@ public class TemplatesData {
         return false;
     }
 
+    public DishTemplate getTemplateByName(String name) {
+        for(DishTemplate template: templates) {
+            if (template.getName().equals(name)) {
+                return template;
+            }
+        }
+        return null;
+    }
+
+    public DishTemplate getTemplateById(int id) {
+        for(DishTemplate template: templates) {
+            if (template.getId() == id) {
+                return template;
+            }
+        }
+        return null;
+    }
+
     public static void unsetModel() {
         instance = null;
     }

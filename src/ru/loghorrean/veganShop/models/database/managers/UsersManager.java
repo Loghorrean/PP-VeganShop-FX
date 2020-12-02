@@ -146,23 +146,6 @@ public class UsersManager extends BaseManager<User> {
         }
     }
 
-    public void registerUser(User user) throws SQLException {
-        try(Connection c = database.getConnection()) {
-            String sql = "INSERT INTO users (username, email, password, user_salt, role_id) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            s.setString(1, user.getUsername());
-            s.setString(2, user.getEmail());
-            s.setString(3, user.getPassword());
-            s.setString(4, user.getSalt());
-            s.setInt(5, user.getRole().getId());
-            s.executeUpdate();
-        }
-    }
-
-    public User authoriseUser(String username) throws SQLException {
-        return this.getUserByUsername(username);
-    }
-
     public boolean checkIfUserExists(String username) throws SQLException {
         try(Connection c = database.getConnection()) {
             String sql = "SELECT username FROM users WHERE username = ?";

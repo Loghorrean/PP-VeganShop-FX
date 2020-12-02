@@ -7,12 +7,14 @@ public class ProductCategory extends DatabaseEntity {
     private String name;
     private String description;
     private Set<DishTemplate> templates;
+    private Set<Product> productsOfCategory;
 
     public ProductCategory(int id, String name, String description) {
         super(id);
         this.name = name;
         this.description = description;
         templates = new HashSet<>();
+        productsOfCategory = new HashSet<>();
     }
 
     public ProductCategory(String name, String description) {
@@ -47,9 +49,22 @@ public class ProductCategory extends DatabaseEntity {
         return templates;
     }
 
+    public void addProduct(Product product) {
+        productsOfCategory.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        productsOfCategory.remove(product);
+    }
+
+    public Set<Product> getProductsOfCategory() {
+        return productsOfCategory;
+    }
+
     @Override
     public String toString() {
         return "ProductCategory{" +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

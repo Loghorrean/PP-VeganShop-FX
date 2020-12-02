@@ -14,19 +14,12 @@ import ru.loghorrean.veganShop.models.TemplatesData;
 import ru.loghorrean.veganShop.models.database.entities.DishTemplate;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class AdminTemplatesController extends AdminControllerWithList {
-    @FXML
-    private BorderPane mainBorderPane;
-
+public class AdminTemplatesController extends AdminControllerWithList<DishTemplate> {
     @FXML
     private VBox VBoxInfo;
-
-    @FXML
-    private ListView<DishTemplate> templatesList;
 
     @FXML
     private TextArea templateInfo;
@@ -52,33 +45,33 @@ public class AdminTemplatesController extends AdminControllerWithList {
 
         MenuItem deleteTemplate = new MenuItem("Удалить шаблон");
         deleteTemplate.setOnAction(actionEvent -> {
-            DishTemplate template = templatesList.getSelectionModel().getSelectedItem();
+            DishTemplate template = mainListView.getSelectionModel().getSelectedItem();
             openDeleteTemplateDialog(template);
         });
 
         MenuItem updateTemplate = new MenuItem("Изменить шаблон");
         updateTemplate.setOnAction(actionEvent -> {
-            DishTemplate template = templatesList.getSelectionModel().getSelectedItem();
+            DishTemplate template = mainListView.getSelectionModel().getSelectedItem();
             openUpdateTemplateDialog(template);
         });
 
         templateContextMenu.getItems().setAll(deleteTemplate, updateTemplate);
 
-        templatesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DishTemplate>() {
+        mainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DishTemplate>() {
             @Override
             public void changed(ObservableValue<? extends DishTemplate> observableValue, DishTemplate oldValue, DishTemplate newValue) {
                 if (newValue != null) {
-                    DishTemplate template = templatesList.getSelectionModel().getSelectedItem();
+                    DishTemplate template = mainListView.getSelectionModel().getSelectedItem();
                     templateInfo.setText(template.getDescription());
                 }
             }
         });
 
-        templatesList.setItems(FXCollections.observableArrayList(data.getTemplates()));
-        templatesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        templatesList.getSelectionModel().selectFirst();
+        mainListView.setItems(FXCollections.observableArrayList(data.getTemplates()));
+        mainListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        mainListView.getSelectionModel().selectFirst();
 
-        templatesList.setCellFactory(new Callback<ListView<DishTemplate>, ListCell<DishTemplate>>() {
+        mainListView.setCellFactory(new Callback<ListView<DishTemplate>, ListCell<DishTemplate>>() {
             @Override
             public ListCell<DishTemplate> call(ListView<DishTemplate> dishTemplateListView) {
                 ListCell<DishTemplate> cell = new ListCell<>() {
@@ -107,19 +100,9 @@ public class AdminTemplatesController extends AdminControllerWithList {
     }
 
     @FXML
-    public void getInfo() {
-        Dialog<ButtonType> dialog =
-                new DialogCreator.DialogBuilder("HowToUseDialog")
-                        .createDialog("Как использовать", mainBorderPane)
-                        .addButtons(ButtonType.OK)
-                        .build();
-        dialog.showAndWait();
-    }
-
-    @FXML
     public void openAddDialog() {
         Dialog<ButtonType> dialog =
-                new DialogCreator.DialogBuilder("TemplateDialog")
+                new DialogCreator.DialogBuilder("adminDialogs/TemplateDialog")
                         .createDialog("Дрбавить шаблон", mainBorderPane)
                         .addButtons(ButtonType.OK, ButtonType.CANCEL)
                         .addController()
@@ -128,7 +111,7 @@ public class AdminTemplatesController extends AdminControllerWithList {
                         .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            templatesList.setItems(FXCollections.observableArrayList(data.getTemplates()));
+            mainListView.setItems(FXCollections.observableArrayList(data.getTemplates()));
         }
     }
 
@@ -141,8 +124,8 @@ public class AdminTemplatesController extends AdminControllerWithList {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 data.deleteTemplateInModel(template);
-                templatesList.setItems(FXCollections.observableArrayList(data.getTemplates()));
-                templatesList.getSelectionModel().selectFirst();
+                mainListView.setItems(FXCollections.observableArrayList(data.getTemplates()));
+                mainListView.getSelectionModel().selectFirst();
                 setSuccess("Категория удалена");
             } catch (SQLException e) {
                 System.out.println("ERROR WHILE DELETING CATEGORY");
@@ -153,7 +136,7 @@ public class AdminTemplatesController extends AdminControllerWithList {
 
     private void openUpdateTemplateDialog(DishTemplate template) {
         Dialog<ButtonType> dialog =
-                new DialogCreator.DialogBuilder("TemplateDialog")
+                new DialogCreator.DialogBuilder("adminDialogs/TemplateDialog")
                     .createDialog("Обновить шаблон", mainBorderPane)
                     .addButtons(ButtonType.OK, ButtonType.CANCEL)
                     .addController()
@@ -164,7 +147,7 @@ public class AdminTemplatesController extends AdminControllerWithList {
                     .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            templatesList.setItems(FXCollections.observableArrayList(data.getTemplates()));
+            mainListView.setItems(FXCollections.observableArrayList(data.getTemplates()));
         }
     }
 }

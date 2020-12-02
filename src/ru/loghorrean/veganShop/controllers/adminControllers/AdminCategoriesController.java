@@ -22,15 +22,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class AdminCategoriesController extends AdminControllerWithList {
-    @FXML
-    private BorderPane mainBorderPane;
-
+public class AdminCategoriesController extends AdminControllerWithList<ProductCategory> {
     @FXML
     private VBox vboxInfo;
-
-    @FXML
-    private ListView<ProductCategory> catList;
 
     @FXML
     private TextArea catInfo;
@@ -56,22 +50,22 @@ public class AdminCategoriesController extends AdminControllerWithList {
 
             MenuItem deleteCat = new MenuItem("Удалить");
             deleteCat.setOnAction(actionEvent -> {
-                ProductCategory category = catList.getSelectionModel().getSelectedItem();
+                ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
                 openDeleteCatDialog(category);
             });
 
             MenuItem updateCat = new MenuItem("Обновить категорию");
             updateCat.setOnAction(actionEvent -> {
-                ProductCategory category = catList.getSelectionModel().getSelectedItem();
+                ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
                 openUpdateCatDialog(category);
             });
             catContextMenu.getItems().addAll(deleteCat, updateCat);
 
-            catList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProductCategory>() {
+            mainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProductCategory>() {
                 @Override
                 public void changed(ObservableValue<? extends ProductCategory> observableValue, ProductCategory oldValue, ProductCategory newValue) {
                     if (newValue != null) {
-                        ProductCategory category = catList.getSelectionModel().getSelectedItem();
+                        ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
                         catInfo.setText(category.getDescription());
                         productButton.setText("Продукты категории " + category.getName());
                         productButton.setOnAction(event -> {
@@ -82,11 +76,11 @@ public class AdminCategoriesController extends AdminControllerWithList {
                 }
             });
 
-            catList.setItems(FXCollections.observableArrayList(data.getCategories()));
-            catList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-            catList.getSelectionModel().selectFirst();
+            mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
+            mainListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            mainListView.getSelectionModel().selectFirst();
 
-            catList.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
+            mainListView.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
                 @Override
                 public ListCell<ProductCategory> call(ListView<ProductCategory> productCategoryListView) {
                     ListCell<ProductCategory> cell = new ListCell<>() {
@@ -131,7 +125,7 @@ public class AdminCategoriesController extends AdminControllerWithList {
 
     @Override
     public void openAddDialog() {
-        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("CategoryDialog")
+        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("adminDialogs/CategoryDialog")
                 .createDialog("Добавление категории", mainBorderPane)
                 .addButtons(ButtonType.OK, ButtonType.CANCEL)
                 .addController()
@@ -140,7 +134,7 @@ public class AdminCategoriesController extends AdminControllerWithList {
                 .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            catList.setItems(FXCollections.observableArrayList(data.getCategories()));
+            mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
         }
     }
 
@@ -153,8 +147,8 @@ public class AdminCategoriesController extends AdminControllerWithList {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 data.deleteCategoryInModel(category);
-                catList.setItems(FXCollections.observableArrayList(data.getCategories()));
-                catList.getSelectionModel().selectFirst();
+                mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
+                mainListView.getSelectionModel().selectFirst();
                 setSuccess("Категория удалена");
             } catch (SQLException e) {
                 System.out.println("ERROR WHILE DELETING CATEGORY");
@@ -164,7 +158,7 @@ public class AdminCategoriesController extends AdminControllerWithList {
     }
 
     private void openUpdateCatDialog(ProductCategory category) {
-        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("CategoryDialog")
+        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("adminDialogs/CategoryDialog")
                             .createDialog("Изменение категории", mainBorderPane)
                             .addButtons(ButtonType.OK, ButtonType.CANCEL)
                             .addController()
@@ -175,7 +169,7 @@ public class AdminCategoriesController extends AdminControllerWithList {
                             .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            catList.setItems(FXCollections.observableArrayList(data.getCategories()));
+            mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
             setSuccess("Категория обновлена");
         }
     }

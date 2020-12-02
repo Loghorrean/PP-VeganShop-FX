@@ -6,11 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 abstract public class AdminPanelController extends UserController {
+    @FXML
+    protected BorderPane mainBorderPane;
+
     @FXML
     protected Button backButton;
 

@@ -3,7 +3,7 @@ package ru.loghorrean.veganShop.models.database.entities;
 public class Product extends DatabaseEntity {
     private String name;
     private String description;
-    private int amount;
+    private float amount;
     private int price;
     private int calories;
     private boolean isAllergic;
@@ -29,11 +29,11 @@ public class Product extends DatabaseEntity {
         this.description = description;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
@@ -91,6 +91,11 @@ public class Product extends DatabaseEntity {
             return this;
         }
 
+        public ProductBuilder withAmount(float amount) {
+            product.amount = amount;
+            return this;
+        }
+
         public ProductBuilder withPrice(int price) {
             product.price = price;
             return this;
@@ -108,7 +113,14 @@ public class Product extends DatabaseEntity {
 
         public ProductBuilder withCategory(ProductCategory category) {
             product.category = category;
+            category.addProduct(product);
             return this;
         }
+
+        public Product build() {
+            System.out.println(product);
+            return product;
+        }
+
     }
 }
