@@ -3,6 +3,7 @@ package ru.loghorrean.veganShop.controllers.dialogControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.controllers.DialogController;
+import ru.loghorrean.veganShop.exceptions.UserException;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.util.HashCompiler;
@@ -28,6 +29,8 @@ public class RegistrationController extends DialogController {
 
     private MainData mainData;
 
+    private User userToRegister;
+
     public void initialize() {
         try {
             mainData = MainData.getInstance();
@@ -37,18 +40,15 @@ public class RegistrationController extends DialogController {
     }
 
     public void processRegistration() throws SQLException {
-        String newUsername = username.getText();
-        String newEmail = email.getText();
         String randSalt = HashCompiler.getRandomSalt();
-        String newPassword = HashCompiler.hashPassword(pass.getText(), randSalt);
-        User user = new User.UserBuilder()
-                .withUsername(newUsername)
-                .withEmail(newEmail)
-                .withPassword(newPassword)
+        userToRegister = new User.UserBuilder()
+                .withUsername(username.getText())
+                .withEmail(email.getText())
                 .withSalt(randSalt)
+                .withPassword(HashCompiler.hashPassword(pass.getText(), randSalt))
                 .withRole(mainData.getRoleByTitle("Customer"))
                 .build();
-        mainData.getUserManager().registerUser(user);
+        mainData.registerUser(userToRegister);
     }
 
     public boolean checkFields() {
@@ -72,15 +72,6 @@ public class RegistrationController extends DialogController {
             setMistake("Такой почтовый адрес уже используется. Пожалуйста, используйте другой");
             return false;
         }
-        // TODO: does not work
-//        if (!RegexCompiler.compileRegEx(email.getText().trim(), Regexes.MAIL)) {
-//            setMistake("Почтовый адрес не сооветствует шаблону.");
-//            return false;
-//        }
-//        if (!RegexCompiler.compileRegEx(pass.getText().trim(), Regexes.PASSWORD)) {
-//            setMistake("Пароль не соответствует шаблону");
-//            return false;
-//        }
         return true;
     }
 

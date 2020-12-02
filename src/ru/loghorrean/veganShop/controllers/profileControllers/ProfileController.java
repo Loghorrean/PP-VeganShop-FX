@@ -68,8 +68,6 @@ public class ProfileController extends UserController {
         AnchorPane.setTopAnchor(userMenu, 10.0);
         AnchorPane.setRightAnchor(userMenu, 10.0);
         mainAnchorPane.getChildren().add(userMenu);
-        citiesManager = new CitiesManager();
-        userManager = UsersManager.getInstance();
         currentUser = CurrentUser.getInstance().getUser();
         fillProfileInfo();
         fillAddressInfo();

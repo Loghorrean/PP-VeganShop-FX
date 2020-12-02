@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.controllers.IInit;
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
+import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -18,12 +20,11 @@ import java.util.Arrays;
 
 public class DialogCreator {
     public static class DialogBuilder {
-        private Dialog<ButtonType> dialog;
-        private FXMLLoader loader;
+        private final Dialog<ButtonType> dialog;
+        private final FXMLLoader loader;
         private DialogController controller = null;
         private String methodOnSuccess = "";
         private ActionEvent event = null;
-        private boolean refreshes = false;
 
         public DialogBuilder(String path) {
             dialog = new Dialog<>();
@@ -52,8 +53,8 @@ public class DialogCreator {
             return this;
         }
 
-        public DialogBuilder passObject(Object object) {
-            ((IInit) controller).initData(object);
+        public DialogBuilder passObject(DatabaseEntity entity) {
+            ((IInit) controller).initData(entity);
             return this;
         }
 
@@ -75,11 +76,6 @@ public class DialogCreator {
             return this;
         }
 
-        public DialogBuilder refreshPane(boolean refreshes) {
-            this.refreshes = refreshes;
-            return this;
-        }
-
         public DialogBuilder onSuccess(String methodName) {
             this.methodOnSuccess = methodName;
             return this;
@@ -96,7 +92,7 @@ public class DialogCreator {
                     method.invoke(controller, event);
                 }
             } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+                System.out.println("NO SUCH METHOD IN " + controller.getClass() + ": " + methodOnSuccess);
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

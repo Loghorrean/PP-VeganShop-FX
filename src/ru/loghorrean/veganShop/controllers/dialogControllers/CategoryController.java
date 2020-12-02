@@ -6,7 +6,9 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.controllers.IInit;
+import ru.loghorrean.veganShop.exceptions.CategoryException;
 import ru.loghorrean.veganShop.models.CategoriesData;
+import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.models.database.managers.ProductCategoriesManager;
 import ru.loghorrean.veganShop.util.validators.Validator;
@@ -22,11 +24,11 @@ public class CategoryController extends DialogController implements IFill, IInit
 
     private ProductCategory category;
 
-    private static CategoriesData data;
+    private CategoriesData data;
 
     @Override
-    public void initData(Object object) {
-        category = (ProductCategory) object;
+    public void initData(DatabaseEntity entity) {
+        category = (ProductCategory) entity;
     }
 
     @Override
@@ -50,22 +52,17 @@ public class CategoryController extends DialogController implements IFill, IInit
             setMistake("Все поля должны быть заполнены");
             return false;
         }
-        try {
-            boolean catExists = ProductCategoriesManager.getInstance().checkIfCategoryExists(catName.getText());
-            if (category != null) {
-                if (catExists && !catName.getText().equals(category.getName())) {
-                    setMistake("Категория с таким именем уже существует");
-                    return false;
-                }
-            } else {
-                if (catExists) {
-                    setMistake("Категория с таким именем уже существует");
-                    return false;
-                }
+        boolean catExists = data.checkIfCatExists(catName.getText());
+        if (category != null) {
+            if (catExists && !catName.getText().equals(category.getName())) {
+                setMistake("Категория с таким именем уже существует");
+                return false;
             }
-        } catch (SQLException e) {
-            System.out.println("ERROR WHILE CHECKING CATEGORY'S NAME");
-            e.printStackTrace();
+        } else {
+            if (catExists) {
+                setMistake("Категория с таким именем уже существует");
+                return false;
+            }
         }
         return true;
     }

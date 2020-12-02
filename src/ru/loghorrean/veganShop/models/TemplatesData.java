@@ -9,7 +9,7 @@ import java.util.List;
 public class TemplatesData {
     private static TemplatesData instance;
     private List<DishTemplate> templates;
-    private DishTemplatesManager manager;
+    private final DishTemplatesManager manager;
 
     public static TemplatesData getInstance() throws SQLException {
         if (instance == null) {
@@ -24,7 +24,7 @@ public class TemplatesData {
     }
 
     public void setTemplates() throws SQLException {
-        templates = manager.getAllTemplates();
+        templates = manager.getAll();
     }
 
     public List<DishTemplate> getTemplates() {
@@ -32,16 +32,29 @@ public class TemplatesData {
     }
 
     public void addTemplateToModel(DishTemplate template) throws SQLException {
-        manager.insertTemplate(template);
+        manager.insert(template);
         templates.add(template);
     }
 
     public void updateTemplateInModel(DishTemplate template) throws SQLException {
-        manager.updateTemplate(template);
+        manager.update(template);
     }
 
     public void deleteTemplateInModel(DishTemplate template) throws SQLException {
-        manager.deleteTemplate(template.getId());
+        manager.delete(template);
         templates.remove(template);
+    }
+
+    public boolean checkIfTemplateExists(String templateName) {
+        for(DishTemplate template: templates) {
+            if (template.getName().equals(templateName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void unsetModel() {
+        instance = null;
     }
 }

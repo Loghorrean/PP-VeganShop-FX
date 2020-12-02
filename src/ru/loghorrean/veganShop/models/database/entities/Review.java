@@ -1,7 +1,5 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class Review extends DatabaseEntity {
     private String content;
     private boolean isApproved;
@@ -9,7 +7,7 @@ public class Review extends DatabaseEntity {
     private GeneralDish dish;
     private User userCreated;
 
-    public Review(int id, String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) throws DatabaseException {
+    public Review(int id, String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) {
         super(id);
         this.content = content;
         this.isApproved = isApproved;
@@ -18,7 +16,7 @@ public class Review extends DatabaseEntity {
         this.userCreated = userCreated;
     }
 
-    public Review(String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) throws DatabaseException {
+    public Review(String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) {
         this(-1, content, isApproved, stars, dish, userCreated);
     }
 

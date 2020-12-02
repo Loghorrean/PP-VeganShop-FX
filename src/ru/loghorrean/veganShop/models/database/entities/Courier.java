@@ -10,15 +10,15 @@ public class Courier extends DatabaseEntity {
     private String phone = "";
     private String verifyCode = "";
 
-    public Courier(int id, String firstname, String lastname, String phone, String verifyCode) throws DatabaseException {
+    public Courier(int id, String firstname, String lastname, String phone, String verifyCode) {
         super(id);
-        setFirstname(firstname);
-        setLastname(lastname);
-        setPhone(phone);
-        setVerifyCode(verifyCode);
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.verifyCode = verifyCode;
     }
 
-    public Courier(String firstname, String lastname, String phone, String verifyCode) throws DatabaseException {
+    public Courier(String firstname, String lastname, String phone, String verifyCode) {
         this(-1, firstname, lastname, phone, verifyCode);
     }
 
@@ -26,10 +26,7 @@ public class Courier extends DatabaseEntity {
         return firstname;
     }
 
-    public void setFirstname(String firstname) throws CourierException {
-        if (firstname.length() < 2 || firstname.length() > 20) {
-            throw new CourierException("Name should have between 2 and 20 symbols");
-        }
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
@@ -37,10 +34,7 @@ public class Courier extends DatabaseEntity {
         return lastname;
     }
 
-    public void setLastname(String lastname) throws CourierException {
-        if (lastname.length() < 2 || lastname.length() > 20) {
-            throw new CourierException("Last name should have between 2 and 20 symbols");
-        }
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
@@ -48,10 +42,7 @@ public class Courier extends DatabaseEntity {
         return phone;
     }
 
-    public void setPhone(String phone) throws CourierException {
-        if (!Validator.validatePhone(phone)) {
-            throw new CourierException("Неправильный формат номера телефона");
-        }
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -59,10 +50,7 @@ public class Courier extends DatabaseEntity {
         return verifyCode;
     }
 
-    public void setVerifyCode(String verifyCode) throws CourierException {
-        if (verifyCode.length() != 20) {
-            throw new CourierException("Длина кода верификации должна быть ровно 20 символов");
-        }
+    public void setVerifyCode(String verifyCode) {
         this.verifyCode = verifyCode;
     }
 }

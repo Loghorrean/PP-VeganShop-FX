@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
-
-
 <?import javafx.scene.control.TextArea?>
-<DialogPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.CategoryController">
+
+<DialogPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.CategoryController">
    <content>
       <GridPane>
           <Label text="Название категории" />

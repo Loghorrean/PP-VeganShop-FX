@@ -1,24 +1,20 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-import ru.loghorrean.veganShop.exceptions.UserException;
-import ru.loghorrean.veganShop.util.validators.Validator;
-
 public class User extends DatabaseEntity {
-    private String username = "";
-    private String email = "";
-    private String password = "";
-    private String firstName = "";
-    private String lastName = "";
-    private String phone = "";
-    private Role role = null;
-    private String salt = "";
-    private City city = null;
-    private String street = "";
-    private int house = -1;
-    private int flat = -1;
+    private String username;
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private Role role;
+    private String salt;
+    private City city;
+    private String street;
+    private int house;
+    private int flat;
 
-    private User(int id) throws DatabaseException {
+    private User(int id) {
         super(id);
     }
 
@@ -119,30 +115,24 @@ public class User extends DatabaseEntity {
     }
 
     public static class UserBuilder {
-        private User user;
+        private final User user;
 
-        public UserBuilder() throws DatabaseException {
+        public UserBuilder() {
             user = new User(-1);
         }
 
-        public UserBuilder withId(int id) throws DatabaseException {
+        public UserBuilder withId(int id) {
             user.setId(id);
             return this;
         }
 
-        public UserBuilder withUsername(String username) throws UserException {
-            if (username.length() < 2 || username.length() > 20) {
-                throw new UserException("Никнейм должен содержать от 2 до 20 символов");
-            }
+        public UserBuilder withUsername(String username) {
             user.setUsername(username);
             return this;
         }
 
-        public UserBuilder withEmail(String email) throws UserException {
-            if (Validator.validateMail(email)) {
-                throw new UserException("Email is not valid");
-            }
-            user.email = email;
+        public UserBuilder withEmail(String email) {
+            user.setEmail(email);
             return this;
         }
 
@@ -151,32 +141,27 @@ public class User extends DatabaseEntity {
             return this;
         }
 
-        public UserBuilder withFirstName(String firstName) throws UserException {
-            if (!firstName.isEmpty()) {
-                if (firstName.length() < 2 || firstName.length() > 30) {
-                    throw new UserException("Имя должно содержать от 2 до 30 символов");
-                }
-            }
-            user.firstName = firstName;
+        public UserBuilder withFirstName(String firstName) {
+            user.setFirstName(firstName);
             return this;
         }
 
-        public UserBuilder withLastName(String lastName) throws UserException {
-            user.lastName = lastName;
+        public UserBuilder withLastName(String lastName) {
+            user.setLastName(lastName);
             return this;
         }
 
-        public UserBuilder withPhone(String phone) throws UserException {
-            user.phone = phone;
+        public UserBuilder withPhone(String phone) {
+            user.setPhone(phone);
             return this;
         }
 
-        public UserBuilder withRole(Role role) throws UserException {
-            user.role = role;
+        public UserBuilder withRole(Role role) {
+            user.setRole(role);
             return this;
         }
 
-        public UserBuilder withSalt(String salt) throws UserException {
+        public UserBuilder withSalt(String salt) {
             user.salt = salt;
             return this;
         }
@@ -186,18 +171,18 @@ public class User extends DatabaseEntity {
             return this;
         }
 
-        public UserBuilder withStreet(String street) throws UserException {
-            user.street = street;
+        public UserBuilder withStreet(String street) {
+            user.setStreet(street);
             return this;
         }
 
-        public UserBuilder withHouse(int house) throws UserException {
-            user.house = house;
+        public UserBuilder withHouse(int house) {
+            user.setHouse(house);
             return this;
         }
 
-        public UserBuilder withFlat(int flat) throws UserException {
-            user.flat = flat;
+        public UserBuilder withFlat(int flat) {
+            user.setFlat(flat);
             return this;
         }
 

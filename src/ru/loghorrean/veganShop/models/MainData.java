@@ -1,6 +1,8 @@
 package ru.loghorrean.veganShop.models;
 
+import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.models.database.entities.Role;
+import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.RolesManager;
 import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 
@@ -58,5 +60,9 @@ public class MainData {
             }
         }
         return null;
+    }
+
+    public void registerUser(User user) throws SQLException {
+        userManager.insert(user);
     }
 }

@@ -1,13 +1,14 @@
 package ru.loghorrean.veganShop.models.database.managers;
 
 import ru.loghorrean.veganShop.exceptions.CategoryException;
+import ru.loghorrean.veganShop.exceptions.DatabaseException;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCategoriesManager extends BaseManager<ProductCategory, CategoryException> {
+public class ProductCategoriesManager extends BaseManager<ProductCategory> {
     public ProductCategoriesManager() throws SQLException {
        super();
     }

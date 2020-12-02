@@ -8,7 +8,7 @@ public class CustomDish extends DatabaseEntity {
     private String recipe = "";
     private User userCreated = null;
 
-    public CustomDish(int id, DishTemplate template, String name, String recipe, User userCreated) throws DatabaseException {
+    public CustomDish(int id, DishTemplate template, String name, String recipe, User userCreated) {
         super(id);
         this.template = template;
         this.name = name;
@@ -16,7 +16,7 @@ public class CustomDish extends DatabaseEntity {
         this.userCreated = userCreated;
     }
 
-    public CustomDish(DishTemplate template, String name, String recipe, User userCreated) throws DatabaseException {
+    public CustomDish(DishTemplate template, String name, String recipe, User userCreated) {
         this(-1, template, name, recipe, userCreated);
     }
 

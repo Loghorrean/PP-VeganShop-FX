@@ -56,7 +56,7 @@ public class AuthoriseController extends DialogController {
         }
         try {
             user = mainData.getUserManager().getUserByUsername(username.getText());
-            if (user == null || !checkIfPasswordIsRight(user.getPassword())) {
+            if (user == null || !checkIfPasswordIsRight(pass.getText())) {
                 setMistake("Неверный юзернейм или пароль");
                 return false;
             }
@@ -68,10 +68,8 @@ public class AuthoriseController extends DialogController {
     }
 
     private boolean checkIfPasswordIsRight(String password) {
-        String hashedPass = HashCompiler.hashPassword(pass.getText(), user.getSalt());
-        if (!hashedPass.equals(user.getPassword())) {
-            return false;
-        }
-        return true;
+        String hashedPass = HashCompiler.hashPassword(password, user.getSalt());
+        assert hashedPass != null;
+        return hashedPass.equals(user.getPassword());
     }
 }

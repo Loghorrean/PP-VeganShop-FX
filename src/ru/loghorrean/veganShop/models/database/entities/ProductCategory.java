@@ -1,9 +1,6 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.CategoryException;
-import ru.loghorrean.veganShop.exceptions.CityException;
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
+import java.util.HashSet;
 import java.util.Set;
 
 public class ProductCategory extends DatabaseEntity {
@@ -11,13 +8,14 @@ public class ProductCategory extends DatabaseEntity {
     private String description;
     private Set<DishTemplate> templates;
 
-    public ProductCategory(int id, String name, String description) throws DatabaseException {
+    public ProductCategory(int id, String name, String description) {
         super(id);
-        setName(name);
-        setDescription(description);
+        this.name = name;
+        this.description = description;
+        templates = new HashSet<>();
     }
 
-    public ProductCategory(String name, String description) throws DatabaseException {
+    public ProductCategory(String name, String description) {
         this(-1, name, description);
     }
 
@@ -25,10 +23,7 @@ public class ProductCategory extends DatabaseEntity {
         return name;
     }
 
-    public void setName(String name) throws CategoryException {
-        if (description.length() > 30) {
-            throw new CategoryException("Длина название категории не должна превышать 30 символов");
-        }
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -36,17 +31,25 @@ public class ProductCategory extends DatabaseEntity {
         return description;
     }
 
-    public void setDescription(String description) throws CategoryException {
-        if (description.length() > 100) {
-            throw new CategoryException("Описание категории не должно превышать 100 символов");
-        }
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void addTemplate(DishTemplate template) {
+        templates.add(template);
+    }
+
+    public void removeTemplate(DishTemplate template) {
+        templates.remove(template);
+    }
+
+    public Set<DishTemplate> getTemplates() {
+        return templates;
     }
 
     @Override
     public String toString() {
         return "ProductCategory{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

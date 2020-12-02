@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
+import ru.loghorrean.veganShop.exceptions.UserException;
+import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.validators.Validator;
@@ -29,7 +31,9 @@ public class ChangeMainInfoController extends DialogController implements IFill 
     @FXML
     private TextField phone;
 
-    private UsersManager manager;
+    private ProfileData data;
+
+    private UsersManager usersManager;
 
     private User currentUser;
 
@@ -46,7 +50,8 @@ public class ChangeMainInfoController extends DialogController implements IFill 
     public void initialize() {
         currentUser = CurrentUser.getInstance().getUser();
         try {
-            manager = new UsersManager();
+            data = ProfileData.getInstance();
+            usersManager = data.getUsersManager();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +66,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
             return false;
         }
         try {
-            if (!username.getText().equals(currentUser.getUsername()) && manager.checkIfUserExists(username.getText())) {
+            if (!username.getText().equals(currentUser.getUsername()) && usersManager.checkIfUserExists(username.getText())) {
                 setMistake("Пользователь с таким именем уже существует");
                 return false;
             }
@@ -70,7 +75,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
             return false;
         }
         try {
-            if (!email.getText().equals(currentUser.getEmail()) && UsersManager.getInstance().checkIfEmailExists(email.getText())) {
+            if (!email.getText().equals(currentUser.getEmail()) && usersManager.checkIfEmailExists(email.getText())) {
                 setMistake("Почта с таким именем уже зарегистрирована");
                 return false;
             }
@@ -87,7 +92,7 @@ public class ChangeMainInfoController extends DialogController implements IFill 
         currentUser.setFirstName(firstname.getText());
         currentUser.setLastName(lastname.getText());
         currentUser.setPhone(phone.getText());
-        UsersManager.getInstance().updateUser(currentUser);
+        usersManager.update(currentUser);
         setSuccess("Информация о пользователе обновлена");
         redirect(event, "profile/ProfileWindow");
     }

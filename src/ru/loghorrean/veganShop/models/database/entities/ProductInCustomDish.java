@@ -1,14 +1,12 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class ProductInCustomDish extends DatabaseEntity {
     private Product product;
     private CustomDish dish;
     private int amount;
     private String recipe;
 
-    public ProductInCustomDish(int id, Product product, CustomDish dish, int amount, String recipe) throws DatabaseException {
+    public ProductInCustomDish(int id, Product product, CustomDish dish, int amount, String recipe) {
         super(id);
         this.product = product;
         this.dish = dish;
@@ -16,7 +14,7 @@ public class ProductInCustomDish extends DatabaseEntity {
         this.recipe = recipe;
     }
 
-    public ProductInCustomDish(Product product, CustomDish dish, int amount, String recipe) throws DatabaseException {
+    public ProductInCustomDish(Product product, CustomDish dish, int amount, String recipe) {
         this(-1, product, dish, amount, recipe);
     }
 

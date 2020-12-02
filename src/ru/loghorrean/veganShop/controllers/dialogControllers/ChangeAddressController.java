@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
+import ru.loghorrean.veganShop.exceptions.UserException;
 import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.entities.City;
 import ru.loghorrean.veganShop.models.database.entities.User;
@@ -74,7 +75,7 @@ public class ChangeAddressController extends DialogController implements IFill {
         currentUser.setStreet(street.getText());
         currentUser.setHouse(Integer.parseInt(house.getText()));
         currentUser.setFlat(Integer.parseInt(flat.getText()));
-        UsersManager.getInstance().updateUser(currentUser);
+        data.getUsersManager().update(currentUser);
         setSuccess("Адрес обновлен");
         redirect(event, "profile/ProfileWindow");
     }

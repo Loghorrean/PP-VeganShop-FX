@@ -41,7 +41,6 @@ public class MainController extends BaseController {
     public void initialize() {
         try {
             mainModel = MainData.getInstance();
-            mainModel.setRoles();
         } catch (SQLException e) {
             e.printStackTrace();
         }

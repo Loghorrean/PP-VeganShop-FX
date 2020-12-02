@@ -19,7 +19,7 @@ public class Order extends DatabaseEntity {
     private int courierRating;
     private int foodRating;
 
-    private Order(int id) throws DatabaseException {
+    private Order(int id) {
         super(id);
     }
 
@@ -128,9 +128,9 @@ public class Order extends DatabaseEntity {
     }
 
     public static class OrderBuilder {
-        private Order order;
+        private final Order order;
 
-        public OrderBuilder() throws DatabaseException {
+        public OrderBuilder() {
             order = new Order(-1);
         }
 

@@ -1,19 +1,17 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class CategoriesForTemplate extends DatabaseEntity {
     private int id;
     private ProductCategory category;
     private DishTemplate template;
 
-    public CategoriesForTemplate(int id, ProductCategory category, DishTemplate template) throws DatabaseException {
+    public CategoriesForTemplate(int id, ProductCategory category, DishTemplate template) {
         super(id);
         this.category = category;
         this.template = template;
     }
 
-    public CategoriesForTemplate(ProductCategory category, DishTemplate template) throws DatabaseException {
+    public CategoriesForTemplate(ProductCategory category, DishTemplate template){
         this(-1, category, template);
     }
 

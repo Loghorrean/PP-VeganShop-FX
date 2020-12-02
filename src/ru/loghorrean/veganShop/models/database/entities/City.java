@@ -1,17 +1,14 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.CityException;
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class City extends DatabaseEntity {
     private String name;
 
-    public City(int id, String name) throws DatabaseException {
+    public City(int id, String name) {
         super(id);
         setName(name);
     }
 
-    public City(String name) throws DatabaseException {
+    public City(String name) {
         this(-1, name);
     }
 
@@ -19,10 +16,7 @@ public class City extends DatabaseEntity {
         return name;
     }
 
-    public void setName(String name) throws CityException {
-        if (name.length() < 1 || name.length() > 25) {
-            throw new CityException("Название города должно быть не менее одного и не более 25 символов");
-        }
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -1,16 +1,14 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class Role extends DatabaseEntity {
     private String title;
 
-    public Role(int id, String title) throws DatabaseException {
+    public Role(int id, String title) {
         super(id);
         this.title = title;
     }
 
-    public Role(String title) throws DatabaseException {
+    public Role(String title) {
         this(-1, title);
     }
 

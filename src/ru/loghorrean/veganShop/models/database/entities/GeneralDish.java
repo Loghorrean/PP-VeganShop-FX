@@ -7,14 +7,14 @@ public class GeneralDish extends DatabaseEntity {
     private String description;
     private int timeToCook;
 
-    public GeneralDish(int id, String name, String description, int timeToCook) throws DatabaseException {
+    public GeneralDish(int id, String name, String description, int timeToCook) {
         super(id);
         this.name = name;
         this.description = description;
         this.timeToCook = timeToCook;
     }
 
-    public GeneralDish(String name, String description, int timeToCook) throws DatabaseException {
+    public GeneralDish(String name, String description, int timeToCook) {
         this(-1, name, description, timeToCook);
     }
 

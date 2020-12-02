@@ -1,6 +1,7 @@
 package ru.loghorrean.veganShop.models.database;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import ru.loghorrean.veganShop.util.DbConstants;
 import ru.loghorrean.veganShop.util.MainConstants;
 
 import java.sql.Connection;
@@ -25,11 +26,11 @@ public class MySQLDatabase {
     public Connection getConnection() throws SQLException {
         if (source == null) {
             source = new MysqlDataSource();
-            source.setServerName(MainConstants.HOST);
-            source.setPort(MainConstants.PORT);
-            source.setDatabaseName(MainConstants.DB_NAME);
-            source.setUser(MainConstants.DB_USER);
-            source.setPassword(MainConstants.DB_PASS);
+            source.setServerName(DbConstants.HOST);
+            source.setPort(DbConstants.PORT);
+            source.setDatabaseName(DbConstants.DB_NAME);
+            source.setUser(DbConstants.DB_USER);
+            source.setPassword(DbConstants.DB_PASS);
 
             source.setCharacterEncoding("UTF-8");
             source.setServerTimezone("UTC");

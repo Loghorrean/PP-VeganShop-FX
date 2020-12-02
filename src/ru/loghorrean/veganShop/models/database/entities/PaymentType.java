@@ -1,16 +1,14 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class PaymentType extends DatabaseEntity {
     private String name;
 
-    public PaymentType(int id, String name) throws DatabaseException {
+    public PaymentType(int id, String name) {
         super(id);
         this.name = name;
     }
 
-    public PaymentType(String name) throws DatabaseException {
+    public PaymentType(String name) {
         this(-1, name);
     }
 

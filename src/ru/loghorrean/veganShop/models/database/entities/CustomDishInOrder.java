@@ -7,14 +7,14 @@ public class CustomDishInOrder extends DatabaseEntity {
     private Order order;
     private int amount;
 
-    public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) throws DatabaseException {
+    public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) {
         super(id);
         this.dish = dish;
         this.order = order;
         this.amount = amount;
     }
 
-    public CustomDishInOrder(CustomDish dish, Order order, int amount) throws DatabaseException {
+    public CustomDishInOrder(CustomDish dish, Order order, int amount) {
         this(-1, dish, order, amount);
     }
 

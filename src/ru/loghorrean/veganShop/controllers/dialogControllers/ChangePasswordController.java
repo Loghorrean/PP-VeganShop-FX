@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
+import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.UsersManager;
 import ru.loghorrean.veganShop.util.HashCompiler;
@@ -23,8 +24,15 @@ public class ChangePasswordController extends DialogController {
 
     private User currentUser;
 
+    private UsersManager usersManager;
+
     public void initialize() {
         currentUser = CurrentUser.getInstance().getUser();
+        try {
+            usersManager = ProfileData.getInstance().getUsersManager();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean checkFields() {
@@ -48,16 +56,14 @@ public class ChangePasswordController extends DialogController {
 
     private boolean checkOldPassword() {
         String oldHashedPass = HashCompiler.hashPassword(oldPassword.getText(), currentUser.getSalt());
-        if (!oldHashedPass.equals(currentUser.getPassword())) {
-            return false;
-        }
-        return true;
+        assert oldHashedPass != null;
+        return oldHashedPass.equals(currentUser.getPassword());
     }
 
     public void changePassword() throws SQLException {
         String hashedPass = HashCompiler.hashPassword(newPassword.getText(), currentUser.getSalt());
         currentUser.setPassword(hashedPass);
-        UsersManager.getInstance().updateUser(currentUser);
+        usersManager.update(currentUser);
         setSuccess("Пароль изменен");
     }
 }

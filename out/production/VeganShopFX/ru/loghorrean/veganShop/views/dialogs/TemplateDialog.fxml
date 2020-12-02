@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextArea?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.TemplateController">
+    <content>
+        <GridPane>
+            <Label text="Название шаблона" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="templateName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Описание шаблона" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="templateDesc" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>
