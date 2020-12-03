@@ -13,7 +13,10 @@ public class Review extends DatabaseEntity {
         this.isApproved = isApproved;
         this.stars = stars;
         this.dish = dish;
+        dish.addReview(this);
         this.userCreated = userCreated;
+        userCreated.addReview(this);
+
     }
 
     public Review(String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) {

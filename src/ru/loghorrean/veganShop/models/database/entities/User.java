@@ -167,17 +167,17 @@ public class User extends DatabaseEntity {
         }
 
         public UserBuilder withId(int id) {
-            user.setId(id);
+            user.id = id;
             return this;
         }
 
         public UserBuilder withUsername(String username) {
-            user.setUsername(username);
+            user.username = username;
             return this;
         }
 
         public UserBuilder withEmail(String email) {
-            user.setEmail(email);
+            user.email = email;
             return this;
         }
 
@@ -187,22 +187,23 @@ public class User extends DatabaseEntity {
         }
 
         public UserBuilder withFirstName(String firstName) {
-            user.setFirstName(firstName);
+            user.firstName = firstName;
             return this;
         }
 
         public UserBuilder withLastName(String lastName) {
-            user.setLastName(lastName);
+            user.lastName = lastName;
             return this;
         }
 
         public UserBuilder withPhone(String phone) {
-            user.setPhone(phone);
+            user.phone = phone;
             return this;
         }
 
         public UserBuilder withRole(Role role) {
-            user.setRole(role);
+            user.role = role;
+            role.addUser(user);
             return this;
         }
 
@@ -213,21 +214,22 @@ public class User extends DatabaseEntity {
 
         public UserBuilder withCity(City city) {
             user.city = city;
+            city.addUser(user);
             return this;
         }
 
         public UserBuilder withStreet(String street) {
-            user.setStreet(street);
+            user.street = street;
             return this;
         }
 
         public UserBuilder withHouse(int house) {
-            user.setHouse(house);
+            user.house = house;
             return this;
         }
 
         public UserBuilder withFlat(int flat) {
-            user.setFlat(flat);
+            user.flat = flat;
             return this;
         }
 

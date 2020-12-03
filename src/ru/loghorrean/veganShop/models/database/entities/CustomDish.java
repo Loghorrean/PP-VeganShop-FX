@@ -14,9 +14,11 @@ public class CustomDish extends DatabaseEntity {
     public CustomDish(int id, DishTemplate template, String name, String recipe, User userCreated) {
         super(id);
         this.template = template;
+        template.addCustomDish(this);
         this.name = name;
         this.recipe = recipe;
         this.userCreated = userCreated;
+        userCreated.addCustomDish(this);
         products = new HashSet<>();
         ordersWithDish = new HashSet<>();
     }

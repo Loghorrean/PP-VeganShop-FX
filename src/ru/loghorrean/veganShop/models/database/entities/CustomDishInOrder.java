@@ -8,7 +8,9 @@ public class CustomDishInOrder extends DatabaseEntity {
     public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) {
         super(id);
         this.dish = dish;
+        dish.addOrder(order);
         this.order = order;
+        order.addCustomDish(dish);
         this.amount = amount;
     }
 

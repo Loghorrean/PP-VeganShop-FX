@@ -8,7 +8,9 @@ public class ProductInGeneralDish extends DatabaseEntity {
     public ProductInGeneralDish(int id, GeneralDish dish, Product product, float amount) {
         super(id);
         this.dish = dish;
+        dish.addProduct(product);
         this.product = product;
+        product.addGeneralDish(dish);
         this.amount = amount;
     }
 

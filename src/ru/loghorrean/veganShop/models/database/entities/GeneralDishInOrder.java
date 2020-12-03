@@ -8,7 +8,9 @@ public class GeneralDishInOrder extends DatabaseEntity {
     public GeneralDishInOrder(int id, GeneralDish dish, Order order, int amount) {
         super(id);
         this.dish = dish;
+        dish.addOrder(order);
         this.order = order;
+        order.addGeneralDish(dish);
         this.amount = amount;
     }
 

@@ -23,7 +23,9 @@ public class CategoriesForTemplate extends DatabaseEntity {
     }
 
     public void setCategory(ProductCategory category) {
+        this.category.removeTemplate(template);
         this.category = category;
+        this.category.addTemplate(template);
     }
 
     public DishTemplate getTemplate() {
@@ -31,6 +33,8 @@ public class CategoriesForTemplate extends DatabaseEntity {
     }
 
     public void setTemplate(DishTemplate template) {
+        this.template.removeCategory(category);
         this.template = template;
+        this.template.addCategory(category);
     }
 }

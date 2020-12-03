@@ -9,7 +9,9 @@ public class ProductInCustomDish extends DatabaseEntity {
     public ProductInCustomDish(int id, Product product, CustomDish dish, int amount, String recipe) {
         super(id);
         this.product = product;
+        product.addCustomDish(dish);
         this.dish = dish;
+        dish.addProduct(product);
         this.amount = amount;
         this.recipe = recipe;
     }

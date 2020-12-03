@@ -160,6 +160,7 @@ public class Order extends DatabaseEntity {
 
         public OrderBuilder withUser(User user) {
             order.user = user;
+            user.addOrder(order);
             return this;
         }
 
@@ -175,6 +176,7 @@ public class Order extends DatabaseEntity {
 
         public OrderBuilder withCity(City city) {
             order.city = city;
+            city.addOrder(order);
             return this;
         }
 
@@ -200,11 +202,13 @@ public class Order extends DatabaseEntity {
 
         public OrderBuilder withPaymentType(PaymentType paymentType) {
             order.paymentType = paymentType;
+            paymentType.addOrder(order);
             return this;
         }
 
         public OrderBuilder withCourier(Courier courier) {
             order.courier = courier;
+            courier.addOrder(order);
             return this;
         }
 
