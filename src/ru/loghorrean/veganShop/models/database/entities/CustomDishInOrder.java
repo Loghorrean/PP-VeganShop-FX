@@ -23,7 +23,9 @@ public class CustomDishInOrder extends DatabaseEntity {
     }
 
     public void setDish(CustomDish dish) {
+        this.dish.removeOrder(order);
         this.dish = dish;
+        this.dish.addOrder(order);
     }
 
     public Order getOrder() {
@@ -31,7 +33,9 @@ public class CustomDishInOrder extends DatabaseEntity {
     }
 
     public void setOrder(Order order) {
+        this.order.removeCustomDish(dish);
         this.order = order;
+        this.order.addCustomDish(dish);
     }
 
     public int getAmount() {

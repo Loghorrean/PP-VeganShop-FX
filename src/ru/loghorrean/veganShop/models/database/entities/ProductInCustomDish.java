@@ -25,7 +25,9 @@ public class ProductInCustomDish extends DatabaseEntity {
     }
 
     public void setProduct(Product product) {
+        this.product.removeCustomDish(dish);
         this.product = product;
+        this.product.addCustomDish(dish);
     }
 
     public CustomDish getDish() {
@@ -33,7 +35,9 @@ public class ProductInCustomDish extends DatabaseEntity {
     }
 
     public void setDish(CustomDish dish) {
+        this.dish.removeProduct(product);
         this.dish = dish;
+        this.dish.addProduct(product);
     }
 
     public int getAmount() {

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DishTemplate extends DatabaseEntity {
-    private String name ;
+    private String name;
     private String description;
     private final Set<ProductCategory> categories;
     private final Set<CustomDish> dishesWithTemplate;

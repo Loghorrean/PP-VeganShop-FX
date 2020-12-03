@@ -31,7 +31,9 @@ public class Order extends DatabaseEntity {
     }
 
     public void setUser(User user) {
+        this.user.removeOrder(this);
         this.user = user;
+        this.user.addOrder(this);
     }
 
     public int getPrice() {
@@ -55,7 +57,9 @@ public class Order extends DatabaseEntity {
     }
 
     public void setCity(City city) {
+        this.city.removeOrder(this);
         this.city = city;
+        this.city.addOrder(this);
     }
 
     public String getStreet() {
@@ -95,7 +99,9 @@ public class Order extends DatabaseEntity {
     }
 
     public void setPaymentType(PaymentType paymentType) {
+        this.paymentType.removeOrder(this);
         this.paymentType = paymentType;
+        this.paymentType.addOrder(this);
     }
 
     public Courier getCourier() {
@@ -103,7 +109,9 @@ public class Order extends DatabaseEntity {
     }
 
     public void setCourier(Courier courier) {
+        this.courier.removeOrder(this);
         this.courier = courier;
+        this.courier.addOrder(this);
     }
 
     public int getCourierRating() {

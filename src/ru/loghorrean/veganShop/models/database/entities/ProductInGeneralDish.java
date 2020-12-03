@@ -23,7 +23,9 @@ public class ProductInGeneralDish extends DatabaseEntity {
     }
 
     public void setDish(GeneralDish dish) {
+        this.dish.removeProduct(product);
         this.dish = dish;
+        this.dish.addProduct(product);
     }
 
     public Product getProduct() {
@@ -31,7 +33,9 @@ public class ProductInGeneralDish extends DatabaseEntity {
     }
 
     public void setProduct(Product product) {
+        this.product.removeGeneralDish(dish);
         this.product = product;
+        this.product.addGeneralDish(dish);
     }
 
     public float getAmount() {

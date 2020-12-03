@@ -32,7 +32,9 @@ public class CustomDish extends DatabaseEntity {
     }
 
     public void setTemplate(DishTemplate template) {
+        this.template.removeCustomDish(this);
         this.template = template;
+        this.template.addCustomDish(this);
     }
 
     public String getName() {
@@ -56,7 +58,9 @@ public class CustomDish extends DatabaseEntity {
     }
 
     public void setUserCreated(User userCreated) {
+        this.userCreated.removeCustomDish(this);
         this.userCreated = userCreated;
+        this.userCreated.addCustomDish(this);
     }
 
     public void addProduct(Product product) {

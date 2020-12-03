@@ -1,7 +1,6 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
 public class CategoriesForTemplate extends DatabaseEntity {
-    private int id;
     private ProductCategory category;
     private DishTemplate template;
 

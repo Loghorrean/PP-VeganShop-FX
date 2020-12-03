@@ -16,7 +16,6 @@ public class Review extends DatabaseEntity {
         dish.addReview(this);
         this.userCreated = userCreated;
         userCreated.addReview(this);
-
     }
 
     public Review(String content, boolean isApproved, int stars, GeneralDish dish, User userCreated) {
@@ -52,7 +51,9 @@ public class Review extends DatabaseEntity {
     }
 
     public void setDish(GeneralDish dish) {
+        this.dish.removeReview(this);
         this.dish = dish;
+        this.dish.addReview(this);
     }
 
     public User getUserCreated() {
@@ -60,6 +61,8 @@ public class Review extends DatabaseEntity {
     }
 
     public void setUserCreated(User userCreated) {
+        this.userCreated.removeReview(this);
         this.userCreated = userCreated;
+        this.userCreated.addReview(this);
     }
 }

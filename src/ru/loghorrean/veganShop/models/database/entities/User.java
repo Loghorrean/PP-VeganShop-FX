@@ -100,7 +100,9 @@ public class User extends DatabaseEntity {
     }
 
     public void setRole(Role role) {
+        this.role.removeUser(this);
         this.role = role;
+        this.role.addUser(this);
     }
 
     public void setSalt(String salt) {
@@ -108,7 +110,9 @@ public class User extends DatabaseEntity {
     }
 
     public void setCity(City city) {
+        this.city.removeUser(this);
         this.city = city;
+        this.city.addUser(this);
     }
 
     public void setStreet(String street) {
