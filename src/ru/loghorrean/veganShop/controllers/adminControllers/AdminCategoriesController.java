@@ -3,22 +3,15 @@ package ru.loghorrean.veganShop.controllers.adminControllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import ru.loghorrean.veganShop.controllers.AdminControllerWithList;
-import ru.loghorrean.veganShop.controllers.UserController;
 import ru.loghorrean.veganShop.models.CategoriesData;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -107,12 +100,13 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
 
     private void openProductDialog(ProductCategory category) {
         //TODO: make product dialog to view products in the category
-//        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ProductsInCategoryDialog")
-//                                    .createDialog("Продукты в этой категории", mainBorderPane)
-//                                    .addButtons(ButtonType.OK)
-//                                    .build();
-//        dialog.showAndWait();
-        System.out.println(category.getName());
+        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ProductsInCategoryDialog")
+                                    .createDialog("Продукты в этой категории", mainBorderPane)
+                                    .addController()
+                                    .passObject(category)
+                                    .addButtons(ButtonType.OK)
+                                    .build();
+        dialog.showAndWait();
     }
 
     @Override

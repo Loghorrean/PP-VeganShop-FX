@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.*?>
 
 <DialogPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ProductsInCategoryController">
     <content>
-        <Label fx:id="productsList" text="Говно"/>
+        <Label fx:id="testLabel"/>
     </content>
 </DialogPane>
