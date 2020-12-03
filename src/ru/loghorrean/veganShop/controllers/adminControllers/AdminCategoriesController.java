@@ -39,78 +39,73 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
 
     @Override
     public void initialize() {
-        try {
-            data = CategoriesData.getInstance();
+        data = CategoriesData.getInstance();
 
-            mainBorderPane.setRight(getUserMenu());
+        mainBorderPane.setRight(getUserMenu());
 
-            mainBorderPane.setTop(getAdminMenu("Добавить категорию", mainBorderPane));
+        mainBorderPane.setTop(getAdminMenu("Добавить категорию", mainBorderPane));
 
-            catContextMenu = new ContextMenu();
+        catContextMenu = new ContextMenu();
 
-            MenuItem deleteCat = new MenuItem("Удалить");
-            deleteCat.setOnAction(actionEvent -> {
-                ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
-                openDeleteCatDialog(category);
-            });
+        MenuItem deleteCat = new MenuItem("Удалить");
+        deleteCat.setOnAction(actionEvent -> {
+            ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
+            openDeleteCatDialog(category);
+        });
 
-            MenuItem updateCat = new MenuItem("Обновить категорию");
-            updateCat.setOnAction(actionEvent -> {
-                ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
-                openUpdateCatDialog(category);
-            });
-            catContextMenu.getItems().addAll(deleteCat, updateCat);
+        MenuItem updateCat = new MenuItem("Обновить категорию");
+        updateCat.setOnAction(actionEvent -> {
+            ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
+            openUpdateCatDialog(category);
+        });
+        catContextMenu.getItems().addAll(deleteCat, updateCat);
 
-            mainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProductCategory>() {
-                @Override
-                public void changed(ObservableValue<? extends ProductCategory> observableValue, ProductCategory oldValue, ProductCategory newValue) {
-                    if (newValue != null) {
-                        ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
-                        catInfo.setText(category.getDescription());
-                        productButton.setText("Продукты категории " + category.getName());
-                        productButton.setOnAction(event -> {
-                            openProductDialog(category);
-                        });
-                        productButton.setVisible(true);
-                    }
+        mainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProductCategory>() {
+            @Override
+            public void changed(ObservableValue<? extends ProductCategory> observableValue, ProductCategory oldValue, ProductCategory newValue) {
+                if (newValue != null) {
+                    ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
+                    catInfo.setText(category.getDescription());
+                    productButton.setText("Продукты категории " + category.getName());
+                    productButton.setOnAction(event -> {
+                        openProductDialog(category);
+                    });
+                    productButton.setVisible(true);
                 }
-            });
+            }
+        });
 
-            mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
-            mainListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-            mainListView.getSelectionModel().selectFirst();
+        mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
+        mainListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        mainListView.getSelectionModel().selectFirst();
 
-            mainListView.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
-                @Override
-                public ListCell<ProductCategory> call(ListView<ProductCategory> productCategoryListView) {
-                    ListCell<ProductCategory> cell = new ListCell<>() {
-                        @Override
-                        protected void updateItem(ProductCategory category, boolean empty) {
-                            super.updateItem(category, empty);
-                            if (empty) {
-                                setText(null);
+        mainListView.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
+            @Override
+            public ListCell<ProductCategory> call(ListView<ProductCategory> productCategoryListView) {
+                ListCell<ProductCategory> cell = new ListCell<>() {
+                    @Override
+                    protected void updateItem(ProductCategory category, boolean empty) {
+                        super.updateItem(category, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+                            setText(category.getName());
+                        }
+                    }
+                };
+                cell.emptyProperty().addListener(
+                        (obs, wasEmpty, nowEmpty) -> {
+                            if (nowEmpty) {
+                                cell.setContextMenu(null);
                             } else {
-                                setText(category.getName());
+                                cell.setContextMenu(catContextMenu);
                             }
                         }
-                    };
-                    cell.emptyProperty().addListener(
-                            (obs, wasEmpty, nowEmpty) -> {
-                                if (nowEmpty) {
-                                    cell.setContextMenu(null);
-                                } else {
-                                    cell.setContextMenu(catContextMenu);
-                                }
-                            }
-                    );
+                );
 
-                    return cell;
-                }
-            });
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                return cell;
+            }
+        });
     }
 
     private void openProductDialog(ProductCategory category) {
@@ -134,6 +129,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
                 .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
+            setSuccess("Категория успешно добавлена");
             mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
         }
     }

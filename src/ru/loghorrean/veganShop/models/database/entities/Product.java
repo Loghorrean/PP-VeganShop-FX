@@ -121,6 +121,18 @@ public class Product extends DatabaseEntity {
             System.out.println(product);
             return product;
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                ", price=" + price +
+                ", calories=" + calories +
+                ", isAllergic=" + isAllergic +
+                ", category=" + category +
+                '}';
     }
 }

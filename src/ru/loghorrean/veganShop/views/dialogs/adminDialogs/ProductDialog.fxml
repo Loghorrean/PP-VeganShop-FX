@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ProductController">
+    <content>
+        <GridPane>
+            <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Описание продукта" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="prodDesc" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Кол-во на складе" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodAmount" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Стоимость за единицу" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodPrice" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Кол-во калорий" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodCal" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Аллергично?" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <fx:define>
+                <ToggleGroup fx:id="allergyToggleGroup"/>
+            </fx:define>
+            <RadioButton fx:id="allergicTrue" onAction="#handleToggleYesAction"
+                         text="Да" GridPane.rowIndex="5" GridPane.columnIndex="1"
+                            toggleGroup="$allergyToggleGroup"/>
+            <RadioButton fx:id="allergicFalse" onAction="#handleToggleNoAction"
+                         text="Нет" GridPane.rowIndex="6" GridPane.columnIndex="1" selected="true"
+                            toggleGroup="$allergyToggleGroup"/>
+            <Label text="Категория" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prodCat" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>

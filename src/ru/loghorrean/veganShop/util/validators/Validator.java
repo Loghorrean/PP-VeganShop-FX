@@ -33,4 +33,13 @@ public class Validator {
         }
         return true;
     }
+
+    public static boolean checkForFloat(String field) {
+        try {
+            float i = Float.parseFloat(field);
+        } catch (NumberFormatException | NullPointerException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

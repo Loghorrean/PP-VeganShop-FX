@@ -8,7 +8,7 @@
             fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminTemplatesController"
             prefHeight="500.0" prefWidth="900.0">
     <left>
-        <ListView fx:id="templatesList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        <ListView fx:id="mainListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </left>
     <center>
         <VBox fx:id="VBoxInfo">

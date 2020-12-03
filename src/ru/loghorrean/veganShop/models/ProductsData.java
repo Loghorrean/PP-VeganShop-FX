@@ -49,6 +49,15 @@ public class ProductsData {
         products.remove(product);
     }
 
+    public boolean checkIfProductExists(String name) {
+        for (Product product: products) {
+            if (product.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Product getProductByName(String name) {
         for(Product product: products) {
             if (product.getName().equals(name)) {

@@ -9,18 +9,22 @@ import java.util.List;
 public class TemplatesData {
     private static TemplatesData instance;
     private List<DishTemplate> templates;
-    private final DishTemplatesManager manager;
+    private DishTemplatesManager manager;
 
-    public static TemplatesData getInstance() throws SQLException {
+    public static TemplatesData getInstance() {
         if (instance == null) {
             instance = new TemplatesData();
         }
         return instance;
     }
 
-    private TemplatesData() throws SQLException {
-        manager = new DishTemplatesManager();
-        setTemplates();
+    private TemplatesData() {
+        try {
+            manager = new DishTemplatesManager();
+            setTemplates();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setTemplates() throws SQLException {

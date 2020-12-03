@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ProductAdditionalInfoController">
+    <content>
+        <GridPane>
+            <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="productName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Описание продукта" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label fx:id="productDesc" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Количество на складе" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <Label fx:id="productAmount" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Стоимость за штуку" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Label fx:id="productPrice" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Количество калорий" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label fx:id="numOfCal" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Опасен для аллергиков" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Label fx:id="isAllergic" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Относится к категории" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <Label fx:id="productCat" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>

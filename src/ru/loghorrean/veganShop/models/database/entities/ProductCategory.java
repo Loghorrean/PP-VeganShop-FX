@@ -63,10 +63,6 @@ public class ProductCategory extends DatabaseEntity {
 
     @Override
     public String toString() {
-        return "ProductCategory{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return name;
     }
 }

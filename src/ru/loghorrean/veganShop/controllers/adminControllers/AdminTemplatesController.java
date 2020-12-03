@@ -31,11 +31,7 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
 
     @Override
     public void initialize() {
-        try {
-            data = TemplatesData.getInstance();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        data = TemplatesData.getInstance();
 
         mainBorderPane.setRight(getUserMenu());
 

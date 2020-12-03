@@ -64,6 +64,8 @@ public class ProductsManager extends BaseManager<Product> {
     @Override
     public void insert(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
+            System.out.println("MANAGER");
+            System.out.println(product);
             String sql = "INSERT INTO PRODUCTS (product_name, product_description, product_amount, product_price, " +
                     "number_of_calories, is_allergic, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -78,6 +80,7 @@ public class ProductsManager extends BaseManager<Product> {
             ResultSet set = s.getGeneratedKeys();
             if (set.next()) {
                 product.setId(set.getInt(1));
+                return;
             }
             throw new SQLException("ERROR WHILE INSERTING PRODUCT");
         }

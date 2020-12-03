@@ -33,11 +33,7 @@ public class CategoryController extends DialogController implements IFill, IInit
 
     @Override
     public void initialize() {
-        try {
-            data = CategoriesData.getInstance();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        data = CategoriesData.getInstance();
     }
 
     @Override

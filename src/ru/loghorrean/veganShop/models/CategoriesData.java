@@ -9,18 +9,22 @@ import java.util.List;
 public class CategoriesData {
     private static CategoriesData instance;
     private List<ProductCategory> categories;
-    private final ProductCategoriesManager manager;
+    private ProductCategoriesManager manager;
 
-    public static CategoriesData getInstance() throws SQLException {
+    public static CategoriesData getInstance() {
         if (instance == null) {
             instance = new CategoriesData();
         }
         return instance;
     }
 
-    private CategoriesData() throws SQLException {
-        manager = new ProductCategoriesManager();
-        setCategories();
+    private CategoriesData() {
+        try {
+            manager = new ProductCategoriesManager();
+            setCategories();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public void setCategories() throws SQLException {
