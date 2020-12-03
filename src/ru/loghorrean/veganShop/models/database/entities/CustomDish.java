@@ -1,12 +1,15 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CustomDish extends DatabaseEntity {
-    private DishTemplate template = null;
-    private String name = "";
-    private String recipe = "";
-    private User userCreated = null;
+    private DishTemplate template;
+    private String name;
+    private String recipe;
+    private User userCreated;
+    private final Set<Product> products;
+    private final Set<Order> ordersWithDish;
 
     public CustomDish(int id, DishTemplate template, String name, String recipe, User userCreated) {
         super(id);
@@ -14,6 +17,8 @@ public class CustomDish extends DatabaseEntity {
         this.name = name;
         this.recipe = recipe;
         this.userCreated = userCreated;
+        products = new HashSet<>();
+        ordersWithDish = new HashSet<>();
     }
 
     public CustomDish(DishTemplate template, String name, String recipe, User userCreated) {
@@ -50,5 +55,29 @@ public class CustomDish extends DatabaseEntity {
 
     public void setUserCreated(User userCreated) {
         this.userCreated = userCreated;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void addOrder(Order order) {
+        ordersWithDish.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        ordersWithDish.remove(order);
+    }
+
+    public Set<Order> getOrdersWithDish() {
+        return ordersWithDish;
     }
 }

@@ -8,19 +8,14 @@ public class CategoriesForTemplate extends DatabaseEntity {
     public CategoriesForTemplate(int id, ProductCategory category, DishTemplate template) {
         super(id);
         this.category = category;
+        category.addTemplate(template);
         this.template = template;
+        template.addCategory(category);
+
     }
 
     public CategoriesForTemplate(ProductCategory category, DishTemplate template){
         this(-1, category, template);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public ProductCategory getCategory() {

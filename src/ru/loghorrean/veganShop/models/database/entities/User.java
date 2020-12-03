@@ -1,5 +1,8 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User extends DatabaseEntity {
     private String username;
     private String email;
@@ -13,9 +16,15 @@ public class User extends DatabaseEntity {
     private String street;
     private int house;
     private int flat;
+    private final Set<Review> reviewsOfUser;
+    private final Set<Order> ordersOfUser;
+    private final Set<CustomDish> customDishesByUser;
 
     private User(int id) {
         super(id);
+        reviewsOfUser = new HashSet<>();
+        ordersOfUser = new HashSet<>();
+        customDishesByUser = new HashSet<>();
     }
 
     public String getUsername() {
@@ -112,6 +121,42 @@ public class User extends DatabaseEntity {
 
     public void setFlat(int flat) {
         this.flat = flat;
+    }
+
+    public void addReview(Review review) {
+        reviewsOfUser.add(review);
+    }
+
+    public void removeReview(Review review) {
+        reviewsOfUser.remove(review);
+    }
+
+    public Set<Review> getReviewsOfUser() {
+        return reviewsOfUser;
+    }
+
+    public void addOrder(Order order) {
+        ordersOfUser.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        ordersOfUser.remove(order);
+    }
+
+    public Set<Order> getOrdersOfUser() {
+        return ordersOfUser;
+    }
+
+    public void addCustomDish(CustomDish customDish) {
+        customDishesByUser.add(customDish);
+    }
+
+    public void removeCustomDish(CustomDish customDish) {
+        customDishesByUser.remove(customDish);
+    }
+
+    public Set<CustomDish> getCustomDishesByUser() {
+        return customDishesByUser;
     }
 
     public static class UserBuilder {

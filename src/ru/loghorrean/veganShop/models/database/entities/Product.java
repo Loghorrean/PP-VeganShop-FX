@@ -1,5 +1,8 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Product extends DatabaseEntity {
     private String name;
     private String description;
@@ -8,9 +11,13 @@ public class Product extends DatabaseEntity {
     private int calories;
     private boolean isAllergic;
     private ProductCategory category;
+    private final Set<GeneralDish> generalDishesWithProduct;
+    private final Set<CustomDish> customDishesWithProduct;
 
     private Product(int id) {
         super(id);
+        generalDishesWithProduct = new HashSet<>();
+        customDishesWithProduct = new HashSet<>();
     }
 
     public String getName() {
@@ -66,11 +73,37 @@ public class Product extends DatabaseEntity {
     }
 
     public void setCategory(ProductCategory category) {
+        this.category.removeProduct(this);
         this.category = category;
+        this.category.addProduct(this);
+    }
+
+    public void addGeneralDish(GeneralDish generalDish) {
+        generalDishesWithProduct.add(generalDish);
+    }
+
+    public void removeGeneralDish(GeneralDish generalDish) {
+        generalDishesWithProduct.remove(generalDish);
+    }
+
+    public Set<GeneralDish> getGeneralDishesWithProduct() {
+        return generalDishesWithProduct;
+    }
+
+    public void addCustomDish(CustomDish customDish) {
+        customDishesWithProduct.add(customDish);
+    }
+
+    public void removeCustomDish(CustomDish customDish) {
+        customDishesWithProduct.remove(customDish);
+    }
+
+    public Set<CustomDish> getCustomDishesWithProduct() {
+        return customDishesWithProduct;
     }
 
     public static class ProductBuilder {
-        private Product product;
+        private final Product product;
 
         public ProductBuilder() {
             product = new Product(-1);

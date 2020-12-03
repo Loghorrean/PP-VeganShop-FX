@@ -6,8 +6,8 @@ import java.util.Set;
 public class ProductCategory extends DatabaseEntity {
     private String name;
     private String description;
-    private Set<DishTemplate> templates;
-    private Set<Product> productsOfCategory;
+    private final Set<DishTemplate> templates;
+    private final Set<Product> productsOfCategory;
 
     public ProductCategory(int id, String name, String description) {
         super(id);

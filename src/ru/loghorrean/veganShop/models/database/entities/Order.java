@@ -1,12 +1,11 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Order extends DatabaseEntity {
     private User user;
-    private LocalDate orderDate;
     private int price;
     private String phone;
     private City city;
@@ -18,9 +17,13 @@ public class Order extends DatabaseEntity {
     private Courier courier;
     private int courierRating;
     private int foodRating;
+    private final Set<GeneralDish> generalDishesInOrder;
+    private final Set<CustomDish> customDishesInOrder;
 
     private Order(int id) {
         super(id);
+        generalDishesInOrder = new HashSet<>();
+        customDishesInOrder = new HashSet<>();
     }
 
     public User getUser() {
@@ -29,14 +32,6 @@ public class Order extends DatabaseEntity {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
     }
 
     public int getPrice() {
@@ -127,6 +122,30 @@ public class Order extends DatabaseEntity {
         this.foodRating = foodRating;
     }
 
+    public void addGeneralDish(GeneralDish generalDish) {
+        generalDishesInOrder.add(generalDish);
+    }
+
+    public void removeGeneralDish(GeneralDish generalDish) {
+        generalDishesInOrder.remove(generalDish);
+    }
+
+    public Set<GeneralDish> getGeneralDishesInOrder() {
+        return generalDishesInOrder;
+    }
+
+    public void addCustomDish(CustomDish customDish) {
+        customDishesInOrder.add(customDish);
+    }
+
+    public void removeCustomDish(CustomDish customDish) {
+        customDishesInOrder.remove(customDish);
+    }
+
+    public Set<CustomDish> getCustomDishesInOrder() {
+        return customDishesInOrder;
+    }
+
     public static class OrderBuilder {
         private final Order order;
 
@@ -141,11 +160,6 @@ public class Order extends DatabaseEntity {
 
         public OrderBuilder withUser(User user) {
             order.user = user;
-            return this;
-        }
-
-        public OrderBuilder withDate(LocalDate date) {
-            order.orderDate = date;
             return this;
         }
 

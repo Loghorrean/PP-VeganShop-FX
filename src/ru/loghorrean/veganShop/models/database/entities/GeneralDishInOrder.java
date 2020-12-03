@@ -1,7 +1,5 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
-
 public class GeneralDishInOrder extends DatabaseEntity {
     private GeneralDish dish;
     private Order order;
