@@ -15,7 +15,4 @@
             <TextArea fx:id="templateInfo" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
         </VBox>
     </center>
-    <bottom>
-        <Button fx:id="backButton" text="Назад в меню" onAction="#backToTheMenu" BorderPane.alignment="CENTER"/>
-    </bottom>
 </BorderPane>

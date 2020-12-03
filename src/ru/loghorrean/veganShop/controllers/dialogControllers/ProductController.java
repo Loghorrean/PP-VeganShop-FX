@@ -43,7 +43,7 @@ public class ProductController extends DialogController implements IFill, IInit 
 
     private Product product;
 
-    private boolean isAllergic = true;
+    private boolean isAllergic = false;
 
     private ProductsData data;
 

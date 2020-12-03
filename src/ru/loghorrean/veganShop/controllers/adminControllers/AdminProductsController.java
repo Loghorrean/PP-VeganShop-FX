@@ -17,8 +17,7 @@ public class AdminProductsController extends AdminControllerWithGrid {
 
     @Override
     public void initialize() {
-        mainBorderPane.setRight(getUserMenu());
-        mainBorderPane.setTop(getAdminMenu("Добавить продукт", mainBorderPane));
+        setPanes("Добавить продукт");
         data = ProductsData.getInstance();
         setGrid();
     }

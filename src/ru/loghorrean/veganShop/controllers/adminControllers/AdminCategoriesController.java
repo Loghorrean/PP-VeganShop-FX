@@ -39,11 +39,8 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
 
     @Override
     public void initialize() {
+        setPanes("Добавить категорию");
         data = CategoriesData.getInstance();
-
-        mainBorderPane.setRight(getUserMenu());
-
-        mainBorderPane.setTop(getAdminMenu("Добавить категорию", mainBorderPane));
 
         catContextMenu = new ContextMenu();
 

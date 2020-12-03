@@ -3,10 +3,8 @@ package ru.loghorrean.veganShop.controllers.adminControllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import ru.loghorrean.veganShop.controllers.AdminControllerWithList;
@@ -31,11 +29,8 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
 
     @Override
     public void initialize() {
+        setPanes("Добавить шаблон");
         data = TemplatesData.getInstance();
-
-        mainBorderPane.setRight(getUserMenu());
-
-        mainBorderPane.setTop(getAdminMenu("Добавить шаблон", mainBorderPane));
 
         templateContextMenu = new ContextMenu();
 
