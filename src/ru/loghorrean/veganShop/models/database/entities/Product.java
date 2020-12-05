@@ -102,6 +102,10 @@ public class Product extends DatabaseEntity {
         return customDishesWithProduct;
     }
 
+    public void destroyProduct() {
+        this.category.removeProduct(this);
+    }
+
     public static class ProductBuilder {
         private final Product product;
 

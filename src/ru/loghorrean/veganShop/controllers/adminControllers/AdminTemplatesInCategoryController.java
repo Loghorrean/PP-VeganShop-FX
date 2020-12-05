@@ -27,6 +27,9 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button redirectToCategories;
+
     private List<ProductCategory> categories;
 
     private CategoriesForTemplatesData model;
@@ -48,7 +51,8 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
     public void initialize() {
         model = CategoriesForTemplatesData.getInstance();
         map = new HashMap<>();
-        saveButton.setDisable(true);
+        saveButton.setVisible(false);
+        testGrid.setVisible(false);
 
         mainBorderPane.setRight(getUserMenu());
         mainBorderPane.setBottom(getBackButton());
@@ -58,6 +62,9 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
         mainListView.setItems(FXCollections.observableArrayList(TemplatesData.getInstance().getTemplates()));
         mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, template, chosenTemplate) ->  {
             setHashMap(categories);
+            saveButton.setVisible(true);
+            testGrid.setVisible(true);
+            saveButton.setDisable(true);
             if (chosenTemplate != null) {
                 int i = 0;
                 for (ProductCategory category: categories) {
@@ -109,6 +116,15 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
         }
         try {
             redirect(event, "admin/AdminTemplatesInCategoryWindow");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goToCategories(ActionEvent event) {
+        try {
+            redirect(event, "admin/AdminCategoriesInTemplateWindow");
         } catch (IOException e) {
             e.printStackTrace();
         }

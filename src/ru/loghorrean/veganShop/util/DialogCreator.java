@@ -96,6 +96,7 @@ public class DialogCreator {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
+                System.out.println("TRUING TO INVOKE PRIVATE METHOD " + methodOnSuccess);
                 e.printStackTrace();
             }
         }

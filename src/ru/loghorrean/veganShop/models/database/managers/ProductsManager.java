@@ -64,7 +64,6 @@ public class ProductsManager extends BaseManager<Product> {
     @Override
     public void insert(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
-            System.out.println("MANAGER");
             System.out.println(product);
             String sql = "INSERT INTO PRODUCTS (product_name, product_description, product_amount, product_price, " +
                     "number_of_calories, is_allergic, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -114,6 +113,7 @@ public class ProductsManager extends BaseManager<Product> {
             PreparedStatement s = c.prepareStatement(sql);
             s.setInt(1, product.getId());
             if (s.executeUpdate() == 1) {
+                product.destroyProduct();
                 return;
             }
             throw new SQLException("ERROR WHILE DELETING PRODUCT");

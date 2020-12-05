@@ -10,7 +10,6 @@ public class CategoriesForTemplate extends DatabaseEntity {
         category.addTemplate(template);
         this.template = template;
         template.addCategory(category);
-
     }
 
     public CategoriesForTemplate(ProductCategory category, DishTemplate template){

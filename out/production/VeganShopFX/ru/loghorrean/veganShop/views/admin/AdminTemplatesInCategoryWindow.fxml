@@ -23,6 +23,7 @@
                 </columnConstraints>
             </GridPane>
             <Button fx:id="saveButton" text="Сохранить изменения" onAction="#saveChanges"/>
+            <Button fx:id="redirectToCategories" text="Перейти на страницу категорий" onAction="#goToCategories"/>
         </VBox>
     </center>
 </BorderPane>

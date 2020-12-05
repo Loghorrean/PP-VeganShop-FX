@@ -47,7 +47,7 @@ public class MainController extends BaseController {
     }
 
     @FXML
-    public void shutdownApplication() {
+    public void shutdownNow() {
         System.exit(0);
     }
 

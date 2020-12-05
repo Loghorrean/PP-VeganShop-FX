@@ -1,10 +1,8 @@
 package ru.loghorrean.veganShop.models.database.managers;
 
-import ru.loghorrean.veganShop.exceptions.DatabaseException;
 import ru.loghorrean.veganShop.models.database.MySQLDatabase;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 

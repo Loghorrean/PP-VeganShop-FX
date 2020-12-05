@@ -1,7 +1,5 @@
 package ru.loghorrean.veganShop.controllers.adminControllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,18 +53,13 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
         });
         catContextMenu.getItems().addAll(deleteCat, updateCat);
 
-        mainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProductCategory>() {
-            @Override
-            public void changed(ObservableValue<? extends ProductCategory> observableValue, ProductCategory oldValue, ProductCategory newValue) {
-                if (newValue != null) {
-                    ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
-                    catInfo.setText(category.getDescription());
-                    productButton.setText("Продукты категории " + category.getName());
-                    productButton.setOnAction(event -> {
-                        openProductDialog(category);
-                    });
-                    productButton.setVisible(true);
-                }
+        mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
+                catInfo.setText(category.getDescription());
+                productButton.setText("Продукты категории " + category.getName());
+                productButton.setOnAction(event -> openProductDialog(category));
+                productButton.setVisible(true);
             }
         });
 
@@ -74,7 +67,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
         mainListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         mainListView.getSelectionModel().selectFirst();
 
-        mainListView.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
+        mainListView.setCellFactory(new Callback<>() {
             @Override
             public ListCell<ProductCategory> call(ListView<ProductCategory> productCategoryListView) {
                 ListCell<ProductCategory> cell = new ListCell<>() {

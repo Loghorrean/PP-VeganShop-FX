@@ -7,5 +7,5 @@
     <Button fx:id="registerButton" layoutX="256.0" layoutY="144.0" mnemonicParsing="false" onAction="#openRegisterDialog" prefHeight="48.0" prefWidth="144.0" text="Зарегистрироваться" />
     <Button fx:id="authoriseButton" layoutX="268.0" layoutY="175.0" mnemonicParsing="false" onAction="#openAuthoriseDialog" prefHeight="48.0" prefWidth="144.0" text="Авторизоваться" />
     <Button fx:id="aboutUsButton" mnemonicParsing="false" onAction="#openAboutDialog" prefHeight="48.0" prefWidth="144.0" text="О нашей компании" />
-    <Button fx:id="shutdownButton" layoutX="253.0" layoutY="208.0" mnemonicParsing="false" onAction="#shutdownApplication" prefHeight="48.0" prefWidth="144.0" text="Выйти из программы" />
+    <Button fx:id="shutdownButton" layoutX="253.0" layoutY="208.0" mnemonicParsing="false" onAction="#shutdownNow" prefHeight="48.0" prefWidth="144.0" text="Выйти из программы" />
 </VBox>

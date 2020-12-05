@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminCategoriesInTemplateController extends AdminControllerWithList<ProductCategory> {
     @FXML
@@ -25,11 +26,14 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
     @FXML
     private GridPane testGrid;
 
+    @FXML
+    private Button redirectToTemplates;
+
     private List<DishTemplate> templates;
 
     private CategoriesForTemplatesData model;
 
-    private HashMap<DishTemplate, Boolean> map;
+    private Map<DishTemplate, Boolean> map;
 
     @Override
     public void openAddDialog(ActionEvent event) {
@@ -46,7 +50,8 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
     public void initialize() {
         model = CategoriesForTemplatesData.getInstance();
         map = new HashMap<>();
-        saveButton.setDisable(true);
+        saveButton.setVisible(false);
+        testGrid.setVisible(false);
 
         mainBorderPane.setBottom(getBackButton());
         mainBorderPane.setRight(getUserMenu());
@@ -56,6 +61,9 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
         mainListView.setItems(FXCollections.observableArrayList(CategoriesData.getInstance().getCategories()));
         mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, currentCategory) -> {
             setHashMap(templates);
+            saveButton.setVisible(true);
+            testGrid.setVisible(true);
+            saveButton.setDisable(true);
             if (currentCategory != null) {
                 int i = 0;
                 for(DishTemplate template: templates) {
@@ -111,6 +119,15 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
         }
         try {
             redirect(event, "admin/AdminCategoriesInTemplateWindow");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goToTemplates(ActionEvent event) {
+        try {
+            redirect(event, "admin/AdminTemplatesInCategoryWindow");
         } catch (IOException e) {
             e.printStackTrace();
         }
