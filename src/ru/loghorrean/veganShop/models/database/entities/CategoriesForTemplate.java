@@ -41,4 +41,9 @@ public class CategoriesForTemplate extends DatabaseEntity {
         this.template.removeCategory(category);
         this.category.removeTemplate(template);
     }
+
+    @Override
+    public String toString() {
+        return category.getName() + " AND " + template.getName();
+    }
 }

@@ -149,7 +149,7 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
 
     public void goToLinksWindow(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+            redirect(event, "admin/AdminTemplatesInCategoryWindow");
         } catch (IOException e) {
             e.printStackTrace();
         }

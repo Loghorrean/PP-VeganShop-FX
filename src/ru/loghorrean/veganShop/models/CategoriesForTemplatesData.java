@@ -37,6 +37,10 @@ public class CategoriesForTemplatesData {
         }
     }
 
+    public List<CategoriesForTemplate> getLinks() {
+        return links;
+    }
+
     public void addLink(CategoriesForTemplate link) throws SQLException {
         links.add(link);
         manager.insert(link);
