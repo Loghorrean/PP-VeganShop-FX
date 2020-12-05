@@ -1,13 +1,13 @@
 package ru.loghorrean.veganShop.controllers.adminControllers;
 
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.controllers.AdminControllerWithGrid;
 import ru.loghorrean.veganShop.models.ProductsData;
 import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +23,7 @@ public class AdminProductsController extends AdminControllerWithGrid {
     }
 
     private void setGrid() {
+        mainGridPane.getChildren().removeAll();
         List<Product> products = data.getProducts();
         for(int i = 1; i < products.size() + 1; ++i) {
             fillGridRow(i, products.get(i - 1));
@@ -37,15 +38,15 @@ public class AdminProductsController extends AdminControllerWithGrid {
         detailsButton.setOnAction(event -> showDetails(product));
         mainGridPane.add(detailsButton, 3, row);
         Button deleteButton = new Button("Удалить");
-        deleteButton.setOnAction(event -> openDeleteDialog(product));
+        deleteButton.setOnAction(event -> openDeleteDialog(event, product));
         mainGridPane.add(deleteButton, 4, row);
         Button updateButton = new Button("Обновить информацию");
-        updateButton.setOnAction(event -> openUpdateDialog(product));
+        updateButton.setOnAction(event -> openUpdateDialog(event, product));
         mainGridPane.add(updateButton, 5, row);
     }
 
     @Override
-    public void openAddDialog() {
+    public void openAddDialog(ActionEvent event) {
         Dialog<ButtonType> dialog =
                 new DialogCreator.DialogBuilder("adminDialogs/ProductDialog")
                         .createDialog("Добавьте продукт", mainBorderPane)
@@ -53,15 +54,16 @@ public class AdminProductsController extends AdminControllerWithGrid {
                         .addController()
                         .addValidationToButton(ButtonType.OK)
                         .onSuccess("addProduct")
+                        .redirectsFrom(event)
                         .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            setSuccess("Продукт успешн добавлен");
+            setSuccess("Продукт успешно добавлен");
             setGrid();
         }
     }
 
-    private void openUpdateDialog(Product product) {
+    private void openUpdateDialog(ActionEvent event, Product product) {
         Dialog<ButtonType> dialog =
                 new DialogCreator.DialogBuilder("adminDialogs/ProductDialog")
                         .createDialog("Изменить продукт", mainBorderPane)
@@ -74,8 +76,12 @@ public class AdminProductsController extends AdminControllerWithGrid {
                         .build();
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            setSuccess("Продукт успешно обновлен");
-            setGrid();
+            try {
+                setSuccess("Продукт успешно обновлен");
+                redirect(event, "admin/AdminProductsWindow");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -91,7 +97,7 @@ public class AdminProductsController extends AdminControllerWithGrid {
         dialog.showAndWait();
     }
 
-    private void openDeleteDialog(Product product) {
+    private void openDeleteDialog(ActionEvent event, Product product) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Удалить категорию");
         alert.setHeaderText("Удалить" + product.getName());
@@ -100,10 +106,11 @@ public class AdminProductsController extends AdminControllerWithGrid {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 data.deleteProductInModel(product);
-                setGrid();
-                setSuccess("Категория удалена");
+                setSuccess("Продукт " + product.getName() + " удален");
+                redirect(event, "admin/AdminProductsWindow");
+            } catch (IOException e) {
+                e.printStackTrace();
             } catch (SQLException e) {
-                System.out.println("ERROR WHILE DELETING CATEGORY");
                 e.printStackTrace();
             }
         }

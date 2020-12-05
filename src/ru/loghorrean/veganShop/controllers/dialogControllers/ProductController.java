@@ -14,6 +14,7 @@ import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ProductController extends DialogController implements IFill, IInit {
@@ -104,7 +105,7 @@ public class ProductController extends DialogController implements IFill, IInit 
         return true;
     }
 
-    public void addProduct() {
+    public void addProduct(ActionEvent event) {
         try {
             Product product =
                     new Product.ProductBuilder()
@@ -117,7 +118,6 @@ public class ProductController extends DialogController implements IFill, IInit 
                     .withCategory(prodCat.getValue())
                     .build();
             data.addProductToModel(product);
-            setSuccess("Продукт успешно добавлен");
         } catch (SQLException e) {
             System.out.println("ERROR WHILE ADDING PRODUCT");
             e.printStackTrace();
@@ -134,7 +134,6 @@ public class ProductController extends DialogController implements IFill, IInit 
             product.setAllergic(isAllergic);
             product.setCategory(prodCat.getValue());
             data.updateProductInModel(product);
-            setSuccess("Продукт успешно обновлен");
         } catch (SQLException e) {
             System.out.println("ERROR WHILE UPDATING PRODUCT");
             e.printStackTrace();

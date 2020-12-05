@@ -20,4 +20,20 @@ abstract public class AdminControllerWithGrid extends AdminPanelController {
                 .build();
         dialog.showAndWait();
     }
+
+    public void addRow() {
+
+    }
+
+    public void deleteRow(int rowNumber) {
+        mainGridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowNumber);
+    }
+
+    public void clearRow(int rowNumber) {
+
+    }
+
+    public void moveRows() {
+
+    }
 }

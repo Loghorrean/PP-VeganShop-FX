@@ -2,8 +2,6 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
@@ -11,7 +9,7 @@
             fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminProductsController"
             prefHeight="500.0" prefWidth="900.0">
     <center>
-        <GridPane fx:id="mainGridPane">
+        <GridPane fx:id="mainGridPane" hgap="10" vgap="10">
             <Label text="Id продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
             <Label text="Количество продукта на складе" GridPane.rowIndex="0" GridPane.columnIndex="2"/>

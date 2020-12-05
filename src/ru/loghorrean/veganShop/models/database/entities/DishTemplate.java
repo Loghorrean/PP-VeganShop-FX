@@ -63,9 +63,6 @@ public class DishTemplate extends DatabaseEntity {
 
     @Override
     public String toString() {
-        return "DishTemplate{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return name;
     }
 }

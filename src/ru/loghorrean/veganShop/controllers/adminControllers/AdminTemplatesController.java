@@ -3,6 +3,7 @@ package ru.loghorrean.veganShop.controllers.adminControllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,7 @@ import ru.loghorrean.veganShop.models.TemplatesData;
 import ru.loghorrean.veganShop.models.database.entities.DishTemplate;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -24,6 +26,9 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
 
     @FXML
     private ContextMenu templateContextMenu;
+
+    @FXML
+    private Button goToLinksWindow;
 
     private TemplatesData data;
 
@@ -91,7 +96,7 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
     }
 
     @FXML
-    public void openAddDialog() {
+    public void openAddDialog(ActionEvent event) {
         Dialog<ButtonType> dialog =
                 new DialogCreator.DialogBuilder("adminDialogs/TemplateDialog")
                         .createDialog("Дрбавить шаблон", mainBorderPane)
@@ -139,6 +144,14 @@ public class AdminTemplatesController extends AdminControllerWithList<DishTempla
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             mainListView.setItems(FXCollections.observableArrayList(data.getTemplates()));
+        }
+    }
+
+    public void goToLinksWindow(ActionEvent event) {
+        try {
+            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

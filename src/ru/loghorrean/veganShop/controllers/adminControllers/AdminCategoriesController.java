@@ -3,6 +3,7 @@ package ru.loghorrean.veganShop.controllers.adminControllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,7 @@ import ru.loghorrean.veganShop.models.CategoriesData;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -27,6 +29,9 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
 
     @FXML
     private ContextMenu catContextMenu;
+
+    @FXML
+    private Button goToLinksWindow;
 
     private CategoriesData data;
 
@@ -110,7 +115,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
     }
 
     @Override
-    public void openAddDialog() {
+    public void openAddDialog(ActionEvent event) {
         Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("adminDialogs/CategoryDialog")
                 .createDialog("Добавление категории", mainBorderPane)
                 .addButtons(ButtonType.OK, ButtonType.CANCEL)
@@ -158,6 +163,14 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
         if (result.isPresent() && result.get() == ButtonType.OK) {
             mainListView.setItems(FXCollections.observableArrayList(data.getCategories()));
             setSuccess("Категория обновлена");
+        }
+    }
+
+    public void goToLinksWindow(ActionEvent event) {
+        try {
+            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

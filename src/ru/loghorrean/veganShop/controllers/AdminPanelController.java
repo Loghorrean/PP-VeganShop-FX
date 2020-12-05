@@ -27,7 +27,7 @@ abstract public class AdminPanelController extends UserController {
         Menu menu = new Menu();
         menu.setText("Меню");
         MenuItem addEntity = new MenuItem(stringForAdding);
-        addEntity.setOnAction(event -> openAddDialog());
+        addEntity.setOnAction(this::openAddDialog);
         MenuItem info = new MenuItem("Как пользоваться");
         info.setOnAction(event -> openInfoDialog(paneForDialog));
         menu.getItems().setAll(addEntity, info);
@@ -46,7 +46,7 @@ abstract public class AdminPanelController extends UserController {
     public abstract void openInfoDialog(Pane paneForDialog);
 
     @FXML
-    public abstract void openAddDialog();
+    public abstract void openAddDialog(ActionEvent event);
 
     @FXML
     public void backToTheMenu(ActionEvent event) {

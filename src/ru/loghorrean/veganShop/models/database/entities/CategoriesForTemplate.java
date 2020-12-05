@@ -36,4 +36,9 @@ public class CategoriesForTemplate extends DatabaseEntity {
         this.template = template;
         this.template.addCategory(category);
     }
+
+    public void destroyLink() {
+        this.template.removeCategory(category);
+        this.category.removeTemplate(template);
+    }
 }

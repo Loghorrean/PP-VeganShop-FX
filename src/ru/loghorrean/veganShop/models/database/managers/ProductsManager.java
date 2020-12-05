@@ -89,7 +89,7 @@ public class ProductsManager extends BaseManager<Product> {
     @Override
     public void update(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
-            String sql = "UPDATE products SET product_name = ?, product_description = ?, product_amount = ? " +
+            String sql = "UPDATE products SET product_name = ?, product_description = ?, product_amount = ?, " +
                     "product_price = ?, number_of_calories = ?, is_allergic = ?, category_id = ? WHERE product_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setString(1, product.getName());
