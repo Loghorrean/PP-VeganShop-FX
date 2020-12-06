@@ -58,7 +58,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
                 ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
                 catInfo.setText(category.getDescription());
                 productButton.setText("Продукты категории " + category.getName());
-                productButton.setOnAction(event -> openProductDialog(category));
+                productButton.setOnAction(event -> openProductDialog(event, category));
                 productButton.setVisible(true);
             }
         });
@@ -96,15 +96,13 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
         });
     }
 
-    private void openProductDialog(ProductCategory category) {
+    private void openProductDialog(ActionEvent event, ProductCategory category) {
         //TODO: make product dialog to view products in the category
-        Dialog<ButtonType> dialog = new DialogCreator.DialogBuilder("ProductsInCategoryDialog")
-                                    .createDialog("Продукты в этой категории", mainBorderPane)
-                                    .addController()
-                                    .passObject(category)
-                                    .addButtons(ButtonType.OK)
-                                    .build();
-        dialog.showAndWait();
+        try {
+            redirectWithSmth(event, "mainScreens/ProductsInCategoryWindow", category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

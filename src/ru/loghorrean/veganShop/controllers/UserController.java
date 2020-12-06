@@ -2,13 +2,18 @@ package ru.loghorrean.veganShop.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.BaseController;
 import ru.loghorrean.veganShop.models.CategoriesData;
+import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 
 import java.io.IOException;
 
@@ -57,8 +62,17 @@ abstract public class UserController extends BaseController {
         return profileButton;
     }
 
-//    public void redirectWithSmth(ActionEvent event, String path, Object object) {
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource());
-//    }
+    public void redirectWithSmth(ActionEvent event, String scene, DatabaseEntity object) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/ru/loghorrean/veganShop/views/" + scene + ".fxml"));
+        Parent tableViewParent = loader.load();
+
+        IInit controller = loader.getController();
+        controller.initData(object);
+
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
 }
