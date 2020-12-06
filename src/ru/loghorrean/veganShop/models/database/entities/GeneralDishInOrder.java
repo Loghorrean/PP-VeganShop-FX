@@ -45,4 +45,9 @@ public class GeneralDishInOrder extends DatabaseEntity {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public void destroyLink() {
+        dish.removeOrder(order);
+        order.removeGeneralDish(dish);
+    }
 }

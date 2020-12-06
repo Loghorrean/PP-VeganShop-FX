@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.control.Button?>
+<DialogPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.GeneralDishController">
+    <content>
+        <GridPane>
+            <Label text="Название блюда" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="dishName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Описание блюда" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextArea fx:id="dishDesc" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Время готовки (в минутах)" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Slider fx:id="timeToCook" majorTickUnit="30.0" max="120"
+                    showTickLabels="true" showTickMarks="true" value="60"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="decrement" text="- 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Button fx:id="increment" text="+ 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label fx:id="currentMins" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <Button fx:id="products" text="Посмотреть состав" visible="false" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </content>
+</DialogPane>

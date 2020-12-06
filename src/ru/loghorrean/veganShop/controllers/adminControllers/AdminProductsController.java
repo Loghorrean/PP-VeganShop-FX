@@ -23,7 +23,6 @@ public class AdminProductsController extends AdminControllerWithGrid {
     }
 
     private void setGrid() {
-        mainGridPane.getChildren().removeAll();
         List<Product> products = data.getProducts();
         for(int i = 1; i < products.size() + 1; ++i) {
             fillGridRow(i, products.get(i - 1));

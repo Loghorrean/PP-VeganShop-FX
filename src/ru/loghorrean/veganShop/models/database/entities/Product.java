@@ -103,7 +103,7 @@ public class Product extends DatabaseEntity {
     }
 
     public void destroyProduct() {
-        this.category.removeProduct(this);
+        category.removeProduct(this);
     }
 
     public static class ProductBuilder {

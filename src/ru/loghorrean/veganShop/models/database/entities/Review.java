@@ -65,4 +65,9 @@ public class Review extends DatabaseEntity {
         this.userCreated = userCreated;
         this.userCreated.addReview(this);
     }
+
+    public void removeReview() {
+        dish.removeReview(this);
+        userCreated.removeReview(this);
+    }
 }

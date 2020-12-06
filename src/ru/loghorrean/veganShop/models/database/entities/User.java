@@ -163,6 +163,11 @@ public class User extends DatabaseEntity {
         return customDishesByUser;
     }
 
+    public void deleteUser() {
+        city.removeUser(this);
+        role.removeUser(this);
+    }
+
     public static class UserBuilder {
         private final User user;
 

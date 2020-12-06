@@ -154,6 +154,13 @@ public class Order extends DatabaseEntity {
         return customDishesInOrder;
     }
 
+    public void deleteOrder() {
+        user.removeOrder(this);
+        city.removeOrder(this);
+        paymentType.removeOrder(this);
+        courier.removeOrder(this);
+    }
+
     public static class OrderBuilder {
         private final Order order;
 

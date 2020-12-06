@@ -45,4 +45,9 @@ public class ProductInGeneralDish extends DatabaseEntity {
     public void setAmount(float amount) {
         this.amount = amount;
     }
+
+    public void destroyLink() {
+        dish.removeProduct(product);
+        product.removeGeneralDish(dish);
+    }
 }

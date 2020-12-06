@@ -86,4 +86,9 @@ public class CustomDish extends DatabaseEntity {
     public Set<Order> getOrdersWithDish() {
         return ordersWithDish;
     }
+
+    public void deleteDish() {
+        template.removeCustomDish(this);
+        userCreated.removeCustomDish(this);
+    }
 }

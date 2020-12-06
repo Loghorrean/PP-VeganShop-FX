@@ -55,4 +55,9 @@ public class ProductInCustomDish extends DatabaseEntity {
     public void setRecipe(String recipe) {
         this.recipe = recipe;
     }
+
+    public void destroyLink() {
+        dish.removeProduct(product);
+        product.removeCustomDish(dish);
+    }
 }
