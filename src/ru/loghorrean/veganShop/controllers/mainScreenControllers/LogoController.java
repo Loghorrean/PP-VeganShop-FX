@@ -18,7 +18,7 @@ public class LogoController extends BaseController {
 
     @FXML
     public void goToMainMenu(ActionEvent event) throws IOException {
-        redirect(event, "MainWindow");
+        redirect(event, "mainScreens/MainWindow");
     }
 
     @Override

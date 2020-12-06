@@ -5,15 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ru.loghorrean.veganShop.models.database.managers.CitiesManager;
-
-import java.sql.SQLException;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/LogoWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/mainScreens/LogoWindow.fxml"));
         primaryStage.setTitle("VeganShop");
         primaryStage.setScene(new Scene(root, 900, 500));
         primaryStage.show();

@@ -38,7 +38,7 @@ abstract public class UserController extends BaseController {
         logoutButton.setOnAction(actionEvent -> {
             CurrentUser.getInstance().setUser(null);
             try {
-                redirect(actionEvent, "MainWindow");
+                redirect(actionEvent, "mainScreens/MainWindow");
                 CategoriesData.unsetModel();
             } catch (IOException e) {
                 e.printStackTrace();

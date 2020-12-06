@@ -43,7 +43,7 @@ public class AuthoriseController extends DialogController {
         if (currentRole.equals("Admin")) {
             redirect(event, "admin/AdminMenuWindow");
         } else if (currentRole.equals("Customer")) {
-            redirect(event, "MenuWindow");
+            redirect(event, "mainScreens/MenuWindow");
         }
     }
 
