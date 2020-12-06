@@ -140,6 +140,7 @@ public class UsersManager extends BaseManager<User> {
             PreparedStatement s = c.prepareStatement(sql);
             s.setInt(1, user.getId());
             if (s.executeUpdate() == 1) {
+                user.deleteUser();
                 return;
             }
             throw new SQLException("ERROR WHILE DELETING USER " + user.getUsername());

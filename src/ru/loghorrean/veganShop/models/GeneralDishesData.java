@@ -58,4 +58,13 @@ public class GeneralDishesData {
         }
         return null;
     }
+
+    public GeneralDish getDishById(int id) {
+        for (GeneralDish dish: dishes) {
+            if (dish.getId() == id) {
+                return dish;
+            }
+        }
+        return null;
+    }
 }
