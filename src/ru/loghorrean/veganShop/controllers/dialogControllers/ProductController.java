@@ -119,8 +119,7 @@ public class ProductController extends DialogController implements IFill, IInit 
                     .build();
             data.addProductToModel(product);
         } catch (SQLException e) {
-            System.out.println("ERROR WHILE ADDING PRODUCT");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

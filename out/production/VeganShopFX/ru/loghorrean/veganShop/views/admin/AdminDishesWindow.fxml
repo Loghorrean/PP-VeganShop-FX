@@ -14,7 +14,8 @@
             <Label text="Название блюда" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
             <Label text="Подробнее" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
             <Label text="Изменить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <Label text="Удалить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+            <Label text="Изменить состав" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+            <Label text="Удалить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
         </GridPane>
     </center>
 </BorderPane>

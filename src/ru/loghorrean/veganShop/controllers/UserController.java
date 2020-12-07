@@ -61,18 +61,4 @@ abstract public class UserController extends BaseController {
         });
         return profileButton;
     }
-
-    public void redirectWithSmth(ActionEvent event, String scene, DatabaseEntity object) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/ru/loghorrean/veganShop/views/" + scene + ".fxml"));
-        Parent tableViewParent = loader.load();
-
-        IInit controller = loader.getController();
-        controller.initData(object);
-
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-    }
 }

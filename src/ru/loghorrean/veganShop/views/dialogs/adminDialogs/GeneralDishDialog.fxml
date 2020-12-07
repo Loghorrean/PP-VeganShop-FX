@@ -23,8 +23,7 @@
                     GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="decrement" text="- 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <Button fx:id="increment" text="+ 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-            <Label fx:id="currentMins" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
-            <Button fx:id="products" text="Посмотреть состав" visible="false" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label fx:id="currentMins" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminProductsInGeneralDishesController"
+            prefHeight="500.0" prefWidth="900.0">
+    <center>
+        <GridPane fx:id="mainGridPane" hgap="10" vgap="10">
+            <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label text="Количество продукта" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Подробнее о продукте" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label text="Изменить количество " GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="Удалить продукт" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox fx:id="bottomHBox">
+            <Button fx:id="dishesBackButton" text="На страницу блюд" onAction="#backToDishes"/>
+        </HBox>
+    </bottom>
+</BorderPane>

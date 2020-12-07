@@ -1,18 +1,20 @@
 package ru.loghorrean.veganShop.controllers.dialogControllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.controllers.IInit;
+import ru.loghorrean.veganShop.models.GeneralDishesData;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.GeneralDish;
+import ru.loghorrean.veganShop.util.validators.Validator;
+
+import java.sql.SQLException;
 
 public class GeneralDishController extends DialogController implements IFill, IInit {
+    private GeneralDishesData model;
+
     @FXML
     private TextField dishName;
 
@@ -31,13 +33,11 @@ public class GeneralDishController extends DialogController implements IFill, II
     @FXML
     private Label currentMins;
 
-    @FXML
-    private Button products;
-
     private GeneralDish currentDish;
 
     @Override
     public void initialize() {
+        model = GeneralDishesData.getInstance();
         updateMinsLabel(timeToCook.valueProperty().intValue());
         timeToCook.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             decrement.setDisable(false);
@@ -77,11 +77,53 @@ public class GeneralDishController extends DialogController implements IFill, II
     @Override
     public void initData(DatabaseEntity object) {
         currentDish = (GeneralDish) object;
-        products.setVisible(true);
     }
 
     @Override
     public boolean checkFields() {
-        return false;
+        if (!Validator.validateAllFields(dishName.getText(), dishDesc.getText())) {
+            setMistake("Все поля должны быть заполнены");
+            return false;
+        }
+        if (timeToCook.valueProperty().intValue() == 0) {
+            setMistake("Время не может быть нулем...");
+            return false;
+        }
+        boolean dishExists = model.checkIfDishExists(dishName.getText());
+        if (currentDish != null) {
+            if (dishExists && !currentDish.getName().equals(dishName.getText())) {
+                setMistake("Блюдо с таким именем уже существует");
+            }
+        } else {
+            if (dishExists) {
+                setMistake("Блюдо с таким названием уже существует");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addDish() {
+        try {
+            GeneralDish dish = new GeneralDish(
+                    dishName.getText(),
+                    dishDesc.getText(),
+                    timeToCook.valueProperty().intValue()
+            );
+            model.addDish(dish);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateDish() {
+        try {
+            currentDish.setName(dishName.getText());
+            currentDish.setDescription(dishDesc.getText());
+            currentDish.setTimeToCook(timeToCook.valueProperty().intValue());
+            model.updateDish(currentDish);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

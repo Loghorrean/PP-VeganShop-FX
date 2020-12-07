@@ -42,12 +42,12 @@ public class GeneralDishesData {
     }
 
     public void removeDish(GeneralDish dish) throws SQLException {
-        manager.update(dish);
+        manager.delete(dish);
+        dishes.remove(dish);
     }
 
     public void updateDish(GeneralDish dish) throws SQLException{
-        manager.delete(dish);
-        dishes.remove(dish);
+        manager.update(dish);
     }
 
     public GeneralDish getDishByName(String name) {
@@ -66,5 +66,9 @@ public class GeneralDishesData {
             }
         }
         return null;
+    }
+
+    public boolean checkIfDishExists(String dishName) {
+        return this.getDishByName(dishName) != null;
     }
 }
