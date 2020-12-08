@@ -65,7 +65,11 @@ public class AdminDishesController extends AdminControllerWithGrid {
 
 
     private void openMorePage(ActionEvent event, GeneralDish dish) {
-        System.out.println(dish.getName());
+        try {
+            redirectWithSmth(event, "mainScreens/DishCompositionWindow", dish);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void openUpdateDialog(ActionEvent event, GeneralDish dish) {

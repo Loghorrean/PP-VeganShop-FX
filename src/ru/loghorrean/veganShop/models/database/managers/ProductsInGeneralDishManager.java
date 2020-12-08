@@ -89,7 +89,7 @@ public class ProductsInGeneralDishManager extends BaseManager<ProductInGeneralDi
     @Override
     public void delete(ProductInGeneralDish link) throws SQLException {
         try (Connection c = database.getConnection()) {
-            String sql = "DELETE FROM products_general_dishes WHERE record_id = ?";
+            String sql = "DELETE FROM products_in_general_dishes WHERE record_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setInt(1, link.getId());
             if (s.executeUpdate() == 1) {

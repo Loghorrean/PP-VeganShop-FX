@@ -23,6 +23,13 @@ public class ProductsInGeneralDishesData {
         }
     }
 
+    public static ProductsInGeneralDishesData getInstance() {
+        if (instance == null) {
+            instance = new ProductsInGeneralDishesData();
+        }
+        return instance;
+    }
+
     public void setLinks() throws SQLException {
         links = manager.getAll();
     }
@@ -39,6 +46,13 @@ public class ProductsInGeneralDishesData {
     public void removeLinkFromModel(ProductInGeneralDish link) throws SQLException {
         manager.delete(link);
         links.remove(link);
+    }
+
+    public void removeLinkFromModel(Product product, GeneralDish dish) throws SQLException {
+        ProductInGeneralDish link = getLink(product, dish);
+        if (link != null) {
+            removeLinkFromModel(link);
+        }
     }
 
     public ProductInGeneralDish getLink(Product product, GeneralDish dish) {
