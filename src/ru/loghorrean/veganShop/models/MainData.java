@@ -1,6 +1,5 @@
 package ru.loghorrean.veganShop.models;
 
-import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.models.database.entities.Role;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.RolesManager;
@@ -11,9 +10,9 @@ import java.util.List;
 
 public class MainData {
     private static MainData instance;
-    private static RolesManager roleManager;
-    private static UsersManager userManager;
-    private static List<Role> roles;
+    private final RolesManager roleManager;
+    private final UsersManager userManager;
+    private List<Role> roles;
 
     private MainData() throws SQLException {
         roleManager = new RolesManager();
@@ -34,10 +33,6 @@ public class MainData {
 
     public UsersManager getUserManager() {
         return userManager;
-    }
-
-    public RolesManager getRoleManager() {
-        return roleManager;
     }
 
     public List<Role> getRoles() {

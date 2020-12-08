@@ -1,6 +1,5 @@
 package ru.loghorrean.veganShop.models.database.entities;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,10 +12,6 @@ public class Order extends DatabaseEntity {
     private int house;
     private int flat;
     private String comment;
-    private PaymentType paymentType;
-    private Courier courier;
-    private int courierRating;
-    private int foodRating;
     private final Set<GeneralDish> generalDishesInOrder;
     private final Set<CustomDish> customDishesInOrder;
 
@@ -94,42 +89,6 @@ public class Order extends DatabaseEntity {
         this.comment = comment;
     }
 
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType.removeOrder(this);
-        this.paymentType = paymentType;
-        this.paymentType.addOrder(this);
-    }
-
-    public Courier getCourier() {
-        return courier;
-    }
-
-    public void setCourier(Courier courier) {
-        this.courier.removeOrder(this);
-        this.courier = courier;
-        this.courier.addOrder(this);
-    }
-
-    public int getCourierRating() {
-        return courierRating;
-    }
-
-    public void setCourierRating(int courierRating) {
-        this.courierRating = courierRating;
-    }
-
-    public int getFoodRating() {
-        return foodRating;
-    }
-
-    public void setFoodRating(int foodRating) {
-        this.foodRating = foodRating;
-    }
-
     public void addGeneralDish(GeneralDish generalDish) {
         generalDishesInOrder.add(generalDish);
     }
@@ -157,8 +116,6 @@ public class Order extends DatabaseEntity {
     public void deleteOrder() {
         user.removeOrder(this);
         city.removeOrder(this);
-        paymentType.removeOrder(this);
-        courier.removeOrder(this);
     }
 
     public static class OrderBuilder {
@@ -215,26 +172,8 @@ public class Order extends DatabaseEntity {
             return this;
         }
 
-        public OrderBuilder withPaymentType(PaymentType paymentType) {
-            order.paymentType = paymentType;
-            paymentType.addOrder(order);
-            return this;
-        }
-
-        public OrderBuilder withCourier(Courier courier) {
-            order.courier = courier;
-            courier.addOrder(order);
-            return this;
-        }
-
-        public OrderBuilder withCourierRating(int rating) {
-            order.courierRating = rating;
-            return this;
-        }
-
-        public OrderBuilder withFoodRating(int rating) {
-            order.foodRating = rating;
-            return this;
+        public Order build() {
+            return order;
         }
     }
 }

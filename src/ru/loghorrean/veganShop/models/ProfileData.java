@@ -30,10 +30,6 @@ public class ProfileData {
         availableCities = citiesManager.getAll();
     }
 
-    public CitiesManager getCitiesManager() {
-        return citiesManager;
-    }
-
     public UsersManager getUsersManager() {
         return usersManager;
     }
