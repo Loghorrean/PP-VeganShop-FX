@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.adminControllers;
+package ru.loghorrean.veganShop.controllers.admin;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

@@ -21,7 +21,7 @@ public class FillOrderController extends ClientController {
         Button cartButton = new Button("Перейти в корзину");
         cartButton.setOnAction(event -> {
             try {
-                redirect(event, "mainScreens/Cart");
+                redirect(event, "orderScreens/Cart");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -33,7 +33,7 @@ public class FillOrderController extends ClientController {
     @FXML
     public void backToMenu(ActionEvent event) {
         try {
-            redirect(event, "mainScreens/Menu");
+            redirect(event, "orderScreens/Menu");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.dialogControllers;
+package ru.loghorrean.veganShop.controllers.dialog;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,6 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
-import ru.loghorrean.veganShop.exceptions.UserException;
 import ru.loghorrean.veganShop.models.ProfileData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.models.database.managers.UsersManager;

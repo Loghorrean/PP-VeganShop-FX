@@ -8,7 +8,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ProductsInCategoryController">
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.ProductsInCategoryController">
     <content>
         <Label fx:id="testLabel"/>
     </content>

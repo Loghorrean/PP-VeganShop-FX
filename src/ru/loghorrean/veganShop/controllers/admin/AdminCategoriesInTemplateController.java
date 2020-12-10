@@ -1,11 +1,9 @@
-package ru.loghorrean.veganShop.controllers.adminControllers;
+package ru.loghorrean.veganShop.controllers.admin;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import ru.loghorrean.veganShop.controllers.AdminControllerWithList;
 import ru.loghorrean.veganShop.models.CategoriesData;
@@ -19,32 +17,33 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AdminTemplatesInCategoryController extends AdminControllerWithList<DishTemplate> {
-    @FXML
-    private GridPane testGrid;
-
+public class AdminCategoriesInTemplateController extends AdminControllerWithList<ProductCategory> {
     @FXML
     private Button saveButton;
 
     @FXML
-    private Button redirectToCategories;
+    private GridPane testGrid;
 
-    private List<ProductCategory> categories;
+    @FXML
+    private Button redirectToTemplates;
+
+    private List<DishTemplate> templates;
 
     private CategoriesForTemplatesData model;
 
-    private HashMap<ProductCategory, Boolean> map;
-
-    private void setHashMap(List<ProductCategory> categories) {
-        for (ProductCategory category: categories) {
-            map.put(category, false);
-        }
-    }
+    private Map<DishTemplate, Boolean> map;
 
     @Override
     public void openAddDialog(ActionEvent event) {
 
+    }
+
+    private void setHashMap(List<DishTemplate> templates) {
+        for(DishTemplate template: templates) {
+            map.put(template, false);
+        }
     }
 
     @Override
@@ -54,32 +53,34 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
         saveButton.setVisible(false);
         testGrid.setVisible(false);
 
-        mainBorderPane.setRight(getUserMenu());
         mainBorderPane.setBottom(getBackButton());
+        mainBorderPane.setRight(getUserMenu());
 
-        categories = CategoriesData.getInstance().getCategories();
+        templates = TemplatesData.getInstance().getTemplates();
 
-        mainListView.setItems(FXCollections.observableArrayList(TemplatesData.getInstance().getTemplates()));
-        mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, template, chosenTemplate) ->  {
-            setHashMap(categories);
+        mainListView.setItems(FXCollections.observableArrayList(CategoriesData.getInstance().getCategories()));
+        mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, currentCategory) -> {
+            setHashMap(templates);
             saveButton.setVisible(true);
             testGrid.setVisible(true);
             saveButton.setDisable(true);
-            if (chosenTemplate != null) {
+            if (currentCategory != null) {
                 int i = 0;
-                for (ProductCategory category: categories) {
-                    testGrid.add(new Label(category.getName()), 0, i);
+                for(DishTemplate template: templates) {
+                    testGrid.add(new Label(template.getName()), 0, i);
+
                     CheckBox checkBox = new CheckBox();
-                    if (chosenTemplate.getCategories().contains(category)) {
+
+                    if (currentCategory.getTemplates().contains(template)) {
                         checkBox.setSelected(true);
-                        map.put(category, true);
+                        map.put(template, true);
                     }
 
                     checkBox.setOnAction(event -> {
                         if (checkBox.isSelected()) {
-                            map.put(category, true);
+                            map.put(template, true);
                         } else {
-                            map.put(category, false);
+                            map.put(template, false);
                         }
                         saveButton.setDisable(false);
                     });
@@ -93,9 +94,9 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
 
     @FXML
     public void saveChanges(ActionEvent event) {
-        DishTemplate template = mainListView.getSelectionModel().getSelectedItem();
-        for (ProductCategory category: categories) {
-            boolean isPressed = map.get(category);
+        ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
+        for (DishTemplate template: templates) {
+            boolean isPressed = map.get(template);
             if (isPressed) {
                 if (!model.checkIfLinkExists(category, template)) {
                     try {
@@ -115,16 +116,16 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
             }
         }
         try {
-            redirect(event, "AdminTemplatesInCategory");
+            redirect(event, "AdminCategoriesInTemplate");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void goToCategories(ActionEvent event) {
+    public void goToTemplates(ActionEvent event) {
         try {
-            redirect(event, "AdminCategoriesInTemplate");
+            redirect(event, "AdminTemplatesInCategory");
         } catch (IOException e) {
             e.printStackTrace();
         }

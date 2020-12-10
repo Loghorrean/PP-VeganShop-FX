@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.dialogControllers;
+package ru.loghorrean.veganShop.controllers.dialog;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;

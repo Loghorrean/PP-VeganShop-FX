@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="mainAnchorPane" prefHeight="500.0" prefWidth="900.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.loghorrean.veganShop.controllers.profileControllers.ProfileController">
+            fx:controller="ru.loghorrean.veganShop.controllers.profile.ProfileController">
    <children>
       <Label layoutX="14.0" layoutY="26.0" prefHeight="17.0" prefWidth="158.0" text="Главная информация" />
       <GridPane layoutX="14.0" layoutY="43.0" prefHeight="200.0" prefWidth="300.0">

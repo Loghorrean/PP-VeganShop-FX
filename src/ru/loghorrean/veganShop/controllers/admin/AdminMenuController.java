@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.adminControllers;
+package ru.loghorrean.veganShop.controllers.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,6 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import ru.loghorrean.veganShop.controllers.AdminController;
-import ru.loghorrean.veganShop.controllers.UserController;
 
 import java.io.IOException;
 

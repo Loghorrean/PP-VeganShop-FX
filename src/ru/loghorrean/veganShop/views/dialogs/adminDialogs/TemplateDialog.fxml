@@ -8,7 +8,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.TemplateController">
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.TemplateController">
     <content>
         <GridPane>
             <Label text="Название шаблона" GridPane.rowIndex="0" GridPane.columnIndex="0"/>

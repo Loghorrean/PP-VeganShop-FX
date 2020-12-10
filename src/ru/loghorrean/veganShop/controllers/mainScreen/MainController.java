@@ -1,21 +1,14 @@
-package ru.loghorrean.veganShop.controllers.mainScreenControllers;
+package ru.loghorrean.veganShop.controllers.mainScreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.BaseController;
-import ru.loghorrean.veganShop.controllers.DialogController;
-import ru.loghorrean.veganShop.controllers.dialogControllers.AuthoriseController;
-import ru.loghorrean.veganShop.controllers.dialogControllers.RegistrationController;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class MainController extends BaseController {
     @FXML

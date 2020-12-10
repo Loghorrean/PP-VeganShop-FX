@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.mainScreenControllers;
+package ru.loghorrean.veganShop.controllers.mainScreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,7 +1,5 @@
-package ru.loghorrean.veganShop.controllers.dialogControllers;
+package ru.loghorrean.veganShop.controllers.dialog;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

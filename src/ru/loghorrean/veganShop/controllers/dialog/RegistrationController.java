@@ -1,9 +1,8 @@
-package ru.loghorrean.veganShop.controllers.dialogControllers;
+package ru.loghorrean.veganShop.controllers.dialog;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.loghorrean.veganShop.controllers.DialogController;
-import ru.loghorrean.veganShop.exceptions.UserException;
 import ru.loghorrean.veganShop.models.MainData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.util.HashCompiler;

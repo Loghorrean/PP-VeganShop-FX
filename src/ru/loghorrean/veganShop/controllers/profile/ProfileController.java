@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.profileControllers;
+package ru.loghorrean.veganShop.controllers.profile;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -93,10 +93,10 @@ public class ProfileController extends UserController {
     public void backToMenu(ActionEvent event) throws IOException {
         String role = CurrentUser.getInstance().getUser().getRole().getTitle();
         if (role.equals("Customer")) {
-            redirect(event, "mainScreens/MenuWindow");
+            redirect(event, "mainScreens/Menu");
         }
         else if (role.equals("Admin")) {
-            redirect(event, "admin/AdminMenuWindow");
+            redirect(event, "admin/AdminMenu");
         }
     }
 

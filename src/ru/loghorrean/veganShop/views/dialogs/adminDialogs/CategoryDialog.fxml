@@ -8,7 +8,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.CategoryController">
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.CategoryController">
    <content>
       <GridPane>
           <Label text="Название категории" />

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminTemplatesInCategoryController"
+            fx:controller="ru.loghorrean.veganShop.controllers.admin.AdminTemplatesInCategoryController"
             prefHeight="500.0" prefWidth="900.0"
             fx:id="mainBorderPane">
     <left>

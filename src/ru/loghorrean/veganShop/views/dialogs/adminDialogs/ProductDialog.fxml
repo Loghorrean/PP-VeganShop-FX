@@ -11,7 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ProductController">
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.ProductController">
     <content>
         <GridPane>
             <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>

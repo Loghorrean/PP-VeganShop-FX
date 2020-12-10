@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.control.Button?>
-<DialogPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.GeneralDishController">
+<DialogPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.dialog.GeneralDishController">
     <content>
         <GridPane>
             <Label text="Название блюда" GridPane.columnIndex="0" GridPane.rowIndex="0" />

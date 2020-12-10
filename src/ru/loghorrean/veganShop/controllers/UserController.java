@@ -33,12 +33,12 @@ abstract public class UserController extends BaseController {
     protected Button getLogoutButton() {
         Button logoutButton = new Button();
         logoutButton.setText("Разлогиниться");
-        logoutButton.setMinWidth(144);
         logoutButton.setMinHeight(48);
+        logoutButton.setMinWidth(144);
         logoutButton.setOnAction(actionEvent -> {
             CurrentUser.getInstance().setUser(null);
             try {
-                redirect(actionEvent, "mainScreens/Main");
+                super.redirect(actionEvent, "mainScreens/Main");
                 CategoriesData.unsetModel();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -54,7 +54,7 @@ abstract public class UserController extends BaseController {
         profileButton.setMinWidth(144);
         profileButton.setOnAction(actionEvent -> {
             try {
-                redirect(actionEvent, "profile/Profile");
+                super.redirect(actionEvent, "profile/Profile");
             } catch (IOException e) {
                 e.printStackTrace();
             }

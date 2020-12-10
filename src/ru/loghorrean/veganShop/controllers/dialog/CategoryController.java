@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.dialogControllers;
+package ru.loghorrean.veganShop.controllers.dialog;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -6,11 +6,9 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.controllers.IInit;
-import ru.loghorrean.veganShop.exceptions.CategoryException;
 import ru.loghorrean.veganShop.models.CategoriesData;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
-import ru.loghorrean.veganShop.models.database.managers.ProductCategoriesManager;
 import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.sql.SQLException;
