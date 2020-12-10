@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.mainScreenControllers;
+package ru.loghorrean.veganShop.controllers.client.dishCon;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class ProductWindowController extends UserController implements IInit {
     @FXML
     public void goBack(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminMenuWindow");
+            redirect(event, "admin/AdminMenu");
         } catch (IOException e) {
             e.printStackTrace();
         }

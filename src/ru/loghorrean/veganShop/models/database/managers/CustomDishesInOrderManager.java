@@ -25,7 +25,7 @@ public class CustomDishesInOrderManager extends BaseManager<CustomDishInOrder> {
                         set.getInt("record_id"),
                         CustomDishesData.getInstance().getDishById(set.getInt("dish_id")),
                         OrdersData.getInstance().getOrderById(set.getInt("order_id")),
-                        set.getFloat("dish_amount")
+                        set.getInt("dish_amount")
                 ));
             }
             return links;
@@ -44,7 +44,7 @@ public class CustomDishesInOrderManager extends BaseManager<CustomDishInOrder> {
                         set.getInt("record_id"),
                         CustomDishesData.getInstance().getDishById(set.getInt("dish_id")),
                         OrdersData.getInstance().getOrderById(set.getInt("order_id")),
-                        set.getFloat("dish_amount")
+                        set.getInt("dish_amount")
                 );
             }
             return null;

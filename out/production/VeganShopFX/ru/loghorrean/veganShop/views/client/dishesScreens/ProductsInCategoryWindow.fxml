@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="500.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.mainScreenControllers.ProductsInCategoryController">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="500.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.loghorrean.veganShop.controllers.client.dishCon.ProductsInCategoryController">
    <children>
       <Label fx:id="catName" alignment="CENTER" layoutX="73.0" layoutY="36.0" prefHeight="51.0" prefWidth="178.0" textAlignment="CENTER">
          <font>

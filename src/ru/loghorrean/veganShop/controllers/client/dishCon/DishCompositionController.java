@@ -1,23 +1,20 @@
-package ru.loghorrean.veganShop.controllers.mainScreenControllers;
+package ru.loghorrean.veganShop.controllers.client.dishCon;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import ru.loghorrean.veganShop.controllers.ClientController;
 import ru.loghorrean.veganShop.controllers.IInit;
-import ru.loghorrean.veganShop.controllers.UserController;
 import ru.loghorrean.veganShop.models.ProductsInGeneralDishesData;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.GeneralDish;
 import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.models.database.entities.ProductInGeneralDish;
 
-import java.sql.SQLException;
-
-public class DishCompositionController extends UserController implements IInit {
+public class DishCompositionController extends ClientController implements IInit {
     private GeneralDish dish;
 
     private ProductsInGeneralDishesData model;

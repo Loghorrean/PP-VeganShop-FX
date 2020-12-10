@@ -108,7 +108,9 @@ public class User extends DatabaseEntity {
     }
 
     public void setCity(City city) {
-        this.city.removeUser(this);
+        if (this.city != null) {
+            this.city.removeUser(this);
+        }
         this.city = city;
         this.city.addUser(this);
     }
@@ -208,8 +210,10 @@ public class User extends DatabaseEntity {
         }
 
         public UserBuilder withCity(City city) {
-            user.city = city;
-            city.addUser(user);
+            if (city != null) {
+                user.city = city;
+                city.addUser(user);
+            }
             return this;
         }
 

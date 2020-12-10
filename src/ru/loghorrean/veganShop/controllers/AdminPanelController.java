@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-abstract public class AdminPanelController extends UserController {
+abstract public class AdminPanelController extends AdminController {
     @FXML
     protected BorderPane mainBorderPane;
 
@@ -51,7 +51,7 @@ abstract public class AdminPanelController extends UserController {
     @FXML
     public void backToTheMenu(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminMenuWindow");
+            redirect(event, "AdminMenu");
         } catch (IOException e) {
             e.printStackTrace();
         }

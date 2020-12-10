@@ -95,7 +95,7 @@ public class AdminProductsInGeneralDishesController extends AdminControllerWithG
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                redirectWithSmth(event, "admin/AdminProductsInGeneralDishWindow", dish);
+                redirectWithSmth(event, "AdminProductsInGeneralDish", dish);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -112,7 +112,7 @@ public class AdminProductsInGeneralDishesController extends AdminControllerWithG
             try {
                 model.removeLinkFromModel(link);
                 setSuccess("Продукт " + link.getProduct().getName() + " удален из блюда " + dish.getName());
-                redirectWithSmth(event, "admin/AdminProductsInGeneralDishWindow", dish);
+                redirectWithSmth(event, "AdminProductsInGeneralDish", dish);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -132,7 +132,7 @@ public class AdminProductsInGeneralDishesController extends AdminControllerWithG
     @FXML
     public void backToDishes(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminDishesWindow");
+            redirect(event, "AdminDishes");
         } catch (IOException e) {
             e.printStackTrace();
         }

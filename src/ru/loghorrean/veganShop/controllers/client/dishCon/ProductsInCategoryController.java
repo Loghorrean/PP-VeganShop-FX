@@ -1,4 +1,4 @@
-package ru.loghorrean.veganShop.controllers.mainScreenControllers;
+package ru.loghorrean.veganShop.controllers.client.dishCon;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class ProductsInCategoryController extends UserController implements IIni
             button.setText("Подробнее");
             button.setOnAction(event -> {
                 try {
-                    redirectWithSmth(event, "mainScreens/ProductWindow", product);
+                    redirectWithSmth(event, "mainScreens/Product", product);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -67,9 +67,9 @@ public class ProductsInCategoryController extends UserController implements IIni
     public void goBack(ActionEvent event) {
         try {
             if (CurrentUser.getInstance().getUser().getRole().getTitle().equals("Admin")) {
-                redirect(event, "admin/AdminCategoriesWindow");
+                redirect(event, "admin/AdminCategories");
             } else {
-                redirect(event, "MenuWindow");
+                redirect(event, "client/Menu");
             }
         } catch (IOException e) {
             e.printStackTrace();

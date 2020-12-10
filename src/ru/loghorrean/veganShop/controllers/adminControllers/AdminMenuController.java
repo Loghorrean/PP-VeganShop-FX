@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import ru.loghorrean.veganShop.controllers.AdminController;
 import ru.loghorrean.veganShop.controllers.UserController;
 
 import java.io.IOException;
 
-public class AdminMenuController extends UserController {
+public class AdminMenuController extends AdminController {
     @FXML
     private AnchorPane menuAnchorPane;
 
@@ -38,7 +39,7 @@ public class AdminMenuController extends UserController {
     @FXML
     public void goToUsersPage(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminUsersWindow");
+            redirect(event, "AdminUsers");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +48,7 @@ public class AdminMenuController extends UserController {
     @FXML
     public void goToProductsPage(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminProductsWindow");
+            redirect(event, "AdminProducts");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +57,7 @@ public class AdminMenuController extends UserController {
     @FXML
     public void goToDishesPage(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminDishesWindow");
+            redirect(event, "AdminDishes");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +66,7 @@ public class AdminMenuController extends UserController {
     @FXML
     public void goToCategoriesPage(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminCategoriesWindow");
+            redirect(event, "AdminCategories");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,7 +75,7 @@ public class AdminMenuController extends UserController {
     @FXML
     public void goToTemplatesPage(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminTemplatesWindow");
+            redirect(event, "AdminTemplates");
         } catch (IOException e) {
             e.printStackTrace();
         }

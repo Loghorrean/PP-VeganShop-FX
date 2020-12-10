@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.client.orderCon.FillOrderController"
+            prefHeight="500.0" prefWidth="900.0">
+    <center>
+        <GridPane>
+            <Button text="Добавить блюдо из имеющихся" onAction="#goToGeneral" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Button text="Страница кастомных блюд" onAction="#goToCustom" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+    <bottom>
+        <Button fx:id="backButton" onAction="#backToMenu" text="Назад в меню"/>
+    </bottom>
+</BorderPane>

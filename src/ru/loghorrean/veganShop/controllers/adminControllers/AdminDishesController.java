@@ -66,7 +66,7 @@ public class AdminDishesController extends AdminControllerWithGrid {
 
     private void openMorePage(ActionEvent event, GeneralDish dish) {
         try {
-            redirectWithSmth(event, "mainScreens/DishCompositionWindow", dish);
+            redirectWithSmth(event, "mainScreens/DishComposition", dish);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class AdminDishesController extends AdminControllerWithGrid {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             setSuccess("Блюдо успешно обновлено");
             try {
-                redirect(event, "admin/AdminDishesWindow");
+                redirect(event, "AdminDishes");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -104,7 +104,7 @@ public class AdminDishesController extends AdminControllerWithGrid {
             try {
                 model.removeDish(dish);
                 setSuccess("Блюдо " + dish.getName() + " удален");
-                redirect(event, "admin/AdminDishesWindow");
+                redirect(event, "AdminDishes");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -115,7 +115,7 @@ public class AdminDishesController extends AdminControllerWithGrid {
 
     private void goToProductsWindow(ActionEvent event, GeneralDish dish) {
         try {
-            redirectWithSmth(event, "admin/AdminProductsInGeneralDishWindow", dish);
+            redirectWithSmth(event, "AdminProductsInGeneralDish", dish);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -104,7 +104,6 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("CREATE A NEW LINK BETWEEN " + category.getName() + " AND " + template.getName());
                 }
             } else {
                 if (model.checkIfLinkExists(category, template)) {
@@ -113,12 +112,11 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("DESTROY AN EXISTING LINK BETWEEN " + category.getName() + " AND " + template.getName());
                 }
             }
         }
         try {
-            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+            redirect(event, "AdminCategoriesInTemplate");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,7 +125,7 @@ public class AdminCategoriesInTemplateController extends AdminControllerWithList
     @FXML
     public void goToTemplates(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminTemplatesInCategoryWindow");
+            redirect(event, "AdminTemplatesInCategory");
         } catch (IOException e) {
             e.printStackTrace();
         }

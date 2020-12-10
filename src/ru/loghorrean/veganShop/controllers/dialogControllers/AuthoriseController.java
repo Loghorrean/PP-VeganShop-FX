@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.DialogController;
 import ru.loghorrean.veganShop.models.MainData;
+import ru.loghorrean.veganShop.models.UsersData;
 import ru.loghorrean.veganShop.models.database.entities.User;
 import ru.loghorrean.veganShop.util.HashCompiler;
 import ru.loghorrean.veganShop.util.validators.Validator;
@@ -41,9 +42,9 @@ public class AuthoriseController extends DialogController {
         CurrentUser.getInstance().setUser(user);
         String currentRole = user.getRole().getTitle();
         if (currentRole.equals("Admin")) {
-            redirect(event, "admin/AdminMenuWindow");
+            redirect(event, "admin/AdminMenu");
         } else if (currentRole.equals("Customer")) {
-            redirect(event, "mainScreens/MenuWindow");
+            redirect(event, "client/orderScreens/Menu");
         }
     }
 
@@ -54,14 +55,9 @@ public class AuthoriseController extends DialogController {
             setMistake("Все поля должны быть заполнены");
             return false;
         }
-        try {
-            user = mainData.getUserManager().getUserByUsername(username.getText());
-            if (user == null || !checkIfPasswordIsRight(pass.getText())) {
-                setMistake("Неверный юзернейм или пароль");
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        user = UsersData.getInstance().getUserByName(username.getText());
+        if (user == null || !checkIfPasswordIsRight(pass.getText())) {
+            setMistake("Неверный юзернейм или пароль");
             return false;
         }
         return true;

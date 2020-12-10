@@ -115,7 +115,7 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
             }
         }
         try {
-            redirect(event, "admin/AdminTemplatesInCategoryWindow");
+            redirect(event, "AdminTemplatesInCategory");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -124,7 +124,7 @@ public class AdminTemplatesInCategoryController extends AdminControllerWithList<
     @FXML
     public void goToCategories(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+            redirect(event, "AdminCategoriesInTemplate");
         } catch (IOException e) {
             e.printStackTrace();
         }

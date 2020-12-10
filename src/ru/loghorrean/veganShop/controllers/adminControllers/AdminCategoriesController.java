@@ -99,7 +99,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
     private void openProductDialog(ActionEvent event, ProductCategory category) {
         //TODO: make product dialog to view products in the category
         try {
-            redirectWithSmth(event, "mainScreens/ProductsInCategoryWindow", category);
+            redirectWithSmth(event, "mainScreens/ProductsInCategory", category);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,7 +159,7 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
 
     public void goToLinksWindow(ActionEvent event) {
         try {
-            redirect(event, "admin/AdminCategoriesInTemplateWindow");
+            redirect(event, "AdminCategoriesInTemplate");
         } catch (IOException e) {
             e.printStackTrace();
         }

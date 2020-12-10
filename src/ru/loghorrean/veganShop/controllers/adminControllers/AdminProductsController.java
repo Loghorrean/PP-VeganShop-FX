@@ -77,7 +77,7 @@ public class AdminProductsController extends AdminControllerWithGrid {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 setSuccess("Продукт успешно обновлен");
-                redirect(event, "admin/AdminProductsWindow");
+                redirect(event, "AdminProducts");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -106,7 +106,7 @@ public class AdminProductsController extends AdminControllerWithGrid {
             try {
                 data.deleteProductInModel(product);
                 setSuccess("Продукт " + product.getName() + " удален");
-                redirect(event, "admin/AdminProductsWindow");
+                redirect(event, "AdminProducts");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {

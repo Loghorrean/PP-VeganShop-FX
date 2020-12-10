@@ -38,7 +38,7 @@ abstract public class UserController extends BaseController {
         logoutButton.setOnAction(actionEvent -> {
             CurrentUser.getInstance().setUser(null);
             try {
-                redirect(actionEvent, "mainScreens/MainWindow");
+                redirect(actionEvent, "mainScreens/Main");
                 CategoriesData.unsetModel();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -54,7 +54,7 @@ abstract public class UserController extends BaseController {
         profileButton.setMinWidth(144);
         profileButton.setOnAction(actionEvent -> {
             try {
-                redirect(actionEvent, "profile/ProfileWindow");
+                redirect(actionEvent, "profile/Profile");
             } catch (IOException e) {
                 e.printStackTrace();
             }

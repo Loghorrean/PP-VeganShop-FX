@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.mainScreenControllers.ProductWindowController"
+            fx:controller="ru.loghorrean.veganShop.controllers.client.dishCon.ProductWindowController"
             prefHeight="500.0" prefWidth="900.0">
     <Button fx:id="backButton" layoutX="109.0" layoutY="427.0" mnemonicParsing="false" onAction="#goBack" prefHeight="41.0" prefWidth="107.0" text="Назад" />
 </AnchorPane>
