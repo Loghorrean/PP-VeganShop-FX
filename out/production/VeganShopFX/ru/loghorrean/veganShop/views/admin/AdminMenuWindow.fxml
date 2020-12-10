@@ -15,6 +15,5 @@
       <Button fx:id="dishesButton" layoutX="450.0" layoutY="146.0" mnemonicParsing="false" text="Основные блюда" onAction="#goToDishesPage"/>
       <Button fx:id="categoriesButton" layoutX="117.0" layoutY="304.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="117.0" text="Категории продуктов" wrapText="true" onAction="#goToCategoriesPage"/>
       <Button fx:id="templatesButton" layoutX="283.0" layoutY="314.0" mnemonicParsing="false" text="Категории блюд" wrapText="true" onAction="#goToTemplatesPage"/>
-      <Button fx:id="reviewsButton" layoutX="450.0" layoutY="314.0" mnemonicParsing="false" text="Отзывы" onAction="#goToReviewsPage"/>
    </children>
 </AnchorPane>

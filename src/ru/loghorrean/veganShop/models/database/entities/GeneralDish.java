@@ -9,7 +9,6 @@ public class GeneralDish extends DatabaseEntity {
     private int timeToCook;
     private final Set<Product> productsInDish;
     private final Set<Order> ordersWithDish;
-    private final Set<Review> reviewsOfDish;
 
     public GeneralDish(int id, String name, String description, int timeToCook) {
         super(id);
@@ -18,7 +17,6 @@ public class GeneralDish extends DatabaseEntity {
         this.timeToCook = timeToCook;
         productsInDish = new HashSet<>();
         ordersWithDish = new HashSet<>();
-        reviewsOfDish = new HashSet<>();
     }
 
     public GeneralDish(String name, String description, int timeToCook) {
@@ -71,17 +69,5 @@ public class GeneralDish extends DatabaseEntity {
 
     public Set<Order> getDishInOrders() {
         return ordersWithDish;
-    }
-
-    public void addReview(Review review) {
-        reviewsOfDish.add(review);
-    }
-
-    public void removeReview(Review review) {
-        reviewsOfDish.remove(review);
-    }
-
-    public Set<Review> getReviewsOfDish() {
-        return reviewsOfDish;
     }
 }

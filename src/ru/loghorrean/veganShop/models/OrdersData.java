@@ -45,4 +45,13 @@ public class OrdersData {
         manager.delete(order);
         orders.remove(order);
     }
+
+    public Order getOrderById(int id) {
+        for(Order order: orders) {
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+        return null;
+    }
 }

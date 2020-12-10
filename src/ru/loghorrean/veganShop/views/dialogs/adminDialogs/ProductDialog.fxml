@@ -36,6 +36,8 @@
                             toggleGroup="$allergyToggleGroup"/>
             <Label text="Категория" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
             <ComboBox fx:id="prodCat" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <Label text="Единица измерения" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prodUnit" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
         </GridPane>
     </content>
 </DialogPane>

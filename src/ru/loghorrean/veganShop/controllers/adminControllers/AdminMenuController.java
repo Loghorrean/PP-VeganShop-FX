@@ -28,9 +28,6 @@ public class AdminMenuController extends UserController {
     @FXML
     private Button templatesButton;
 
-    @FXML
-    private Button reviewsButton;
-
     public void initialize() {
         Accordion userMenu = getUserMenu();
         AnchorPane.setTopAnchor(userMenu, 10.0);
@@ -78,15 +75,6 @@ public class AdminMenuController extends UserController {
     public void goToTemplatesPage(ActionEvent event) {
         try {
             redirect(event, "admin/AdminTemplatesWindow");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void goToReviewsPage(ActionEvent event) {
-        try {
-            redirect(event, "admin/AdminReviewsWindow");
         } catch (IOException e) {
             e.printStackTrace();
         }

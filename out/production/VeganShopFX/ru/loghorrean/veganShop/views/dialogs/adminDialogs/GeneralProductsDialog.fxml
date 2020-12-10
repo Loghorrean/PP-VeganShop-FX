@@ -2,8 +2,21 @@
 
 <?import javafx.scene.control.DialogPane?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.GeneralProductsController">
-
+    <content>
+        <GridPane>
+            <Label text="Категория продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prodCat" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Название продукта" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prod" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Количество продукта" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodAmount" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
 </DialogPane>

@@ -27,6 +27,7 @@ public class ProductsManager extends BaseManager<Product> {
                         .withName(set.getString("product_name"))
                         .withDescription(set.getString("product_description"))
                         .withAmount(set.getFloat("product_amount"))
+                        .withUnits(set.getString("units"))
                         .withPrice(set.getInt("product_price"))
                         .withCalories(set.getInt("number_of_calories"))
                         .withAllergic(set.getBoolean("is_allergic"))
@@ -51,6 +52,7 @@ public class ProductsManager extends BaseManager<Product> {
                         .withName(set.getString("product_name"))
                         .withDescription(set.getString("product_description"))
                         .withAmount(set.getFloat("product_amount"))
+                        .withUnits(set.getString("units"))
                         .withPrice(set.getInt("product_price"))
                         .withCalories(set.getInt("number_of_calories"))
                         .withAllergic(set.getBoolean("is_allergic"))
@@ -66,7 +68,7 @@ public class ProductsManager extends BaseManager<Product> {
         try (Connection c = database.getConnection()) {
             System.out.println(product);
             String sql = "INSERT INTO PRODUCTS (product_name, product_description, product_amount, product_price, " +
-                    "number_of_calories, is_allergic, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    "number_of_calories, is_allergic, category_id, units) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, product.getName());
             s.setString(2, product.getDescription());
@@ -75,6 +77,7 @@ public class ProductsManager extends BaseManager<Product> {
             s.setInt(5, product.getCalories());
             s.setBoolean(6, product.isAllergic());
             s.setInt(7, product.getCategory().getId());
+            s.setString(8, product.getUnits());
             s.executeUpdate();
             ResultSet set = s.getGeneratedKeys();
             if (set.next()) {
@@ -89,7 +92,7 @@ public class ProductsManager extends BaseManager<Product> {
     public void update(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "UPDATE products SET product_name = ?, product_description = ?, product_amount = ?, " +
-                    "product_price = ?, number_of_calories = ?, is_allergic = ?, category_id = ? WHERE product_id = ?";
+                    "product_price = ?, number_of_calories = ?, is_allergic = ?, category_id = ?, units = ? WHERE product_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setString(1, product.getName());
             s.setString(2, product.getDescription());
@@ -98,7 +101,8 @@ public class ProductsManager extends BaseManager<Product> {
             s.setInt(5, product.getCalories());
             s.setBoolean(6, product.isAllergic());
             s.setInt(7, product.getCategory().getId());
-            s.setInt(8, product.getId());
+            s.setString(8, product.getUnits());
+            s.setInt(9, product.getId());
             if (s.executeUpdate() == 1) {
                 return;
             }

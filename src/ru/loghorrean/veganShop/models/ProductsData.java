@@ -50,12 +50,7 @@ public class ProductsData {
     }
 
     public boolean checkIfProductExists(String name) {
-        for (Product product: products) {
-            if (product.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+        return getProductByName(name) != null;
     }
 
     public Product getProductByName(String name) {

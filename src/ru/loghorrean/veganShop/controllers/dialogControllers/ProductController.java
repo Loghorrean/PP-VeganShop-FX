@@ -16,6 +16,8 @@ import ru.loghorrean.veganShop.util.validators.Validator;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 public class ProductController extends DialogController implements IFill, IInit {
     @FXML
@@ -42,7 +44,12 @@ public class ProductController extends DialogController implements IFill, IInit 
     @FXML
     private RadioButton allergicFalse;
 
+    @FXML
+    private ComboBox<String> prodUnit;
+
     private Product product;
+
+    private List<String> units;
 
     private boolean isAllergic = false;
 
@@ -50,9 +57,12 @@ public class ProductController extends DialogController implements IFill, IInit 
 
     @Override
     public void initialize() {
+        units = Arrays.asList("Кг", "Л", "Шт");
         data = ProductsData.getInstance();
         prodCat.setItems(FXCollections.observableArrayList(CategoriesData.getInstance().getCategories()));
         prodCat.getSelectionModel().selectFirst();
+        prodUnit.setItems(FXCollections.observableArrayList(units));
+        prodUnit.getSelectionModel().selectFirst();
     }
 
     @Override
@@ -73,6 +83,11 @@ public class ProductController extends DialogController implements IFill, IInit 
             allergicTrue.setSelected(true);
         } else {
             allergicFalse.setSelected(true);
+        }
+        for (String unit: units) {
+            if (product.getUnits().equals(unit)) {
+                prodUnit.getSelectionModel().select(unit);
+            }
         }
     }
 
@@ -102,6 +117,10 @@ public class ProductController extends DialogController implements IFill, IInit 
             setMistake("Количество может быть только числом");
             return false;
         }
+        if (Integer.parseInt(prodPrice.getText()) < 1 && Float.parseFloat(prodAmount.getText()) < 1) {
+            setMistake("Цена и количество не могут быть меньше нуля");
+            return false;
+        }
         return true;
     }
 
@@ -116,6 +135,7 @@ public class ProductController extends DialogController implements IFill, IInit 
                     .withCalories(Integer.parseInt(prodCal.getText()))
                     .withAllergic(isAllergic)
                     .withCategory(prodCat.getValue())
+                            .withUnits(prodUnit.getValue())
                     .build();
             data.addProductToModel(product);
         } catch (SQLException e) {
@@ -132,6 +152,7 @@ public class ProductController extends DialogController implements IFill, IInit 
             product.setCalories(Integer.parseInt(prodCal.getText()));
             product.setAllergic(isAllergic);
             product.setCategory(prodCat.getValue());
+            product.setUnits(prodUnit.getValue());
             data.updateProductInModel(product);
         } catch (SQLException e) {
             System.out.println("ERROR WHILE UPDATING PRODUCT");

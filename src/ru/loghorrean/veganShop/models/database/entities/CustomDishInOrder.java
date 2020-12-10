@@ -3,9 +3,9 @@ package ru.loghorrean.veganShop.models.database.entities;
 public class CustomDishInOrder extends DatabaseEntity {
     private CustomDish dish;
     private Order order;
-    private int amount;
+    private float amount;
 
-    public CustomDishInOrder(int id, CustomDish dish, Order order, int amount) {
+    public CustomDishInOrder(int id, CustomDish dish, Order order, float amount) {
         super(id);
         this.dish = dish;
         dish.addOrder(order);
@@ -14,7 +14,7 @@ public class CustomDishInOrder extends DatabaseEntity {
         this.amount = amount;
     }
 
-    public CustomDishInOrder(CustomDish dish, Order order, int amount) {
+    public CustomDishInOrder(CustomDish dish, Order order, float amount) {
         this(-1, dish, order, amount);
     }
 
@@ -38,11 +38,11 @@ public class CustomDishInOrder extends DatabaseEntity {
         this.order.addCustomDish(dish);
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

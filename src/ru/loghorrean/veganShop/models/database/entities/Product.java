@@ -7,6 +7,7 @@ public class Product extends DatabaseEntity {
     private String name;
     private String description;
     private float amount;
+    private String units;
     private int price;
     private int calories;
     private boolean isAllergic;
@@ -42,6 +43,14 @@ public class Product extends DatabaseEntity {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 
     public int getPrice() {
@@ -133,6 +142,11 @@ public class Product extends DatabaseEntity {
             return this;
         }
 
+        public ProductBuilder withUnits(String units) {
+            product.units = units;
+            return this;
+        }
+
         public ProductBuilder withPrice(int price) {
             product.price = price;
             return this;
@@ -162,14 +176,6 @@ public class Product extends DatabaseEntity {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", amount=" + amount +
-                ", price=" + price +
-                ", calories=" + calories +
-                ", isAllergic=" + isAllergic +
-                ", category=" + category +
-                '}';
+        return name;
     }
 }

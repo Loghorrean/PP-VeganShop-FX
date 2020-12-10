@@ -16,13 +16,11 @@ public class User extends DatabaseEntity {
     private String street;
     private int house;
     private int flat;
-    private final Set<Review> reviewsOfUser;
     private final Set<Order> ordersOfUser;
     private final Set<CustomDish> customDishesByUser;
 
     private User(int id) {
         super(id);
-        reviewsOfUser = new HashSet<>();
         ordersOfUser = new HashSet<>();
         customDishesByUser = new HashSet<>();
     }
@@ -125,18 +123,6 @@ public class User extends DatabaseEntity {
 
     public void setFlat(int flat) {
         this.flat = flat;
-    }
-
-    public void addReview(Review review) {
-        reviewsOfUser.add(review);
-    }
-
-    public void removeReview(Review review) {
-        reviewsOfUser.remove(review);
-    }
-
-    public Set<Review> getReviewsOfUser() {
-        return reviewsOfUser;
     }
 
     public void addOrder(Order order) {
