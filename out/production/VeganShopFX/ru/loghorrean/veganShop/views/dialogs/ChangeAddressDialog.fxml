@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialogControllers.ChangeAddressController">
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.ChangeAddressController">
     <content>
         <GridPane alignment="CENTER" vgap="10" hgap="10">
             <Label GridPane.rowIndex="0" GridPane.columnIndex="0"

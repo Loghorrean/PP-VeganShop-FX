@@ -8,14 +8,13 @@
 
 <BorderPane fx:id="mainBorderPane" prefHeight="500.0" prefWidth="900.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminCategoriesController">
+            fx:controller="ru.loghorrean.veganShop.controllers.admin.AdminCategoriesController">
    <left>
       <ListView fx:id="mainListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <VBox fx:id="vboxInfo">
          <TextArea fx:id="catInfo" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         <Button fx:id="productButton" visible="false"/>
          <Button fx:id="goToLinksWindow" text="ТЕКСТ" onAction="#goToLinksWindow"/>
       </VBox>
    </center>

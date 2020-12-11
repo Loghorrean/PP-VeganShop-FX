@@ -32,18 +32,15 @@ public class AdminDishesController extends AdminControllerWithGrid {
     private void fillGridRow(int row, GeneralDish dish) {
         mainGridPane.add(new Label(Integer.toString(dish.getId())), 0, row);
         mainGridPane.add(new Label(dish.getName()), 1, row);
-        Button moreButton = new Button("Подробнее");
-        moreButton.setOnAction(event -> openMorePage(event, dish));
-        mainGridPane.add(moreButton, 2, row);
         Button updateButton = new Button("Редактировать");
         updateButton.setOnAction(event -> openUpdateDialog(event, dish));
-        mainGridPane.add(updateButton, 3, row);
+        mainGridPane.add(updateButton, 2, row);
         Button productsButton = new Button("Посмотреть состав");
         productsButton.setOnAction(event -> goToProductsWindow(event, dish));
-        mainGridPane.add(productsButton, 4, row);
+        mainGridPane.add(productsButton, 3, row);
         Button deleteButton = new Button("Удалить");
         deleteButton.setOnAction(event -> openDeleteDialog(event, dish));
-        mainGridPane.add(deleteButton, 5, row);
+        mainGridPane.add(deleteButton, 4, row);
     }
 
     @Override
@@ -60,15 +57,6 @@ public class AdminDishesController extends AdminControllerWithGrid {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             setSuccess("Блюдо успешно добавлено");
             setGrid();
-        }
-    }
-
-
-    private void openMorePage(ActionEvent event, GeneralDish dish) {
-        try {
-            redirectWithSmth(event, "mainScreens/DishComposition", dish);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

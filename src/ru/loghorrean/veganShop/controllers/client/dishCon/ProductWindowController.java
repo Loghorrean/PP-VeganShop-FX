@@ -5,14 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import ru.loghorrean.veganShop.controllers.ClientController;
 import ru.loghorrean.veganShop.controllers.IInit;
-import ru.loghorrean.veganShop.controllers.UserController;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.Product;
 
 import java.io.IOException;
 
-public class ProductWindowController extends UserController implements IInit {
+public class ProductWindowController extends ClientController implements IInit {
     @FXML
     private AnchorPane mainAnchorPane;
 

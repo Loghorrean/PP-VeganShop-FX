@@ -6,16 +6,15 @@
 <?import javafx.scene.control.Label?>
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.adminControllers.AdminDishesController"
+            fx:controller="ru.loghorrean.veganShop.controllers.admin.AdminDishesController"
             prefHeight="500.0" prefWidth="900.0">
     <center>
         <GridPane fx:id="mainGridPane" hgap="10" vgap="10">
             <Label text="Номер блюда" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <Label text="Название блюда" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Подробнее" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-            <Label text="Изменить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <Label text="Изменить состав" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-            <Label text="Удалить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+            <Label text="Изменить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label text="Изменить состав" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="Удалить блюдо" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
         </GridPane>
     </center>
 </BorderPane>

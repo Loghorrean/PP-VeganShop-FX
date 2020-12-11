@@ -6,11 +6,9 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import ru.loghorrean.veganShop.CurrentUser;
+import ru.loghorrean.veganShop.controllers.ClientController;
 import ru.loghorrean.veganShop.controllers.IInit;
-import ru.loghorrean.veganShop.controllers.UserController;
 import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
@@ -18,7 +16,7 @@ import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import java.io.IOException;
 import java.util.Set;
 
-public class ProductsInCategoryController extends UserController implements IInit {
+public class ProductsInCategoryController extends ClientController implements IInit {
     @FXML
     private AnchorPane mainAnchorPane;
 
@@ -66,11 +64,7 @@ public class ProductsInCategoryController extends UserController implements IIni
     @FXML
     public void goBack(ActionEvent event) {
         try {
-            if (CurrentUser.getInstance().getUser().getRole().getTitle().equals("Admin")) {
-                redirect(event, "admin/AdminCategories");
-            } else {
-                redirect(event, "client/Menu");
-            }
+            redirect(event, "client/Menu");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -23,9 +23,6 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
     private TextArea catInfo;
 
     @FXML
-    private Button productButton;
-
-    @FXML
     private ContextMenu catContextMenu;
 
     @FXML
@@ -57,9 +54,6 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
             if (newValue != null) {
                 ProductCategory category = mainListView.getSelectionModel().getSelectedItem();
                 catInfo.setText(category.getDescription());
-                productButton.setText("Продукты категории " + category.getName());
-                productButton.setOnAction(event -> openProductDialog(event, category));
-                productButton.setVisible(true);
             }
         });
 
@@ -94,15 +88,6 @@ public class AdminCategoriesController extends AdminControllerWithList<ProductCa
                 return cell;
             }
         });
-    }
-
-    private void openProductDialog(ActionEvent event, ProductCategory category) {
-        //TODO: make product dialog to view products in the category
-        try {
-            redirectWithSmth(event, "mainScreens/ProductsInCategory", category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
