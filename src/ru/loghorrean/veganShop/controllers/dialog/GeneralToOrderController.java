@@ -49,6 +49,9 @@ public class GeneralToOrderController extends DialogController implements IFill,
     @Override
     public void fillDialog() {
         dishName.setText(dish.getName());
+        if (Cart.getInstance().getGeneralFromCart().containsKey(dish)) {
+            dishAmount.setText(Integer.toString(Cart.getInstance().getGeneralFromCart().get(dish)));
+        }
     }
 
     @Override
@@ -59,5 +62,10 @@ public class GeneralToOrderController extends DialogController implements IFill,
     public void addGeneralToCart() {
         cart.addGeneralToCart(dish, Integer.parseInt(dishAmount.getText()));
         setSuccess("Блюдо добавлено в корзину");
+    }
+
+    public void updateGeneralInCart() {
+        cart.updateGeneralInCart(dish, Integer.parseInt(dishAmount.getText()));
+        setSuccess("Блюдо в корзине обновлено");
     }
 }

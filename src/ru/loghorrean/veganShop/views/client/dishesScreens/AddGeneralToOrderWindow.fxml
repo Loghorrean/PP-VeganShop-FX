@@ -7,8 +7,6 @@
             fx:controller="ru.loghorrean.veganShop.controllers.client.dishCon.AddGeneralToOrderController"
             prefHeight="500.0" prefWidth="900.0">
     <center>
-        <GridPane fx:id="dishGrid" hgap="10" vgap="10">
-
-        </GridPane>
+        <GridPane fx:id="dishGrid" hgap="10" vgap="10"/>
     </center>
 </BorderPane>

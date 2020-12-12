@@ -23,7 +23,8 @@ public class GeneralDishesManager extends BaseManager<GeneralDish> {
                         set.getInt("dish_id"),
                         set.getString("dish_name"),
                         set.getString("dish_description"),
-                        set.getInt("time_to_cook")
+                        set.getInt("time_to_cook"),
+                        set.getInt("production_cost")
                 ));
             }
             return generalDishes;
@@ -42,7 +43,8 @@ public class GeneralDishesManager extends BaseManager<GeneralDish> {
                         set.getInt("dish_id"),
                         set.getString("dish_name"),
                         set.getString("dish_description"),
-                        set.getInt("time_to_cook")
+                        set.getInt("time_to_cook"),
+                        set.getInt("production_cost")
                 );
             }
             return null;
@@ -52,11 +54,12 @@ public class GeneralDishesManager extends BaseManager<GeneralDish> {
     @Override
     public void insert(GeneralDish dish) throws SQLException {
         try (Connection c = database.getConnection()) {
-            String sql = "INSERT INTO general_dishes (dish_name, dish_description, time_to_cook) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO general_dishes (dish_name, dish_description, time_to_cook, production_cost) VALUES (?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, dish.getName());
             s.setString(2, dish.getDescription());
             s.setInt(3, dish.getTimeToCook());
+            s.setInt(4, dish.getProdCosts());
             s.executeUpdate();
             ResultSet set = s.getGeneratedKeys();
             if (set.next()) {
@@ -70,12 +73,13 @@ public class GeneralDishesManager extends BaseManager<GeneralDish> {
     @Override
     public void update(GeneralDish dish) throws SQLException {
         try (Connection c = database.getConnection()) {
-            String sql = "UPDATE general_dishes SET dish_name = ?, dish_description = ?, time_to_cook = ? WHERE dish_id= ?";
+            String sql = "UPDATE general_dishes SET dish_name = ?, dish_description = ?, time_to_cook = ?, production_cost = ? WHERE dish_id= ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setString(1, dish.getName());
             s.setString(2, dish.getDescription());
             s.setInt(3, dish.getTimeToCook());
-            s.setInt(4, dish.getId());
+            s.setInt(4, dish.getProdCosts());
+            s.setInt(5, dish.getId());
             if (s.executeUpdate() == 1) {
                 return;
             }

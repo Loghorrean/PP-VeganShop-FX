@@ -7,20 +7,22 @@ public class GeneralDish extends DatabaseEntity {
     private String name;
     private String description;
     private int timeToCook;
+    private int prodCosts;
     private final Set<Product> productsInDish;
     private final Set<Order> ordersWithDish;
 
-    public GeneralDish(int id, String name, String description, int timeToCook) {
+    public GeneralDish(int id, String name, String description, int timeToCook, int prodCosts) {
         super(id);
         this.name = name;
         this.description = description;
         this.timeToCook = timeToCook;
+        this.prodCosts = prodCosts;
         productsInDish = new HashSet<>();
         ordersWithDish = new HashSet<>();
     }
 
-    public GeneralDish(String name, String description, int timeToCook) {
-        this(-1, name, description, timeToCook);
+    public GeneralDish(String name, String description, int timeToCook, int prodCosts) {
+        this(-1, name, description, timeToCook, prodCosts);
     }
 
     public String getName() {
@@ -45,6 +47,14 @@ public class GeneralDish extends DatabaseEntity {
 
     public void setTimeToCook(int timeToCook) {
         this.timeToCook = timeToCook;
+    }
+
+    public int getProdCosts() {
+        return prodCosts;
+    }
+
+    public void setProdCosts(int prodCosts) {
+        this.prodCosts = prodCosts;
     }
 
     public void addProduct(Product product) {

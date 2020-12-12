@@ -24,6 +24,8 @@
             <Button fx:id="decrement" text="- 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <Button fx:id="increment" text="+ 1 минута" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
             <Label fx:id="currentMins" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label text="Изначальная стоимость" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodCosts" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />

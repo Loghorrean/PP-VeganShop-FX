@@ -33,6 +33,9 @@ public class GeneralDishController extends DialogController implements IFill, II
     @FXML
     private Label currentMins;
 
+    @FXML
+    private TextField prodCosts;
+
     private GeneralDish currentDish;
 
     @Override
@@ -72,6 +75,7 @@ public class GeneralDishController extends DialogController implements IFill, II
         dishName.setText(currentDish.getName());
         dishDesc.setText(currentDish.getDescription());
         timeToCook.valueProperty().setValue(currentDish.getTimeToCook());
+        prodCosts.setText(Integer.toString(currentDish.getProdCosts()));
     }
 
     @Override
@@ -108,7 +112,8 @@ public class GeneralDishController extends DialogController implements IFill, II
             GeneralDish dish = new GeneralDish(
                     dishName.getText(),
                     dishDesc.getText(),
-                    timeToCook.valueProperty().intValue()
+                    timeToCook.valueProperty().intValue(),
+                    Integer.parseInt(prodCosts.getText())
             );
             model.addDish(dish);
         } catch (SQLException e) {
@@ -121,6 +126,7 @@ public class GeneralDishController extends DialogController implements IFill, II
             currentDish.setName(dishName.getText());
             currentDish.setDescription(dishDesc.getText());
             currentDish.setTimeToCook(timeToCook.valueProperty().intValue());
+            currentDish.setProdCosts(Integer.parseInt(prodCosts.getText()));
             model.updateDish(currentDish);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
