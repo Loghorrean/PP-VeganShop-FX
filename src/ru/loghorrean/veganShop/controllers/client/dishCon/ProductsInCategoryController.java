@@ -29,11 +29,9 @@ public class ProductsInCategoryController extends ClientController implements II
     @FXML
     private Button backButton;
 
-    private ProductCategory category;
-
     @Override
     public void initData(DatabaseEntity object) {
-        category = (ProductCategory) object;
+        ProductCategory category = (ProductCategory) object;
         catName.setText(category.getName());
         Set<Product> products = category.getProductsOfCategory();
         int i = 0;

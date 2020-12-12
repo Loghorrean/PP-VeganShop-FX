@@ -66,4 +66,8 @@ public class Cart {
     public Map<CustomDish, Integer> getCustomFromCart() {
         return customDishesInCart;
     }
+
+    public int getNumberOfItems() {
+        return generalDishesInCart.size() + customDishesInCart.size();
+    }
 }

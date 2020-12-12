@@ -93,7 +93,7 @@ public class ProfileController extends UserController {
     public void backToMenu(ActionEvent event) throws IOException {
         String role = CurrentUser.getInstance().getUser().getRole().getTitle();
         if (role.equals("Customer")) {
-            redirect(event, "mainScreens/Menu");
+            redirect(event, "client/orderScreens/Menu");
         }
         else if (role.equals("Admin")) {
             redirect(event, "admin/AdminMenu");

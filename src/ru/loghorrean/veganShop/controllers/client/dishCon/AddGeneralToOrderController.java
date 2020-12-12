@@ -40,10 +40,11 @@ public class AddGeneralToOrderController extends ClientController {
     private void setGridRow(GeneralDish dish, int row) {
         dishGrid.add(new Label(dish.getName()), 0, row);
         Button infoButton = new Button("Информация о блюде");
-        infoButton.setOnAction(event -> {
-            openInfoDialog(event, dish);
-        });
+        infoButton.setOnAction(event -> openInfoDialog(event, dish));
         dishGrid.add(infoButton, 1, row);
+        Button addButton = new Button("Добавить блюдо");
+        addButton.setOnAction(event -> openAddingDialog(dish));
+        dishGrid.add(addButton, 2, row);
     }
 
     private void openInfoDialog(ActionEvent event, GeneralDish dish) {
@@ -52,5 +53,19 @@ public class AddGeneralToOrderController extends ClientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openAddingDialog(GeneralDish dish) {
+        Dialog<ButtonType> dialog =
+                new DialogCreator.DialogBuilder("GeneralToOrderDialog")
+                                .createDialog("Добавьте блюдо", mainBorderPane)
+                                .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                                .addController()
+                                .passObject(dish)
+                                .fillDialog()
+                                .addValidationToButton(ButtonType.OK)
+                                .onSuccess("addGeneralToCart")
+                                .build();
+        dialog.showAndWait();
     }
 }

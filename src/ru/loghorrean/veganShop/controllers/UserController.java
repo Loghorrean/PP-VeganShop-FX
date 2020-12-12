@@ -61,4 +61,16 @@ abstract public class UserController extends BaseController {
         });
         return profileButton;
     }
+
+//    protected Button getBackButton(String name, String path) {
+//        Button backButton = new Button(name);
+//        backButton.setOnAction(event -> {
+//            try {
+//                redirect(event, path);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        return backButton;
+//    }
 }
