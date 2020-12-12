@@ -24,15 +24,15 @@ public class CurrentCustomDish {
         composition.clear();
     }
 
-    public void addToComposition() {
+    public void addToComposition(ProductInCustomDish link) {
 
     }
 
-    public void deleteFromComposition() {
+    public void deleteFromComposition(ProductInCustomDish link) {
 
     }
 
-    public void updateByProduct() {
+    public void updateByProduct(ProductInCustomDish link) {
 
     }
 
