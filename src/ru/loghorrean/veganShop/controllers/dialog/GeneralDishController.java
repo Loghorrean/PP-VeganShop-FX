@@ -79,7 +79,7 @@ public class GeneralDishController extends DialogController implements IFill, II
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         currentDish = (GeneralDish) object;
     }
 

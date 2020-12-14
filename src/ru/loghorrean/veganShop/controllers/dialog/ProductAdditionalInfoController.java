@@ -43,7 +43,7 @@ public class ProductAdditionalInfoController extends DialogController implements
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         product = (Product) object;
     }
 

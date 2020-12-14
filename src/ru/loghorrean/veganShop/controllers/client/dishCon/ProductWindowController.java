@@ -30,7 +30,7 @@ public class ProductWindowController extends ClientController implements IInit {
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         product = (Product) object;
         System.out.println(product.getName());
     }

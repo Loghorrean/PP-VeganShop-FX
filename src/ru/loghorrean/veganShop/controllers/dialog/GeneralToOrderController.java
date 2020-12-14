@@ -55,7 +55,7 @@ public class GeneralToOrderController extends DialogController implements IFill,
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         dish = (GeneralDish) object;
     }
 

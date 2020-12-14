@@ -52,7 +52,7 @@ public class DishCompositionController extends ClientController implements IInit
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         dish = (GeneralDish) object;
         dishName.setText(dish.getName());
         dishDesc.setText(dish.getDescription());

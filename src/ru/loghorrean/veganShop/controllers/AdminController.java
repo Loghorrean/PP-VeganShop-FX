@@ -1,7 +1,6 @@
 package ru.loghorrean.veganShop.controllers;
 
 import javafx.event.ActionEvent;
-import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 
 import java.io.IOException;
 
@@ -12,7 +11,7 @@ abstract public class AdminController extends UserController {
     }
 
     @Override
-    public void redirectWithSmth(ActionEvent event, String scene, DatabaseEntity object) throws IOException {
+    public void redirectWithSmth(ActionEvent event, String scene, Object object) throws IOException {
         super.redirectWithSmth(event, "admin/" + scene, object);
     }
 }

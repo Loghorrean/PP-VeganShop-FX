@@ -12,7 +12,7 @@ abstract public class ClientController extends UserController {
     }
 
     @Override
-    public void redirectWithSmth(ActionEvent event, String scene, DatabaseEntity object) throws IOException {
+    public void redirectWithSmth(ActionEvent event, String scene, Object object) throws IOException {
         super.redirectWithSmth(event, "client/" + scene, object);
     }
 }

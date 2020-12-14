@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import ru.loghorrean.veganShop.CurrentCustomDish;
 import ru.loghorrean.veganShop.controllers.ClientController;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class AddCustomToOrderController extends ClientController {
     @FXML
     protected void createNewCustom(ActionEvent event) {
         try {
-            redirect(event, "");
+            redirectWithSmth(event, "dishesScreens/NewCustomDish", new CurrentCustomDish());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +39,7 @@ public class AddCustomToOrderController extends ClientController {
     @FXML
     protected void openListOfCustom(ActionEvent event) {
         try {
-            redirect(event, "");
+            redirect(event, "dishesScreens/CustomDishList");
         } catch (IOException e) {
             e.printStackTrace();
         }

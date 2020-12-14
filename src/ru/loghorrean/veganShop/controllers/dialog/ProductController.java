@@ -65,7 +65,7 @@ public class ProductController extends DialogController implements IFill, IInit 
     }
 
     @Override
-    public void initData(DatabaseEntity product) {
+    public void initData(Object product) {
         this.product = (Product) product;
     }
 

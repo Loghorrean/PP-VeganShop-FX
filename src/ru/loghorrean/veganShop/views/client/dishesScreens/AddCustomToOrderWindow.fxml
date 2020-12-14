@@ -8,7 +8,9 @@
             fx:controller="ru.loghorrean.veganShop.controllers.client.dishCon.AddCustomToOrderController"
             prefHeight="500.0" prefWidth="900.0">
     <center>
-        <Button onAction="#createNewCustom" text="Создайте новое блюдо"/>
-        <Button onAction="#openListOfCustom" text="Список ваших блюд"/>
+        <GridPane>
+            <Button onAction="#createNewCustom" text="Создайте новое блюдо" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Button onAction="#openListOfCustom" text="Список ваших блюд" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
     </center>
 </BorderPane>

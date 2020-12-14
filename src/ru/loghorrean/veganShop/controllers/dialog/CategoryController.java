@@ -25,7 +25,7 @@ public class CategoryController extends DialogController implements IFill, IInit
     private CategoriesData data;
 
     @Override
-    public void initData(DatabaseEntity entity) {
+    public void initData(Object entity) {
         category = (ProductCategory) entity;
     }
 

@@ -35,7 +35,7 @@ public class AdminProductsInGeneralDishesController extends AdminControllerWithG
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         dish = (GeneralDish) object;
         setGrid();
     }

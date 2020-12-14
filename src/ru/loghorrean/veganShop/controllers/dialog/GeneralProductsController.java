@@ -46,7 +46,7 @@ public class GeneralProductsController extends DialogController implements IInit
     }
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         if (object instanceof GeneralDish) {
             dish = (GeneralDish) object;
         } else if (object instanceof ProductInGeneralDish) {

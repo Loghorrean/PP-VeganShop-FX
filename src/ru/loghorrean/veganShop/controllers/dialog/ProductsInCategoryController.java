@@ -15,10 +15,9 @@ public class ProductsInCategoryController extends DialogController implements II
     private Label testLabel;
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         ProductCategory chosenCategory = (ProductCategory) object;
         Set<Product> productsToShow = chosenCategory.getProductsOfCategory();
-        System.out.println(productsToShow);
         for (Product product: productsToShow) {
             testLabel.setText(testLabel.getText() + product.getName() + "\r\n");
         }

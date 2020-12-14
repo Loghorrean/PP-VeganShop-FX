@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.control.Button?>
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.views.client.dishesScreens.AddCustomToOrderWindow"
+            fx:controller="ru.loghorrean.veganShop.controllers.client.dishCon.AddCustomToOrderController"
             prefHeight="500.0" prefWidth="900.0">
-
-</AnchorPane>
+    <center>
+        <GridPane>
+            <Button onAction="#createNewCustom" text="Создайте новое блюдо" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Button onAction="#openListOfCustom" text="Список ваших блюд" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+</BorderPane>

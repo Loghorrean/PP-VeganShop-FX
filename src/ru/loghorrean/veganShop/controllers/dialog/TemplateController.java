@@ -57,7 +57,7 @@ public class TemplateController extends DialogController implements IFill, IInit
     }
 
     @Override
-    public void initData(DatabaseEntity entity) {
+    public void initData(Object entity) {
         template = (DishTemplate) entity;
     }
 

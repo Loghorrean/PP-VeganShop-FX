@@ -30,7 +30,7 @@ public class ProductsInCategoryController extends ClientController implements II
     private Button backButton;
 
     @Override
-    public void initData(DatabaseEntity object) {
+    public void initData(Object object) {
         ProductCategory category = (ProductCategory) object;
         catName.setText(category.getName());
         Set<Product> products = category.getProductsOfCategory();

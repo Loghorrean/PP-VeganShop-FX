@@ -35,7 +35,7 @@ abstract public class BaseController {
         window.show();
     }
 
-    public void redirectWithSmth(ActionEvent event, String scene, DatabaseEntity object) throws IOException {
+    public void redirectWithSmth(ActionEvent event, String scene, Object object) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/ru/loghorrean/veganShop/views/" + scene + "Window.fxml"));
         Parent tableViewParent = loader.load();

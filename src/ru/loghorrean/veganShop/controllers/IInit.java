@@ -4,5 +4,5 @@ import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 
 @FunctionalInterface
 public interface IInit {
-    void initData(DatabaseEntity object);
+    void initData(Object object);
 }
