@@ -1,11 +1,9 @@
 package ru.loghorrean.veganShop.controllers.client.orderCon;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -16,6 +14,7 @@ import ru.loghorrean.veganShop.models.database.entities.GeneralDish;
 import ru.loghorrean.veganShop.util.DialogCreator;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class CartController extends ClientController {
@@ -68,7 +67,10 @@ public class CartController extends ClientController {
 
     private void fillGeneralRow(GeneralDish dish, int numberOfDishes, int row) {
         generalGrid.add(new Label(dish.getName()), 0, row);
-        generalGrid.add(new Label(Integer.toString(numberOfDishes)), 1, row);
+        generalGrid.add(new Label("в количестве " + numberOfDishes), 1, row);
+        Button deleteButton = new Button("Удалить из корзины");
+        deleteButton.setOnAction(event -> openDeleteGeneralDishDialog(event, dish));
+        generalGrid.add(deleteButton, 2, row);
         start++;
     }
 
@@ -78,8 +80,45 @@ public class CartController extends ClientController {
 
     private void fillCustomRow(CustomDish dish, int numberOfDishes, int row) {
         customGrid.add(new Label(dish.getName()), 0, row);
-        customGrid.add(new Label(Integer.toString(numberOfDishes)), 1, row);
+        customGrid.add(new Label("в количестве " + numberOfDishes), 1, row);
+        Button deleteButton = new Button("Удалить из корзины");
+        deleteButton.setOnAction(event -> openDeleteCustomDishDialog(event, dish));
+        customGrid.add(deleteButton, 2, row);
         start++;
+    }
+
+    private void openDeleteGeneralDishDialog(ActionEvent event, GeneralDish dish) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Удалить блюдо из корзины");
+        alert.setHeaderText("Удалить " + dish.getName());
+        alert.setContentText("Вы уверены? Нажмите OK для подветрждения, или CANCEL для отмены");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            cart.deleteGeneralFromCart(dish);
+            setSuccess("Блюдо удалено из корзины");
+            try {
+                redirect(event, "orderScreens/Cart");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void openDeleteCustomDishDialog(ActionEvent event, CustomDish dish) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Удалить блюдо из корзины");
+        alert.setHeaderText("Удалить " + dish.getName());
+        alert.setContentText("Вы уверены? Нажмите OK для подветрждения, или CANCEL для отмены");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            cart.deleteCustomFromCart(dish);
+            setSuccess("Кастомное блюдо удалено из корзины");
+            try {
+                redirect(event, "orderScreens/CartWindow");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
