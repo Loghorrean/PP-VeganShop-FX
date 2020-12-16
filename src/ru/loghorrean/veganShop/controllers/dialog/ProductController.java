@@ -9,7 +9,6 @@ import ru.loghorrean.veganShop.controllers.IFill;
 import ru.loghorrean.veganShop.controllers.IInit;
 import ru.loghorrean.veganShop.models.CategoriesData;
 import ru.loghorrean.veganShop.models.ProductsData;
-import ru.loghorrean.veganShop.models.database.entities.DatabaseEntity;
 import ru.loghorrean.veganShop.models.database.entities.Product;
 import ru.loghorrean.veganShop.models.database.entities.ProductCategory;
 import ru.loghorrean.veganShop.util.validators.Validator;
@@ -24,9 +23,6 @@ public class ProductController extends DialogController implements IFill, IInit 
 
     @FXML
     private TextArea prodDesc;
-
-    @FXML
-    private TextField prodAmount;
 
     @FXML
     private TextField prodPrice;
@@ -73,7 +69,6 @@ public class ProductController extends DialogController implements IFill, IInit 
     public void fillDialog() {
         prodName.setText(product.getName());
         prodDesc.setText(product.getDescription());
-        prodAmount.setText(Float.toString(product.getAmount()));
         prodPrice.setText(Integer.toString(product.getPrice()));
         prodCal.setText(Integer.toString(product.getCalories()));
         prodCat.setValue(product.getCategory());
@@ -92,7 +87,7 @@ public class ProductController extends DialogController implements IFill, IInit 
 
     @Override
     public boolean checkFields() {
-        if (!Validator.validateAllFields(prodName.getText(), prodDesc.getText(), prodAmount.getText(), prodPrice.getText(), prodCal.getText())) {
+        if (!Validator.validateAllFields(prodName.getText(), prodDesc.getText(), prodPrice.getText(), prodCal.getText())) {
             setMistake("Все поля должны быть заполнены");
             return false;
         }
@@ -112,11 +107,7 @@ public class ProductController extends DialogController implements IFill, IInit 
             setMistake("Калории могут быть только числом");
             return false;
         }
-        if (!Validator.checkForFloat(prodAmount.getText())) {
-            setMistake("Количество может быть только числом");
-            return false;
-        }
-        if (Integer.parseInt(prodPrice.getText()) < 1 && Float.parseFloat(prodAmount.getText()) < 1) {
+        if (Integer.parseInt(prodPrice.getText()) < 1) {
             setMistake("Цена и количество не могут быть меньше нуля");
             return false;
         }
@@ -129,7 +120,6 @@ public class ProductController extends DialogController implements IFill, IInit 
                     new Product.ProductBuilder()
                     .withName(prodName.getText())
                     .withDescription(prodDesc.getText())
-                    .withAmount(Float.parseFloat(prodAmount.getText()))
                     .withPrice(Integer.parseInt(prodPrice.getText()))
                     .withCalories(Integer.parseInt(prodCal.getText()))
                     .withAllergic(isAllergic)
@@ -146,7 +136,6 @@ public class ProductController extends DialogController implements IFill, IInit 
         try {
             product.setName(prodName.getText());
             product.setDescription(prodDesc.getText());
-            product.setAmount(Float.parseFloat(prodAmount.getText()));
             product.setPrice(Integer.parseInt(prodPrice.getText()));
             product.setCalories(Integer.parseInt(prodCal.getText()));
             product.setAllergic(isAllergic);

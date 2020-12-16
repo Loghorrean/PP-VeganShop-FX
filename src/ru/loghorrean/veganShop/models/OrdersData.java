@@ -32,6 +32,10 @@ public class OrdersData {
         orders = manager.getAll();
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void addOrderToModel(Order order) throws SQLException {
         manager.insert(order);
         orders.add(order);

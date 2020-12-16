@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.admin.AdminOrdersController"
+            prefHeight="500.0" prefWidth="900.0">
+    <center>
+        <GridPane fx:id="mainGridPane" vgap="10" hgap="10">
+            <Label text="Номер заказа" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label text="Стоимость заказа" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Заказ подтвержден?" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        </GridPane>
+    </center>
+</BorderPane>

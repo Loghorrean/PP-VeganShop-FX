@@ -11,6 +11,7 @@ public class AdminUsersController extends AdminControllerWithGrid {
 
     @Override
     public void initialize() {
-
+        mainBorderPane.setRight(getUserMenu());
+        mainBorderPane.setBottom(getBackButton());
     }
 }

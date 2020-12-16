@@ -12,10 +12,9 @@
         <GridPane fx:id="mainGridPane" hgap="10" vgap="10">
             <Label text="Id продукта" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <Label text="Название продукта" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Количество продукта на складе" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-            <Label text="Подробное описание" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <Label text="Изменить продукт" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-            <Label text="Удалить продукт" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+            <Label text="Подробное описание" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label text="Изменить продукт" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="Удалить продукт" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
         </GridPane>
     </center>
 </BorderPane>

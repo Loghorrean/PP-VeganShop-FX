@@ -32,16 +32,15 @@ public class AdminProductsController extends AdminControllerWithGrid {
     private void fillGridRow(int row, Product product) {
         mainGridPane.add(new Label(Integer.toString(product.getId())), 0, row);
         mainGridPane.add(new Label(product.getName()), 1, row);
-        mainGridPane.add(new Label(Float.toString(product.getAmount())), 2, row);
         Button detailsButton = new Button("Детали");
         detailsButton.setOnAction(event -> showDetails(product));
-        mainGridPane.add(detailsButton, 3, row);
+        mainGridPane.add(detailsButton, 2, row);
         Button deleteButton = new Button("Удалить");
         deleteButton.setOnAction(event -> openDeleteDialog(event, product));
-        mainGridPane.add(deleteButton, 4, row);
+        mainGridPane.add(deleteButton, 3, row);
         Button updateButton = new Button("Обновить информацию");
         updateButton.setOnAction(event -> openUpdateDialog(event, product));
-        mainGridPane.add(updateButton, 5, row);
+        mainGridPane.add(updateButton, 4, row);
     }
 
     @Override

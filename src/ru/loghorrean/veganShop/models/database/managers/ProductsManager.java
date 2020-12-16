@@ -26,7 +26,6 @@ public class ProductsManager extends BaseManager<Product> {
                         .withId(set.getInt("product_id"))
                         .withName(set.getString("product_name"))
                         .withDescription(set.getString("product_description"))
-                        .withAmount(set.getFloat("product_amount"))
                         .withUnits(set.getString("units"))
                         .withPrice(set.getInt("product_price"))
                         .withCalories(set.getInt("number_of_calories"))
@@ -51,7 +50,6 @@ public class ProductsManager extends BaseManager<Product> {
                         .withId(set.getInt("product_id"))
                         .withName(set.getString("product_name"))
                         .withDescription(set.getString("product_description"))
-                        .withAmount(set.getFloat("product_amount"))
                         .withUnits(set.getString("units"))
                         .withPrice(set.getInt("product_price"))
                         .withCalories(set.getInt("number_of_calories"))
@@ -67,17 +65,16 @@ public class ProductsManager extends BaseManager<Product> {
     public void insert(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
             System.out.println(product);
-            String sql = "INSERT INTO PRODUCTS (product_name, product_description, product_amount, product_price, " +
-                    "number_of_calories, is_allergic, category_id, units) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO PRODUCTS (product_name, product_description, product_price, " +
+                    "number_of_calories, is_allergic, category_id, units) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setString(1, product.getName());
             s.setString(2, product.getDescription());
-            s.setFloat(3, product.getAmount());
-            s.setInt(4, product.getPrice());
-            s.setInt(5, product.getCalories());
-            s.setBoolean(6, product.isAllergic());
-            s.setInt(7, product.getCategory().getId());
-            s.setString(8, product.getUnits());
+            s.setInt(3, product.getPrice());
+            s.setInt(4, product.getCalories());
+            s.setBoolean(5, product.isAllergic());
+            s.setInt(6, product.getCategory().getId());
+            s.setString(7, product.getUnits());
             s.executeUpdate();
             ResultSet set = s.getGeneratedKeys();
             if (set.next()) {
@@ -91,18 +88,17 @@ public class ProductsManager extends BaseManager<Product> {
     @Override
     public void update(Product product) throws SQLException {
         try (Connection c = database.getConnection()) {
-            String sql = "UPDATE products SET product_name = ?, product_description = ?, product_amount = ?, " +
+            String sql = "UPDATE products SET product_name = ?, product_description = ?, " +
                     "product_price = ?, number_of_calories = ?, is_allergic = ?, category_id = ?, units = ? WHERE product_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setString(1, product.getName());
             s.setString(2, product.getDescription());
-            s.setFloat(3, product.getAmount());
-            s.setInt(4, product.getPrice());
-            s.setInt(5, product.getCalories());
-            s.setBoolean(6, product.isAllergic());
-            s.setInt(7, product.getCategory().getId());
-            s.setString(8, product.getUnits());
-            s.setInt(9, product.getId());
+            s.setInt(3, product.getPrice());
+            s.setInt(4, product.getCalories());
+            s.setBoolean(5, product.isAllergic());
+            s.setInt(6, product.getCategory().getId());
+            s.setString(7, product.getUnits());
+            s.setInt(8, product.getId());
             if (s.executeUpdate() == 1) {
                 return;
             }

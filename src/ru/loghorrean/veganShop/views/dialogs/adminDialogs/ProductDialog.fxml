@@ -18,26 +18,24 @@
             <TextField fx:id="prodName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
             <Label text="Описание продукта" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <TextArea fx:id="prodDesc" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Label text="Кол-во на складе" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="prodAmount" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <Label text="Стоимость за единицу" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="prodPrice" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-            <Label text="Кол-во калорий" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="prodCal" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-            <Label text="Аллергично?" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Label text="Стоимость за единицу" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodPrice" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Кол-во калорий" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="prodCal" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Аллергично?" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
             <fx:define>
                 <ToggleGroup fx:id="allergyToggleGroup"/>
             </fx:define>
             <RadioButton fx:id="allergicTrue" onAction="#handleToggleYesAction"
-                         text="Да" GridPane.rowIndex="5" GridPane.columnIndex="1"
+                         text="Да" GridPane.rowIndex="4" GridPane.columnIndex="1"
                             toggleGroup="$allergyToggleGroup"/>
             <RadioButton fx:id="allergicFalse" onAction="#handleToggleNoAction"
-                         text="Нет" GridPane.rowIndex="6" GridPane.columnIndex="1" selected="true"
+                         text="Нет" GridPane.rowIndex="5" GridPane.columnIndex="1" selected="true"
                             toggleGroup="$allergyToggleGroup"/>
-            <Label text="Категория" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="prodCat" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-            <Label text="Единица измерения" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="prodUnit" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+            <Label text="Категория" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prodCat" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="Единица измерения" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="prodUnit" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
         </GridPane>
     </content>
 </DialogPane>

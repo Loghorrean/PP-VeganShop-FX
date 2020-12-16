@@ -51,7 +51,6 @@ public class ProductAdditionalInfoController extends DialogController implements
     public void fillDialog() {
         productName.setText(product.getName());
         productDesc.setText(product.getDescription());
-        productAmount.setText(Float.toString(product.getAmount()));
         productPrice.setText(Integer.toString(product.getPrice()));
         numOfCal.setText(Integer.toString(product.getCalories()));
         if (product.isAllergic()) {

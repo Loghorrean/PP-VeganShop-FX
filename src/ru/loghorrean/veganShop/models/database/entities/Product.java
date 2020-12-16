@@ -6,7 +6,6 @@ import java.util.Set;
 public class Product extends DatabaseEntity {
     private String name;
     private String description;
-    private float amount;
     private String units;
     private int price;
     private int calories;
@@ -35,14 +34,6 @@ public class Product extends DatabaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
     }
 
     public String getUnits() {
@@ -134,11 +125,6 @@ public class Product extends DatabaseEntity {
 
         public ProductBuilder withDescription(String description) {
             product.description = description;
-            return this;
-        }
-
-        public ProductBuilder withAmount(float amount) {
-            product.amount = amount;
             return this;
         }
 
