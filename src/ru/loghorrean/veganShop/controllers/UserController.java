@@ -39,7 +39,6 @@ abstract public class UserController extends BaseController {
             CurrentUser.getInstance().setUser(null);
             try {
                 super.redirect(actionEvent, "mainScreens/Main");
-                CategoriesData.unsetModel();
             } catch (IOException e) {
                 e.printStackTrace();
             }

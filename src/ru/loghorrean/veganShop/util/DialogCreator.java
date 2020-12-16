@@ -53,7 +53,7 @@ public class DialogCreator {
             return this;
         }
 
-        public DialogBuilder passObject(DatabaseEntity entity) {
+        public DialogBuilder passObject(Object entity) {
             ((IInit) controller).initData(entity);
             return this;
         }

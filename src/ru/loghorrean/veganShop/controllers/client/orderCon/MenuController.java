@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.ClientController;
-import ru.loghorrean.veganShop.models.OrdersData;
+import ru.loghorrean.veganShop.models.*;
+import ru.loghorrean.veganShop.models.database.entities.CategoriesForTemplate;
+import ru.loghorrean.veganShop.models.database.entities.Product;
 
 import java.io.IOException;
 
@@ -27,6 +29,10 @@ public class MenuController extends ClientController {
     public void initialize() {
         mainBorderPane.setRight(getUserMenu());
         OrdersData.getInstance();
+        CategoriesData.getInstance();
+        TemplatesData.getInstance();
+        CategoriesForTemplatesData.getInstance();
+        ProductsData.getInstance();
     }
 
     @FXML

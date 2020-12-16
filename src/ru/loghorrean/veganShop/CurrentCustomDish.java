@@ -8,15 +8,10 @@ import java.util.Set;
 
 public class CurrentCustomDish {
     private static CurrentCustomDish instance;
+    private String dishName;
+    private String recipe;
     private DishTemplate templateOfTheDish;
-    private Set<CompositionRow> composition;
-
-//    public static CurrentCustomDish getInstance() {
-//        if (instance == null) {
-//            instance = new CurrentCustomDish();
-//        }
-//        return instance;
-//    }
+    private final Set<CompositionRow> composition;
 
     public CurrentCustomDish() {
         composition = new HashSet<>();
@@ -27,8 +22,28 @@ public class CurrentCustomDish {
         composition.clear();
     }
 
+    public Set<CompositionRow> getComposition() {
+        return composition;
+    }
+
     public DishTemplate getTemplate() {
         return templateOfTheDish;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
+    }
+
+    public String getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
     }
 
     public void addToComposition(Product product, int amount, String recipe) {
@@ -48,7 +63,7 @@ public class CurrentCustomDish {
         }
     }
 
-    private class CompositionRow {
+    public class CompositionRow {
         private Product product;
         private int amount;
         private String recipe;
@@ -75,6 +90,12 @@ public class CurrentCustomDish {
             this.product = product;
             this.amount = amount;
             this.recipe = recipe;
+        }
+
+        @Override
+        public String toString() {
+            return "Продукт " + product.getName() + " в количестве " + amount + " " + product.getUnits() + " по рецепту: " +
+                    recipe;
         }
     }
 }
