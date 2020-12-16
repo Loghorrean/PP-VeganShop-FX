@@ -5,13 +5,14 @@ import java.util.Set;
 
 public class Order extends DatabaseEntity {
     private User user;
-    private int price;
+    private float price;
     private String phone;
     private City city;
     private String street;
     private int house;
     private int flat;
     private String comment;
+    private boolean isConfirmed;
     private final Set<GeneralDish> generalDishesInOrder;
     private final Set<CustomDish> customDishesInOrder;
 
@@ -31,11 +32,11 @@ public class Order extends DatabaseEntity {
         this.user.addOrder(this);
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -89,6 +90,14 @@ public class Order extends DatabaseEntity {
         this.comment = comment;
     }
 
+    public boolean getConfirmation() {
+        return isConfirmed;
+    }
+
+    public void setConfirmation(boolean confirmation) {
+        this.isConfirmed = confirmation;
+    }
+
     public void addGeneralDish(GeneralDish generalDish) {
         generalDishesInOrder.add(generalDish);
     }
@@ -136,7 +145,7 @@ public class Order extends DatabaseEntity {
             return this;
         }
 
-        public OrderBuilder withPrice(int price) {
+        public OrderBuilder withPrice(float price) {
             order.price = price;
             return this;
         }
@@ -169,6 +178,11 @@ public class Order extends DatabaseEntity {
 
         public OrderBuilder withComment(String comment) {
             order.comment = comment;
+            return this;
+        }
+
+        public OrderBuilder withConfirmation(boolean confirmation) {
+            order.isConfirmed = confirmation;
             return this;
         }
 

@@ -32,6 +32,8 @@ public class HistoryController extends ClientController {
 
     @Override
     public void initialize() {
+        GeneralInOrderData.getInstance();
+        CustomInOrderData.getInstance();
         mainBorderPane.setRight(getUserMenu());
         Button backButton = new Button("Назад в меню");
         backButton.setOnAction(event -> {
@@ -45,6 +47,7 @@ public class HistoryController extends ClientController {
 
         mainListView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
+                mainTextArea.setText("");
                 Order chosenOrder = mainListView.getSelectionModel().getSelectedItem();
                 mainTextArea.setText(mainTextArea.getText() + "Основные блюда в заказе " + '\n');
                 if (chosenOrder.getGeneralDishesInOrder().isEmpty()) {
@@ -61,7 +64,7 @@ public class HistoryController extends ClientController {
                 } else {
                     for (CustomDish dish: chosenOrder.getCustomDishesInOrder()) {
                         CustomDishInOrder link = CustomInOrderData.getInstance().getLink(dish, chosenOrder);
-                        mainTextArea.setText(mainTextArea.getText() + "Блюдо " + dish.getName() + "в количестве " + link.getAmount() + '\n');
+                        mainTextArea.setText(mainTextArea.getText() + "Блюдо " + dish.getName() + " в количестве " + link.getAmount() + '\n');
                     }
                 }
                 mainTextArea.setText(mainTextArea.getText() + "Цена заказа: " + chosenOrder.getPrice() + '\n');

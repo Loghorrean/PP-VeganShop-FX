@@ -24,13 +24,14 @@ public class OrdersManager extends BaseManager<Order> {
                 orders.add(new Order.OrderBuilder()
                             .withId(set.getInt("order_id"))
                             .withUser(UsersData.getInstance().getUserById(set.getInt("user_id")))
-                            .withPrice(set.getInt("order_price"))
+                            .withPrice(set.getFloat("order_price"))
                             .withPhone(set.getString("order_phone"))
                             .withCity(ProfileData.getInstance().getCityById(set.getInt("order_city")))
                             .withStreet(set.getString("order_street"))
                             .withHouse(set.getInt("order_house"))
                             .withFlat(set.getInt("order_flat"))
                             .withComment(set.getString("order_comment"))
+                            .withConfirmation(set.getBoolean("isConfirmed"))
                             .build());
             }
             return orders;
@@ -48,13 +49,14 @@ public class OrdersManager extends BaseManager<Order> {
                 return new Order.OrderBuilder()
                         .withId(set.getInt("order_id"))
                         .withUser(UsersData.getInstance().getUserById(set.getInt("user_id")))
-                        .withPrice(set.getInt("order_price"))
+                        .withPrice(set.getFloat("order_price"))
                         .withPhone(set.getString("order_phone"))
                         .withCity(ProfileData.getInstance().getCityById(set.getInt("order_city")))
                         .withStreet(set.getString("order_street"))
                         .withHouse(set.getInt("order_house"))
                         .withFlat(set.getInt("order_flat"))
                         .withComment(set.getString("order_comment"))
+                        .withConfirmation(set.getBoolean("isConfirmed"))
                         .build();
             }
             return null;
@@ -65,17 +67,18 @@ public class OrdersManager extends BaseManager<Order> {
     public void insert(Order order) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "INSERT INTO orders (user_id, order_price, order_phone, order_city, order_street, order_house, " +
-                    "order_flat, order_comment)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "order_flat, order_comment, isConfirmed)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement s = c.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             s.setInt(1, order.getUser().getId());
-            s.setInt(2, order.getPrice());
+            s.setFloat(2, order.getPrice());
             s.setString(3, order.getPhone());
             s.setInt(4, order.getCity().getId());
             s.setString(5, order.getStreet());
             s.setInt(6, order.getHouse());
             s.setInt(7, order.getFlat());
             s.setString(8, order.getComment());
+            s.setBoolean(9, order.getConfirmation());
             s.executeUpdate();
             ResultSet set = s.getGeneratedKeys();
             if (set.next()) {
@@ -90,17 +93,18 @@ public class OrdersManager extends BaseManager<Order> {
     public void update(Order order) throws SQLException {
         try (Connection c = database.getConnection()) {
             String sql = "UPDATE orders SET user_id = ?, order_price = ?, order_phone = ?, order_city = ?, " +
-                    "order_street = ?, order_house = ?, order_flat = ?, order_comment = ? WHERE order_id = ?";
+                    "order_street = ?, order_house = ?, order_flat = ?, order_comment = ?, isConfirmed = ? WHERE order_id = ?";
             PreparedStatement s = c.prepareStatement(sql);
             s.setInt(1, order.getUser().getId());
-            s.setInt(2, order.getPrice());
+            s.setFloat(2, order.getPrice());
             s.setString(3, order.getPhone());
             s.setInt(4, order.getCity().getId());
             s.setString(5, order.getStreet());
             s.setInt(6, order.getHouse());
             s.setInt(7, order.getFlat());
             s.setString(8, order.getComment());
-            s.setInt(9, order.getId());
+            s.setBoolean(9, order.getConfirmation());
+            s.setInt(10, order.getId());
             if (s.executeUpdate() == 1) {
                 return;
             }

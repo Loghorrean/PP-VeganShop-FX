@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.OrderConfirmationController">
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Стоимость вашего заказа: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label fx:id="orderPrice" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Укажите номер телефона" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="orderPhone" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Ваш город" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="orderCity" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Ваша улица" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="orderStreet" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Номер дома" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="orderHouse" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Номер квартиры" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="orderFlat" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Комментарий к заказу (по желанию)" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextArea fx:id="orderComment" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <Button text="Автозаполнение адреса" GridPane.rowIndex="8" GridPane.columnIndex="0" onAction="#fillAddress"/>
+        </GridPane>
+    </content>
+</DialogPane>

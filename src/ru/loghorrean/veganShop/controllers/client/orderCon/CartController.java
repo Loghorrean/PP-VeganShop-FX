@@ -3,6 +3,8 @@ package ru.loghorrean.veganShop.controllers.client.orderCon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -11,8 +13,10 @@ import ru.loghorrean.veganShop.Cart;
 import ru.loghorrean.veganShop.controllers.ClientController;
 import ru.loghorrean.veganShop.models.database.entities.CustomDish;
 import ru.loghorrean.veganShop.models.database.entities.GeneralDish;
+import ru.loghorrean.veganShop.util.DialogCreator;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CartController extends ClientController {
     @FXML
@@ -63,9 +67,6 @@ public class CartController extends ClientController {
     }
 
     private void fillGeneralRow(GeneralDish dish, int numberOfDishes, int row) {
-        System.out.println(dish.getName());
-        System.out.println(numberOfDishes);
-        System.out.println(row);
         generalGrid.add(new Label(dish.getName()), 0, row);
         generalGrid.add(new Label(Integer.toString(numberOfDishes)), 1, row);
         start++;
@@ -76,11 +77,30 @@ public class CartController extends ClientController {
     }
 
     private void fillCustomRow(CustomDish dish, int numberOfDishes, int row) {
+        customGrid.add(new Label(dish.getName()), 0, row);
+        customGrid.add(new Label(Integer.toString(numberOfDishes)), 1, row);
         start++;
     }
 
     @FXML
     protected void makeOrder(ActionEvent event) {
-
+        Dialog<ButtonType> dialog =
+                new DialogCreator.DialogBuilder("OrderConfirmationDialog")
+                            .createDialog("Подтвердите заказ", mainBorderPane)
+                            .addButtons(ButtonType.OK, ButtonType.CANCEL)
+                            .addController()
+                            .addValidationToButton(ButtonType.OK)
+                            .onSuccess("makeOrder")
+                            .build();
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            setSuccess("Заказ создан. Ожидайте подтверждения администратора");
+            cart.unsetCart();
+            try {
+                redirect(event, "orderScreens/MenuWindow");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

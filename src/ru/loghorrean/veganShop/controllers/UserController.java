@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ru.loghorrean.veganShop.Cart;
 import ru.loghorrean.veganShop.CurrentUser;
 import ru.loghorrean.veganShop.controllers.BaseController;
 import ru.loghorrean.veganShop.models.CategoriesData;
@@ -38,6 +39,7 @@ abstract public class UserController extends BaseController {
         logoutButton.setOnAction(actionEvent -> {
             CurrentUser.getInstance().setUser(null);
             try {
+                Cart.getInstance().unsetCart();
                 super.redirect(actionEvent, "mainScreens/Main");
             } catch (IOException e) {
                 e.printStackTrace();
