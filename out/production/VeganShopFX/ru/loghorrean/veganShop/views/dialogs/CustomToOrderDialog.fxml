@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DialogPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.loghorrean.veganShop.controllers.dialog.CustomToOrderController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+            fx:controller="ru.loghorrean.veganShop.controllers.dialog.CustomToOrderController">
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Название блюда" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="dishName" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Количество" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="dishNumber" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>
