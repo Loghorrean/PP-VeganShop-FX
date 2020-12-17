@@ -136,7 +136,7 @@ public class CartController extends ClientController {
             setSuccess("Заказ создан. Ожидайте подтверждения администратора");
             cart.unsetCart();
             try {
-                redirect(event, "orderScreens/MenuWindow");
+                redirect(event, "orderScreens/Menu");
             } catch (IOException e) {
                 e.printStackTrace();
             }

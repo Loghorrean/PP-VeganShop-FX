@@ -12,7 +12,7 @@ public class OrdersData {
     private BaseManager<Order> manager;
     private List<Order> orders;
 
-    public OrdersData() {
+    private OrdersData() {
         try {
             manager = new OrdersManager();
             setOrders();

@@ -18,9 +18,6 @@ public class ProductAdditionalInfoController extends DialogController implements
     private Label productDesc;
 
     @FXML
-    private Label productAmount;
-
-    @FXML
     private Label productPrice;
 
     @FXML

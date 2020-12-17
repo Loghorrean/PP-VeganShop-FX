@@ -51,7 +51,7 @@ public class OrderConfirmationController extends DialogController {
             orderPrice.setText(Float.toString(cart.getCartPrice()));
             orderCity.setItems(FXCollections.observableArrayList(ProfileData.getInstance().getCities()));
             orderCity.getSelectionModel().selectFirst();
-            model = new OrdersData();
+            model = OrdersData.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
         }

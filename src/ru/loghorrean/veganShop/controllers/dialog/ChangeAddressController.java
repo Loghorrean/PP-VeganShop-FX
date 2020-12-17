@@ -75,6 +75,6 @@ public class ChangeAddressController extends DialogController implements IFill {
         currentUser.setFlat(Integer.parseInt(flat.getText()));
         data.getUsersManager().update(currentUser);
         setSuccess("Адрес обновлен");
-        redirect(event, "profile/ProfileWindow");
+        redirect(event, "profile/Profile");
     }
 }
